@@ -9,53 +9,80 @@ En aquest apartat explicare i realitzare una instal·lació del sistema Ubuntu D
 L'instal·lació la fare apartir d'una màquina virtual al VirtualBox.
 Primer li poso un nom i la iso que ens permetra poder instal·lar l'Ubuntu.
 
-<img src="/img/primer.png" alt="Captura de la instal·lació d'Ubuntu" width="720">
+<img src="../img/primer.png" alt="Captura de la instal·lació d'Ubuntu" width="720">
 
 També li assigno la memoria amb 6144MB tindrem prou.
 
-<img src="/img/memoria.png">
+<img src="../img/memoria.png">
 
 I finalment li he assignat un disc de 80GB ja que em te que sibrar espai per poder instal·lar el Windows posteriorment
 Per tant 25GB son per Ubuntu Desktop.
-<img src="/img/disc.png">
+<img src="../img/disc.png">
 
 Ara ja puc iniciar la màquina i començar la instal·lació.
-<img src="/img/instalar.png">
+<img src="../img/instalar.png">
 
 Seguim amb l'instal·lació.
-<img src="/img/install.png">
+<img src="../img/install.png">
 
 En aquesta part selecciono la segona opció on puc configurar les particions.
 
-<img src="/img/particions.png">
+<img src="../img/particions.png">
 
 Ara li assigno l'arrel del sistema que és la particion més gran que necessita més espai.
 
-<img src="/img/30.png">
+<img src="../img/30.png">
 
 Finalment el swap que és important si falla la memoria o no es suficient.
 
-<img src="/img/swap.png">
+<img src="../img/swap.png">
 
 I així queda la taula de particions.
 
-<img src="/img/total.png">
+<img src="../img/total.png">
 
 I configuro els últims paràmetres.
 
-<img src="/img/fin">
+<img src="../img/fin">
 
 I començara la instal·lació.
 
-<img src="/img/fin.png">
+<img src="../img/fin.png">
 
+Un cop instl·lat apagare la màquina i inserire la iso del Windows pero poder instal·larlo.
 
+<img src="../img/win.png">
 
+Ara torno a obrir la màquina prenent f12 per entrar al mode arranc.
+<img src="../img/dual.png">
 
+I cliquem a la c amb CD-ROOM que és la unitat física que hem inserit del Windows.
 
+I ara ja podre instal·lar el Windows.
 
+<img src="../img/win1.png">
 
+En aquest pas selecciono instal·lar Windows avançat per configurar les meves propies particions.
 
+<img src="../img/pas.png">
+
+I com podem veure em surt que ja tinc Ubuntu instal·lat i l'espai del disc guardat per poder instal·lar Ubuntu.
+
+<img src="../img/parti.png">
+
+I començara la instal·lació.
+
+<img src="../img/on.png">
+
+I esperare a que inicie el windows.
+
+<img src="../img/inici.png">
+
+I ara configuro els paràmetres bàsics.
+
+<img src="../img/basic.png">
+
+<img src="../img/fet.png">
 
 ## Lliçó 2. Llicenciament
 
