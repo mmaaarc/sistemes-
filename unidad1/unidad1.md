@@ -4,11 +4,15 @@ title: "sprint 1"
 ---
 
 ## Lliçó 1. Virtualització i instal·lació del sistema operatiu Ubuntu
+En aquest apartat explicare i realitzare una instal·lació del sistema Ubuntu Desktop.
 
-- [Guia d'instal·lació d'Ubuntu (oficial)](https://ubuntu.com/tutorials/install-ubuntu-desktop)
-- [Manual VirtualBox (virtualització de sobretaula)](https://www.virtualbox.org/manual/)
-- [KVM/QEMU (virtualització a Linux)](https://www.linux-kvm.org/page/Documentation)
+L'instal·lació la fare apartir d'una màquina virtual al VirtualBox.
+Primer li poso un nom i la iso que ens permetra poder instal·lar l'Ubuntu.
+![Captura de la instal·lació d'Ubuntu](images/instalacio-ubuntu.png "Instal·lació d'Ubuntu")
 
+<p align="center">
+    <img src="/img/primer.png" alt="Captura de la instal·lació d'Ubuntu" width="720">
+</p>
 ## Lliçó 2. Llicenciament
 
 - [Llicències GNU i llibertat de programari (FSF)](https://www.gnu.org/licenses/licenses.html)
