@@ -4,15 +4,59 @@ title: "sprint 1"
 ---
 
 ## Lliçó 1. Virtualització i instal·lació del sistema operatiu Ubuntu
-En aquest apartat explicare i realitzare una instal·lació del sistema Ubuntu Desktop.
+En aquest apartat explicare i realitzare una instal·lació del sistema Ubuntu Desktop on posteriorment instal·lare un Windows 10 com a dual.
 
 L'instal·lació la fare apartir d'una màquina virtual al VirtualBox.
 Primer li poso un nom i la iso que ens permetra poder instal·lar l'Ubuntu.
-![Captura de la instal·lació d'Ubuntu](images/instalacio-ubuntu.png "Instal·lació d'Ubuntu")
 
-<p align="center">
-    <img src="/img/primer.png" alt="Captura de la instal·lació d'Ubuntu" width="720">
-</p>
+<img src="/img/primer.png" alt="Captura de la instal·lació d'Ubuntu" width="720">
+
+També li assigno la memoria amb 6144MB tindrem prou.
+
+<img src="/img/memoria.png">
+
+I finalment li he assignat un disc de 80GB ja que em te que sibrar espai per poder instal·lar el Windows posteriorment
+Per tant 25GB son per Ubuntu Desktop.
+<img src="/img/disc.png">
+
+Ara ja puc iniciar la màquina i començar la instal·lació.
+<img src="/img/instalar.png">
+
+Seguim amb l'instal·lació.
+<img src="/img/install.png">
+
+En aquesta part selecciono la segona opció on puc configurar les particions.
+
+<img src="/img/particions.png">
+
+Ara li assigno l'arrel del sistema que és la particion més gran que necessita més espai.
+
+<img src="/img/30.png">
+
+Finalment el swap que és important si falla la memoria o no es suficient.
+
+<img src="/img/swap.png">
+
+I així queda la taula de particions.
+
+<img src="/img/total.png">
+
+I configuro els últims paràmetres.
+
+<img src="/img/fin">
+
+I començara la instal·lació.
+
+<img src="/img/fin.png">
+
+
+
+
+
+
+
+
+
 ## Lliçó 2. Llicenciament
 
 - [Llicències GNU i llibertat de programari (FSF)](https://www.gnu.org/licenses/licenses.html)
