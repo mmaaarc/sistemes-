@@ -75,79 +75,7 @@ I començara la instal·lació.
 <img src="../img/on.png">
 
 I esperare a que inicie el windows.
-### Millores visuals i responsives
 
-Per millorar l'aspecte de tota la pàgina recomano aplicar aquestes accions ràpides:
-- Fer les imatges responsives i amb captions perquè el contingut sigui llegible en pantalles petites.
-- Reduir l'amplada màxima de les imatges i centrar-les.
-- Agrupar captures en una galeria amb separació i subtítols.
-- Comprimir les imatges (webp/optimized) per millorar la càrrega.
-
-Afegeix aquest estil a la capçalera del teu tema (p. ex. _includes/head.html o main.css):
-
-<style>
-/* Estils senzills per a imatges i galeria */
-.responsive-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin: 0.75rem auto;
-    border-radius: 4px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-}
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 0.75rem;
-    margin: 0.75rem 0;
-}
-.gallery figure {
-    margin: 0;
-    background: #fff;
-    padding: 0.35rem;
-    border-radius: 4px;
-    text-align: center;
-}
-figcaption {
-    font-size: 0.9rem;
-    color: #444;
-    margin-top: 0.35rem;
-}
-.callout {
-    border-left: 4px solid #2b8cc4;
-    background: #f4fbff;
-    padding: 0.6rem 0.9rem;
-    margin: 0.8rem 0;
-    border-radius: 3px;
-    color: #0b3a52;
-}
-</style>
-
-Bloc d'exemple que pots reutilitzar per a cada sèrie d'imatges (canvia els noms per les teves imatges reals):
-
-<div class="callout">
-Millora ràpida: substitueix les etiquetes <img> planes per figures amb la classe <code>responsive-img</code> i/o agrupa captures en la <code>.gallery</code>.
-</div>
-
-<div class="gallery">
-    <figure>
-        <img class="responsive-img" src="/img/your-screenshot-1.png" alt="Descripció breu 1">
-        <figcaption>Captura 1 — Pas explicat breu.</figcaption>
-    </figure>
-    <figure>
-        <img class="responsive-img" src="/img/your-screenshot-2.png" alt="Descripció breu 2">
-        <figcaption>Captura 2 — Què mostra.</figcaption>
-    </figure>
-    <figure>
-        <img class="responsive-img" src="/img/your-screenshot-3.png" alt="Descripció breu 3">
-        <figcaption>Captura 3 — Nota important.</figcaption>
-    </figure>
-</div>
-
-Notes addicionals:
-- Mantén el text de les captions curt i descriptiu (accessibilitat).
-- Converteix les imatges a formats optimitzats i defineix amplades màximes per evitar desbordaments.
-- Si vols, et genero la versió de la galeria amb els noms d'imatge ja substituïts per les teves rutes concretes.
 <img src="../img/inici.png">
 
 I ara configuro els paràmetres bàsics.
@@ -176,9 +104,8 @@ I ara configuro els paràmetres bàsics.
 
 ## Lliçó 5. Configuració de la xarxa
 
-- [Netplan (configuració de xarxa en Ubuntu modernes)](https://netplan.io/)
-- [NetworkManager (gestió de connexions)](https://wiki.gnome.org/Projects/NetworkManager)
-- [Tutorials i exemples de configuració (Ubuntu)](https://ubuntu.com/server/docs/network-configuration)
+En aquest apartat configurare els diferents tipus de paràmetres de xarxa útils que podem utilitzar.
+
 
 ## Lliçó 6. Comandes generals i instal·lacions
 
