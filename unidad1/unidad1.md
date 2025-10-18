@@ -147,7 +147,7 @@ I amb la comanda ip a comprovo que s'han aplicat els canvis.
 
 
 
-
+a
 ## Lliçó 6. Comandes generals i instal·lacions
 
 - [Apt — gestió de paquets (documentació i usos comuns)](https://help.ubuntu.com/community/AptGet/Howto)
