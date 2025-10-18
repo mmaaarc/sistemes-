@@ -135,7 +135,14 @@ Desde el fitxer /etc/netplan podem modificar la configuració de xarxa per termi
 
 <img width="767" height="46" alt="image" src="https://github.com/user-attachments/assets/218a6fb6-7fb2-4a08-a8fb-57955fac97a1" />
 
-<img width="783" height="345" alt="image" src="https://github.com/user-attachments/assets/b2a04dcc-ff76-429f-bf38-f8d2d15b1e02" />
+<img width="816" height="320" alt="image" src="https://github.com/user-attachments/assets/22cb737f-cff0-4ac0-a151-829300ec5f74" />
+
+Finalment li dono permisos i faig el netplan apply.
+<img width="662" height="203" alt="image" src="https://github.com/user-attachments/assets/3bf0106e-8848-4c9f-ac29-6f4eaee312c5" />
+
+I amb la comanda ip a comprovo que s'han aplicat els canvis.
+
+<img width="1041" height="326" alt="image" src="https://github.com/user-attachments/assets/649a020c-3b89-44a0-bb68-b741d564c5e8" />
 
 
 
