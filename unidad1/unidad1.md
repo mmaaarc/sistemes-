@@ -104,7 +104,41 @@ I ara configuro els paràmetres bàsics.
 
 ## Lliçó 5. Configuració de la xarxa
 
-En aquest apartat configurare els diferents tipus de paràmetres de xarxa útils que podem utilitzar.
+## MODE GRÀFIC 
+
+En aquest apartat configurare una IP manual amb sortida a internet
+
+Per configurar la xarxa en primera instancia podem veure la configuració a través dels paràmetres a l'opció de xarxa. Des d'aquest punt entrem a les opcions del cablejat per comprovar quina IP tenim i amb el mode manual la podem canviar al nostre gust.
+Com podem veure tinc una interfície connectada.
+
+<img width="633" height="183" alt="image" src="https://github.com/user-attachments/assets/426f8bbd-45e7-40c9-bd04-95e309fd6782" />
+
+I si accedim podrem veure que té una IP assignada.
+
+<img width="749" height="388" alt="image" src="https://github.com/user-attachments/assets/c84b4a21-251e-4102-a2c9-d6877103ee8a" />
+
+Aquesta IP ens la dona VirtualBox, ja que tinc posada la NAT en aquesta interfície.
+
+<img width="749" height="388" alt="image" src="https://github.com/user-attachments/assets/3e2121f6-48b9-4b48-bc0b-cdf26d6cbdcd" />
+
+I ara per fer la prova li he posat una IP manualment 192.168.10.2 i la IP 8.8.8.8 per la resolució de domini cap a internet
+
+<img width="810" height="521" alt="image" src="https://github.com/user-attachments/assets/7d82ea01-b9ec-4598-b5ad-b929795a03c9" />
+
+I amb la comanda ip a puc comprovar que s'han aplicat els canvis.
+
+<img width="816" height="420" alt="image" src="https://github.com/user-attachments/assets/5ca41a68-098b-4cec-b94e-ae7a6dc05521" />
+
+## MODE TERMINAL
+
+Desde el fitxer /etc/netplan podem modificar la configuració de xarxa per terminal.
+
+<img width="767" height="46" alt="image" src="https://github.com/user-attachments/assets/218a6fb6-7fb2-4a08-a8fb-57955fac97a1" />
+
+<img width="783" height="345" alt="image" src="https://github.com/user-attachments/assets/b2a04dcc-ff76-429f-bf38-f8d2d15b1e02" />
+
+
+
 
 
 ## Lliçó 6. Comandes generals i instal·lacions
