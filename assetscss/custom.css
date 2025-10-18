@@ -1,23 +1,118 @@
+:root{
+  --max-width: 1100px;
+  --container-padding: 24px;
+  --bg: #fbfbfc;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-2: #06b6d4;
+  --heading: #07103a;
+  --soft: #f1f5f9;
+  --code-bg: #0f172a;
+}
+
+*{box-sizing: border-box}
+
 body {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px;
-  font-family: sans-serif;
+  background: var(--bg);
+  color: #0f172a;
+  font-family: Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
+  margin: 0;
+  -webkit-font-smoothing:antialiased;
 }
 
-h1, h2, h3 {
+.container{
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.site-header{
+  background: linear-gradient(90deg, rgba(37,99,235,0.08), rgba(99,102,241,0.04));
+  border-bottom: 1px solid rgba(15,23,42,0.04);
+  padding: 18px 0;
+}
+
+.site-title{
+  margin: 0;
+  font-size: 1.6rem;
   text-align: center;
+  color: #0b1220;
+  letter-spacing: -0.5px;
 }
 
-img {
-  display: block;
-  max-width: 80%;   /* les fa més petites */
-  height: auto;
-  margin: 20px auto;
-  border-radius: 10px;
+.content{
+  background: var(--card);
+  margin: 28px auto;
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(15,23,42,0.06);
 }
 
-p {
-  text-align: justify;
+
+h1,h2,h3{ text-align: left; color:var(--heading) }
+
+p{ text-align: left; color: #0f172a; margin-top: 0 }
+
+/* Images */
+img{
+  display:block;
+  max-width:100%;
+  height:auto;
+  margin: 18px auto;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(2,6,23,0.06);
+  border: 1px solid rgba(15,23,42,0.03);
 }
+
+figure{ margin: 20px 0; text-align: center }
+figcaption{ font-size: 0.9rem; color: var(--muted); margin-top: 8px }
+
+/* Images that were using width/height attributes will be constrained */
+img[width], img[height]{
+  max-width: 90%;
+  height: auto !important;
+}
+
+/* Make lists and links look nicer */
+ul, ol{ padding-left: 1.25rem }
+a{ color: var(--accent); text-decoration: none }
+a:hover{ text-decoration: underline }
+
+/* Tables */
+table{ width:100%; border-collapse: collapse; margin: 16px 0 }
+th, td{ border: 1px solid rgba(15,23,42,0.06); padding: 8px 10px; text-align: left }
+th{ background: var(--soft); font-weight:600 }
+
+/* Code blocks and inline code */
+code{ background: rgba(2,6,23,0.04); padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace }
+pre{ background: #0b1220; color: #e6eef8; padding: 14px; border-radius: 10px; overflow:auto }
+
+/* Buttons */
+.btn{ display:inline-block; padding: 8px 14px; border-radius: 8px; background: var(--accent); color: white; text-decoration: none }
+.btn.secondary{ background: var(--accent-2) }
+
+/* Small utilities */
+.muted{ color: var(--muted) }
+.lead{ font-size: 1.05rem; color: #14213d }
+
+/* Footer */
+footer.license{
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding: 26px 0 60px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px){
+  .site-title{ font-size: 1.25rem }
+  .content{ padding: 18px }
+  .container{ padding: 0 16px }
+}
+
+/* Accessibility: focus states */
+a:focus, .btn:focus{ outline: 3px solid rgba(37,99,235,0.12); outline-offset: 2px }
+
+
