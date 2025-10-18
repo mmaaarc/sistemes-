@@ -144,10 +144,73 @@ I amb la comanda ip a comprovo que s'han aplicat els canvis.
 
 <img width="1041" height="326" alt="image" src="https://github.com/user-attachments/assets/649a020c-3b89-44a0-bb68-b741d564c5e8" />
 
+## TIPUS D'INTERFÍCIES AMB MÀQUINES VIRTUALS
+
+## NAT (Network Address Translation)
+
+És el mode per defecte.
+
+## Com funciona:
+
+La MV comparteix la connexió d’internet de l’amfitrió.
+
+VirtualBox fa de “router” intern i dona a la MV una IP privada (normalment 10.0.2.x).
+
+La MV pot accedir a internet, però altres equips (ni l’amfitrió) poden accedir-hi directament.
+
+## Ús típic:
+
+Quan només vols que la MV tingui accés a internet, sense complicar-te.
+
+## Adaptador pont 
+
+La MV es connecta com un equip més dins la teva xarxa física.
+
+## Com funciona:
+
+La MV utilitza la mateixa targeta de xarxa que l’amfitrió (Wi-Fi o Ethernet).
+
+Rep una IP del mateix router que l’amfitrió (ex: 192.168.1.x).
+
+## Avantatges:
+
+Pots fer ping a la MV des del teu PC o altres equips de la xarxa.
+
+Ideal per fer proves de servidors (web, SSH, etc.).
+
+## Ús típic:
+
+Quan vols que la MV sigui visible a la xarxa real.
+
+## Xarxa Interna 
+
+Xarxa privada només entre màquines virtuals dins VirtualBox.
+
+## Com funciona:
+
+Les MVs dins la mateixa Xarxa Interna es poden veure entre elles.
+
+No hi ha connexió amb l’amfitrió ni amb internet.
+
+## Ús típic:
+
+Quan simules una xarxa d’ordinadors (ex: servidors i clients en un laboratori virtual).
+
+## Xarxa NAT
+
+Similar a NAT, però permet que diverses MVs es vegin entre elles dins la mateixa xarxa NAT.
+
+## Com funciona:
+
+Crees una xarxa NAT des de les opcions de VirtualBox.
+
+Les MVs dins d’aquesta xarxa poden comunicar-se i sortir a internet.
+
+## Ús típic:
+
+Laboratoris on vols accés a internet i comunicació entre MVs (ex: client-servidor).
 
 
-
-a
 ## Lliçó 6. Comandes generals i instal·lacions
 
 - [Apt — gestió de paquets (documentació i usos comuns)](https://help.ubuntu.com/community/AptGet/Howto)
