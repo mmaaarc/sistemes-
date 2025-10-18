@@ -86,9 +86,27 @@ I ara configuro els paràmetres bàsics.
 
 ## Lliçó 2. Llicenciament
 
-- [Llicències GNU i llibertat de programari (FSF)](https://www.gnu.org/licenses/licenses.html)
-- [Open Source Initiative — Llicències OSS](https://opensource.org/licenses)
-- [Informació sobre llicències i codi a Ubuntu](https://ubuntu.com/about/ubuntu-licences)
+### Llicències Creative Commons (CC)
+
+Les llicències Creative Commons són un conjunt de permisos públics que l'autor pot aplicar a una obra per regular-ne la reutilització, adaptació i redistribució. Estan pensades principalment per a continguts creatius i educatius (textos, imatges, vídeo, àudio) i no són la primera opció per a programari.
+
+### Components principals
+- **BY (Atribució):** sempre exigeix reconèixer l'autor.  
+- **SA (ShareAlike / ComparteixIgual):** les obres derivades han d'usar la mateixa llicència.  
+- **NC (NoComercial):** prohibeix l'ús amb finalitats comercials (pot ser ambigu).  
+- **ND (NoDerivatives / Sense derivades):** permet compartir només còpies exactes, no adaptacions.  
+- **CC0:** renúncia als drets d'autor per intentar situar l'obra en domini públic.
+
+Combinacions habituals: CC BY, CC BY-SA, CC BY-NC, CC BY-ND, CC BY-NC-SA, CC BY-NC-ND (més restrictiva).
+
+### Com funcionen legalment
+- L'autor manté els drets d'autor però concedeix permisos públics sota condicions clares.  
+- Les llicències són no exclusives i, en general, irrevocables per a les còpies ja publicades.  
+- Les versions modernes (p. ex. 4.0) són dissenyades per a aplicabilitat internacional.  
+- Cal indicar la llicència de manera visible (text o enllaç) i, si es vol, afegir metadades (RDFa, rel="license") per a detecció automàtica.  
+- Per a programari, és preferible usar llicències específiques de codi (GPL, MIT, etc.); CC0 pot ser útil per a dades i obres que es volen alliberar sense condicions.
+
+**Resum:** les CC faciliten la compartició amb condicions configurables; triar la combinació adequada depèn de si es vol permetre adaptacions, ús comercial i/o exigir la mateixa llicència en les derivacions.
 
 ## Lliçó 3. Gestors d'arrencada per a instal·lacions duals
 
