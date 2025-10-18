@@ -162,6 +162,9 @@ La MV pot accedir a internet, però altres equips (ni l’amfitrió) poden acced
 
 Quan només vols que la MV tingui accés a internet, sense complicar-te.
 
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/7ecb2e2c-8ff4-4761-9326-ccdea692696f" />
+
+
 ## Adaptador pont 
 
 La MV es connecta com un equip més dins la teva xarxa física.
@@ -182,6 +185,8 @@ Ideal per fer proves de servidors (web, SSH, etc.).
 
 Quan vols que la MV sigui visible a la xarxa real.
 
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/92241f89-2df5-4bde-8465-e7e90dc6f3ed" />
+
 ## Xarxa Interna 
 
 Xarxa privada només entre màquines virtuals dins VirtualBox.
@@ -196,6 +201,8 @@ No hi ha connexió amb l’amfitrió ni amb internet.
 
 Quan simules una xarxa d’ordinadors (ex: servidors i clients en un laboratori virtual).
 
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/8965fcf5-e15d-4aa3-aeb7-e0f49543d67a" />
+
 ## Xarxa NAT
 
 Similar a NAT, però permet que diverses MVs es vegin entre elles dins la mateixa xarxa NAT.
@@ -209,6 +216,8 @@ Les MVs dins d’aquesta xarxa poden comunicar-se i sortir a internet.
 ## Ús típic:
 
 Laboratoris on vols accés a internet i comunicació entre MVs (ex: client-servidor).
+
+<img width="1489" height="924" alt="image" src="https://github.com/user-attachments/assets/7ecabef9-b927-4fb3-beb2-ba7efb137771" />
 
 
 ## Lliçó 6. Comandes generals i instal·lacions
