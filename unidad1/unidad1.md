@@ -110,9 +110,9 @@ Combinacions habituals: CC BY, CC BY-SA, CC BY-NC, CC BY-ND, CC BY-NC-SA, CC BY-
 
 ## Lliçó 3. Gestors d'arrencada per a instal·lacions duals
 
-- [Manual de GRUB (GNU GRUB)](https://www.gnu.org/software/grub/manual/)
-- [rEFInd (gestor d'arrencada alternatiu)](https://www.rodsbooks.com/refind/)
-- [Guia pràctica per a dual-boot amb Ubuntu](https://help.ubuntu.com/community/UbuntuDualBoot)
+Un gestor de arranque controla el inicio y permite elegir entre sistemas en dual‑boot.  
+Referencias: [Manual de GRUB](https://www.gnu.org/software/grub/manual/) y [rEFInd](https://www.rodsbooks.com/refind/).  
+Guía práctica: [Dual‑boot con Ubuntu](https://help.ubuntu.com/community/UbuntuDualBoot).
 
 ## Lliçó 4. Punts de restauració
 
