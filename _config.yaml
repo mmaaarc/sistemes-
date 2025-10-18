@@ -1,4 +1,4 @@
-theme: material
+theme: minima
 
 sass:
   style: compressed
