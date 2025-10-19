@@ -306,3 +306,28 @@ Nota ràpida: si dubtes entre "Adaptador pont" i "NAT Network", pensa si la MV h
 
 ## Comandes generals i instal·lacions
 
+En aquest apartat fare la prova en la instal·lació de programari a Ubuntu desde terminal.
+
+És important primer fer un Update ja que això actualitzara els paquets del nostre sistema i el mantindra actualitzats a la última versió.
+
+![alt text](image-25.png)
+
+Fare la prova instal·lant el tetris per Ubuntu, per tant amb el wget podem baixar el .deb que es troba a internet.
+
+![alt text](image-26.png)
+
+Ara l'extraiem.
+
+![alt text](image-27.png)
+
+I finalment l'instal·lo.
+
+![alt text](image-28.png)
+
+I l'inicio.
+
+![alt text](image-29.png)
+
+![alt text](image-30.png)
+
+![alt text](image-31.png)
