@@ -3,7 +3,7 @@ layout: default
 title: "sprint 1"
 ---
 
-## Lliçó 1. Virtualització i instal·lació del sistema operatiu Ubuntu
+## Virtualització i instal·lació del sistema operatiu Ubuntu
 En aquest apartat explicare i realitzare una instal·lació del sistema Ubuntu Desktop on posteriorment instal·lare un Windows 10 com a dual.
 
 L'instal·lació la fare apartir d'una màquina virtual al VirtualBox.
@@ -84,7 +84,7 @@ I ara configuro els paràmetres bàsics.
 
 <img src="../img/fet.png">
 
-## Lliçó 2. Llicenciament
+## Llicenciament
 
 ### Llicències Creative Commons (CC)
 
@@ -108,7 +108,7 @@ Combinacions habituals: CC BY, CC BY-SA, CC BY-NC, CC BY-ND, CC BY-NC-SA, CC BY-
 
 **Resum:** les CC faciliten la compartició amb condicions configurables; triar la combinació adequada depèn de si es vol permetre adaptacions, ús comercial i/o exigir la mateixa llicència en les derivacions.
 
-## Lliçó 3. Gestors d'arrencada per a instal·lacions duals
+## Gestors d'arrencada per a instal·lacions duals
 
 Un gestor d’arrencada és un programa intermediari que s’executa quan encenem l’ordinador i que decideix quin sistema operatiu carregar.
 
@@ -180,13 +180,47 @@ Ara instal·lare de nou la carpeta grub, i l'actualitzare.
 Reinicio i ja inicia la màquina correctament.
 
 ![alt text](image-15.png)
-## Lliçó 4. Punts de restauració
 
-- [Timeshift — eines de snapshots per a Linux](https://github.com/teejee2008/timeshift)
-- [Snapshots amb Btrfs (documentació)](https://btrfs.wiki.kernel.org/index.php/SNAPSHOTS)
-- [Estratègies de còpia de seguretat i restauració en Ubuntu](https://ubuntu.com/server/docs/backup-restore)
+## Punts de restauració
+Un punt de restauració és una còpia de l’estat del sistema en un moment concret . Serveix per revertir el sistema a aquest estat si una actualització, instal·lació o error provoca problemes, evitant haver de reinstal·lar tot el sistema.
 
-## Lliçó 5. Configuració de la xarxa
+Timeshift és una molt bona opció per restauracions.
+
+Primer l'he instal·lat.
+
+![alt text](image-16.png)
+
+Ara l'inicio.
+
+![alt text](image-17.png)
+
+![alt text](image-18.png)
+
+Un cop configurat li donarea a crea.
+
+![alt text](image-19.png)
+
+I començara a fer la instantània.
+
+![alt text](image-20.png)
+
+I finalment s'ha realitzat la instantània.
+
+![alt text](image-21.png)
+
+Ara fare la prova de borrar una carpeta existent com la de Baixades i veurem si al iniciar la instantània es restaura.
+
+![alt text](image-22.png)
+
+![alt text](image-23.png)
+
+Ara es reiniciara el sistema
+
+![alt text](image-24.png)
+
+I ja hem recuperat la carpeta.
+
+## Configuració de la xarxa
 
 ## MODE GRÀFIC 
 
@@ -270,8 +304,5 @@ Nota ràpida: si dubtes entre "Adaptador pont" i "NAT Network", pensa si la MV h
 
 
 
-## Lliçó 6. Comandes generals i instal·lacions
+## Comandes generals i instal·lacions
 
-- [Apt — gestió de paquets (documentació i usos comuns)](https://help.ubuntu.com/community/AptGet/Howto)
-- [Snapcraft — paquets snap (instal·lació i gestió)](https://snapcraft.io/docs)
-- [Comandes bàsiques de terminal (cheatsheet)](https://help.ubuntu.com/community/BasicCommands)
