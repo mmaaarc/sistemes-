@@ -114,6 +114,8 @@ Un gestor d’arrencada és un programa intermediari que s’executa quan encene
 
 A ubuntu el gestor d'arrencada que ja ve instal·lat és el GRUB.
 
+## BOOT REPAIR
+
 En cas de una posible falla del GRUB o un esborrament total del GRUB, ara explicare com es pot recuperar.
 Primer realitzare la prova de fallada borrant la carpeta GRUB.
 
@@ -127,7 +129,57 @@ Per tant ara tanco la maquina i entrare a paràmetres per inserir la ISO del boo
 
 ![alt text](image-2.png)
 
-Torno a iniciar la màquina 
+Un cop dins ens apareixera aquest menú on tindre que seleccionar recommended repair.
+
+![alt text](image-3.png)
+![alt text](image-4.png)
+
+Finalment si tot ha funcionat apareixera aquesta pestanya informant de que el GRUB s'ha recuperat i podre reiniciar la màquina i treure la ISO.
+
+![alt text](/unidad1/a.png)
+
+![alt text](image-5.png)
+
+I ja torno a tenir la carpeta GRUB.
+
+![alt text](image-6.png)
+
+
+## SUPERGRUB2
+
+Ara fare la mateixa pràctica pero amb restaurant el GRUB amb la ISO del SUPERGRUB2.
+
+![alt text](image-7.png)
+
+Ara insereixo la ISO.
+
+![alt text](image-8.png)
+
+I enjego la màquina.
+
+![alt text](image-9.png)
+
+Li dono per detectar el metodes de reparació.
+
+![alt text](image-10.png)
+
+Seleccionare el mitja que diu Linux.
+
+![alt text](image-11.png)
+
+I si ha reparat bé s'obrira automàticament la màquina.
+
+![alt text](image-12.png)
+
+Ara instal·lare de nou la carpeta grub, i l'actualitzare.
+
+![alt text](image-13.png)
+
+![alt text](image-14.png)
+
+Reinicio i ja inicia la màquina correctament.
+
+![alt text](image-15.png)
 ## Lliçó 4. Punts de restauració
 
 - [Timeshift — eines de snapshots per a Linux](https://github.com/teejee2008/timeshift)
