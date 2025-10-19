@@ -110,10 +110,24 @@ Combinacions habituals: CC BY, CC BY-SA, CC BY-NC, CC BY-ND, CC BY-NC-SA, CC BY-
 
 ## Lliçó 3. Gestors d'arrencada per a instal·lacions duals
 
-Un gestor de arranque controla el inicio y permite elegir entre sistemas en dual‑boot.  
-Referencias: [Manual de GRUB](https://www.gnu.org/software/grub/manual/) y [rEFInd](https://www.rodsbooks.com/refind/).  
-Guía práctica: [Dual‑boot con Ubuntu](https://help.ubuntu.com/community/UbuntuDualBoot).
+Un gestor d’arrencada és un programa intermediari que s’executa quan encenem l’ordinador i que decideix quin sistema operatiu carregar.
 
+A ubuntu el gestor d'arrencada que ja ve instal·lat és el GRUB.
+
+En cas de una posible falla del GRUB o un esborrament total del GRUB, ara explicare com es pot recuperar.
+Primer realitzare la prova de fallada borrant la carpeta GRUB.
+
+![alt text](image.png)
+
+I ara si reinicio la màquina no enjegara.
+
+![alt text](image-1.png)
+
+Per tant ara tanco la maquina i entrare a paràmetres per inserir la ISO del boot repair.
+
+![alt text](image-2.png)
+
+Torno a iniciar la màquina 
 ## Lliçó 4. Punts de restauració
 
 - [Timeshift — eines de snapshots per a Linux](https://github.com/teejee2008/timeshift)
