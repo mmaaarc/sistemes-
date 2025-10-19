@@ -331,3 +331,70 @@ I l'inicio.
 ![alt text](image-30.png)
 
 ![alt text](image-31.png)
+
+A continuació llistare algunes comandes bàsiques d'Ubuntu.
+
+## PWD 
+Aquesta ens mostra el directori actual.
+
+![alt text](image-32.png)
+
+## ls
+Ens mostra el contingut del directori.
+
+![alt text](image-33.png)
+
+## ls -l
+Ens mostra el contingut del directori juntament amb els permisos i propietaris.
+
+![alt text](image-34.png)
+
+## cd
+Ens movem a una carpeta o retrosedim.
+
+![alt text](image-35.png)
+
+## mkdir 
+Podem generar carpetes.
+
+![alt text](image-36.png)
+
+## touch
+
+I amb el touch arxius.
+
+![alt text](image-37.png)
+
+## rm 
+
+Amb el rm podem eliminar arxius.
+
+![alt text](image-38.png)
+
+I amb el rm -r carpetes i el seu contingut.
+
+![alt text](image-39.png)
+
+## mv 
+
+Amb el mv podem moure fitxers cap a altres carpetes.
+
+![alt text](image-40.png)
+
+## Update 
+
+Amb l'Update actualitzem la llista de paquets disponibles.
+
+![alt text](image-41.png)
+
+## Upgrade
+
+Amb l'upgrade actualitzem tots el paquets instal·lats a la última versió.
+
+![alt text](image-42.png)
+
+## apt
+
+Amb el apt podem instal·lar paquets.
+
+![alt text](image-43.png)
