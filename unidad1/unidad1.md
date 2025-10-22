@@ -314,7 +314,7 @@ Vull instal·lar el nano i amb aquesta comanda puc veure el actual candidat i le
 
 <img width="666" height="309" alt="image" src="https://github.com/user-attachments/assets/ca63c9dd-ca69-4b32-bd5a-fea737883eae" />
 
-Com podem veure tinc com a candidat la versió 7.2-2ubuntu0.1 i ara prefereixo instal·lar la 7.2-2build1. 
+Com podem veure tinc com a candidat la versió 7.2-2ubuntu0.1 i ara prefereixo instal·lar la 7.2-2build2. 
 Per tant creare un fitxer per gestionar el paquet que vull instal·lar i posar com a candidat aquesta versió.
 
 I aquesta és la configuració.
