@@ -310,24 +310,30 @@ Pinning Packet és molt utilitzat en sistemes Linux, aquest ens permet controlar
 
 Seguidament realitzare una prova.
 
-Vull instal·lar el redis i amb aquesta comanda puc veure el actual candidat i les versions que estan disponibles.
+Vull instal·lar el nano i amb aquesta comanda puc veure el actual candidat i les versions que estan disponibles.
 
-<img width="820" height="362" alt="image" src="https://github.com/user-attachments/assets/a30705ad-2b01-4cc3-9f4f-c23c297678b2" />
+<img width="666" height="309" alt="image" src="https://github.com/user-attachments/assets/ca63c9dd-ca69-4b32-bd5a-fea737883eae" />
 
-Com podem veure tinc com a candidat la versió 5:7.0.15-1ubuntu0.24.04.2 i ara prefereixo instal·lar la 5:7.0.15-1build2. 
-Per tant creare un fitxer per gestionar el paquet que vull instal·lar.
-
-<img width="742" height="126" alt="image" src="https://github.com/user-attachments/assets/f0357cb4-a874-4fd8-b67f-f88939bf864f" />
+Com podem veure tinc com a candidat la versió 7.2-2ubuntu0.1 i ara prefereixo instal·lar la 7.2-2build1. 
+Per tant creare un fitxer per gestionar el paquet que vull instal·lar i posar com a candidat aquesta versió.
 
 I aquesta és la configuració.
 
-<img width="621" height="177" alt="image" src="https://github.com/user-attachments/assets/cdae878f-f4ab-4790-81e2-34a29b7bd9fa" />
+<img width="783" height="159" alt="image" src="https://github.com/user-attachments/assets/db2dde0a-5336-4be9-a612-e2426268e880" />
 
-Ara faig un reboot i torno a comprovar el candidat hi ha, i efectivament és el que jo li he assignat.
 
-<img width="880" height="313" alt="image" src="https://github.com/user-attachments/assets/d9d02409-0e42-4b05-873d-2d252962628f" />
+Ara faig un reboot i torno a comprovar el candidat que hi ha, i efectivament és el que jo li he assignat.
 
-I finalment instal·lo el paquet.
+<img width="828" height="347" alt="image" src="https://github.com/user-attachments/assets/562b883c-828b-43f4-949f-36aa806ecc9d" />
+
+I finalment instal·lo el paquet amb la versió que jo volia.
+
+<img width="819" height="353" alt="image" src="https://github.com/user-attachments/assets/ed8c4583-2bae-4ed4-a652-aa7658f5869b" />
+
+I aquesta és la versió.
+
+<img width="557" height="148" alt="image" src="https://github.com/user-attachments/assets/f88ea8d7-3114-495f-a8e2-f1e3366e6f8e" />
+
 
 
 
