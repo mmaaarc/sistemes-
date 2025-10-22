@@ -103,9 +103,11 @@ I per acabar instal·lo el bootrepair.
 <img width="728" height="366" alt="Captura de pantalla de 2025-10-22 19-31-44" src="https://github.com/user-attachments/assets/65eed863-96c8-466b-b463-7e67abd45b74" />
 
 Ara selecciono repair recomenat 
+
 ![alt text](image-3.png)
 
 Finalment apareixera aquest misstage li dire que sí.
+
 <img width="539" height="193" alt="Captura de pantalla de 2025-10-22 19-32-10" src="https://github.com/user-attachments/assets/56258c42-7131-43f4-bccb-6382b0cc57d3" />
 
 I aquest és l'informe de que s'ha recuperat el GRUB.
