@@ -84,6 +84,39 @@ I ara configuro els paràmetres bàsics.
 
 <img src="../img/fet.png">
 
+Un cop fet això el nostre GRUB d'Ubuntu està trencat ja que Windows l'ha sobrescrit, per tant ara cal reparar el GRUB.
+
+Per poder repararlo he inserit una nova ISO d'un Ubuntu i entrare en probar Ubuntu.
+
+<img width="593" height="546" alt="Captura de pantalla de 2025-10-22 19-29-46" src="https://github.com/user-attachments/assets/ff13e1a3-fc59-4cb1-b0ba-46c05dd5041e" />
+
+Un cop dins la màquina afegeixo el repositori del bootrepair.
+
+<img width="734" height="306" alt="Captura de pantalla de 2025-10-22 19-30-41" src="https://github.com/user-attachments/assets/f4224413-6983-46a1-ab66-78ed66f7ea59" />
+
+Ara faig un update.
+
+<img width="724" height="353" alt="Captura de pantalla de 2025-10-22 19-31-01" src="https://github.com/user-attachments/assets/e0e1b72b-75a9-4119-b2bb-457a6fd26500" />
+
+I per acabar instal·lo el bootrepair.
+
+<img width="728" height="366" alt="Captura de pantalla de 2025-10-22 19-31-44" src="https://github.com/user-attachments/assets/65eed863-96c8-466b-b463-7e67abd45b74" />
+
+Ara selecciono repair recomenat 
+![alt text](image-3.png)
+
+Finalment apareixera aquest misstage li dire que sí.
+<img width="539" height="193" alt="Captura de pantalla de 2025-10-22 19-32-10" src="https://github.com/user-attachments/assets/56258c42-7131-43f4-bccb-6382b0cc57d3" />
+
+I aquest és l'informe de que s'ha recuperat el GRUB.
+
+<img width="1026" height="323" alt="Captura de pantalla de 2025-10-22 19-33-34" src="https://github.com/user-attachments/assets/c95c879e-838f-4310-98a0-daf26842f22f" />
+
+Finalment reinicio i ja ens apareixeran les dos opcions de boot tant Ubuntu com Windows.
+
+<img width="706" height="249" alt="Captura de pantalla de 2025-10-22 19-38-29" src="https://github.com/user-attachments/assets/b74ef300-4fcf-428a-8189-764b57441252" />
+
+
 ## Llicenciament
 
 ### Llicències Creative Commons (CC)
