@@ -306,33 +306,25 @@ Nota ràpida: si dubtes entre "Adaptador pont" i "NAT Network", pensa si la MV h
 
 ## Comandes generals i instal·lacions
 
-En aquest apartat fare la prova en la instal·lació de programari a Ubuntu desde terminal.
+Pinning Packet és molt utilitzat en sistemes Linux, aquest ens permet controlar les actualitzacions i instal·lacions de programari, si preferim un altra versió per exemple.
 
-És important primer fer un Update ja que això actualitzara els paquets del nostre sistema i el mantindra actualitzats a la última versió.
+Seguidament realitzare una prova.
 
-![alt text](image-25.png)
+Vull instal·lar el redis i amb aquesta comanda puc veure el actual candidat i les versions que estan disponibles.
 
-Fare la prova instal·lant el tetris per Ubuntu, per tant amb el wget podem baixar el .deb que es troba a internet.
+<img width="820" height="362" alt="image" src="https://github.com/user-attachments/assets/a30705ad-2b01-4cc3-9f4f-c23c297678b2" />
 
-![alt text](image-26.png)
+Com podem veure tinc com a candidat la versió 5:7.0.15-1ubuntu0.24.04.2 i ara prefereixo instal·lar la 5:7.0.15-1build2. 
+Per tant creare un fitxer per gestionar el paquet que vull instal·lar.
 
-Ara l'extraiem.
+<img width="742" height="126" alt="image" src="https://github.com/user-attachments/assets/f0357cb4-a874-4fd8-b67f-f88939bf864f" />
 
-![alt text](image-27.png)
+I aquesta és la configuració.
 
-I finalment l'instal·lo.
+<img width="621" height="177" alt="image" src="https://github.com/user-attachments/assets/cdae878f-f4ab-4790-81e2-34a29b7bd9fa" />
 
-![alt text](image-28.png)
 
-I l'inicio.
 
-![alt text](image-29.png)
-
-![alt text](image-30.png)
-
-![alt text](image-31.png)
-
-A continuació llistare algunes comandes bàsiques d'Ubuntu.
 
 ## PWD 
 Aquesta ens mostra el directori actual.
