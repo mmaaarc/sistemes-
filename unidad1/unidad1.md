@@ -17,6 +17,7 @@ També li assigno la memoria amb 6144MB tindrem prou.
 
 I finalment li he assignat un disc de 80GB ja que em te que sibrar espai per poder instal·lar el Windows posteriorment
 Per tant 25GB son per Ubuntu Desktop.
+
 <img src="../img/disc.png">
 
 Ara ja puc iniciar la màquina i començar la instal·lació.
