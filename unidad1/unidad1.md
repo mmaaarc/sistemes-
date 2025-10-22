@@ -323,6 +323,11 @@ I aquesta és la configuració.
 
 <img width="621" height="177" alt="image" src="https://github.com/user-attachments/assets/cdae878f-f4ab-4790-81e2-34a29b7bd9fa" />
 
+Ara faig un reboot i torno a comprovar el candidat hi ha, i efectivament és el que jo li he assignat.
+
+<img width="880" height="313" alt="image" src="https://github.com/user-attachments/assets/d9d02409-0e42-4b05-873d-2d252962628f" />
+
+I finalment instal·lo el paquet.
 
 
 
