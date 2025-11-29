@@ -123,7 +123,10 @@ Gestió de processos
     
     <img width="1207" height="127" alt="procesos18" src="https://github.com/user-attachments/assets/e37c94ae-383d-4593-b052-e703a48f83d3" />
 
-*   Amb un "top" podem comprovar si ha funcionat correctament. ![procesos19](../img/procesos19.png)
+*   Amb un "top" podem comprovar si ha funcionat correctament.
+  
+  <img width="1207" height="29" alt="procesos19" src="https://github.com/user-attachments/assets/10a41317-8f8d-4043-84c2-25179f32ca07" />
+
 
 Gestió d'usuaris grups i permisos
 =================================
