@@ -300,22 +300,36 @@ En els casos d'un sistema multiusuari on vulguem que diferents usuaris tinguin c
 
 *   Els permisos estandars son una serie de permisos bàsics que es poden donar a tots els usuaris i grups. Els grups poden tenir diferents permisos respecte als usuaris, una forma de comprovar això ho podem fer de la següent forma.
     
-    `[](#__codelineno-43-1)ls -l` 
-    
-    ![permis](../img/permisbasic.png)
+ <img width="623" height="239" alt="permisbasic" src="https://github.com/user-attachments/assets/fb0e3317-4a01-4e0b-9b6e-7be37e86b2ef" />
+   
 *   En aquest cas podem observar que el primer root que apareix és de l’usuari i el segon és del grup principal. També surt la data de creació i noms de directori, però la part important és al principi. ![permis1](../img/permisbas1.png)
 *   Aquí es on podem apreciar els permisos que hi han dins dels directoris. Després de la lletra d, els primers permisos són els d'usuari "rwx" en aquest cas, això vol dir que por llegir, escriure i executar, bàsicament te tots els permisos. Després els següents permisos son els de grup equivalents a les 3 lletres següents: "r-x", en aquest cas com podem veure no te permisos per escriure. I per últim tenim els ultims 3 caràcters que equivalen a altres, usuaris que no són ni usuari principal ni formen part del grup principal, en aquest cas: "r-x", la mateixa situació que abans no poden escriure però si llegir i executar. Aquest exemple es amb "root".
 *   A continuació veurem com nosaltres podem agregar permisos als usuaris i grups.
+
+  D'aquesta manera faig propietari de la carpeta cire a cire.
     
-    `[](#__codelineno-44-1)chmod -R`
+<img width="438" height="74" alt="image" src="https://github.com/user-attachments/assets/6d457e01-774c-4da9-89dd-d6c2c06ada47" />
+
+<img width="542" height="63" alt="image" src="https://github.com/user-attachments/assets/8bd4d361-e6b3-4b75-a5f4-62f26dd7af74" />
+
     
 *   Opcions de fitxer/carpeta
+
+  Amb aquesta opció canvio el grup de la carpeta cire al grup cire.
     
-    `[](#__codelineno-45-1)chrgp -R`
+<img width="439" height="62" alt="image" src="https://github.com/user-attachments/assets/2e4028b2-ab6f-40bf-acba-83e6882e7b2c" />
+
+I puc comprovar que ara ja forma part del usuair cire i del grup cire.
+<img width="489" height="72" alt="image" src="https://github.com/user-attachments/assets/c42be974-277f-4651-9872-85601f3e041e" />
+
+
     
 *   Grup propietari fitxer/carpeta
-    
-    `[](#__codelineno-46-1)chown - R`
+
+ També podem feru a la vegada on podrem canviar l'usuari i el grup de la carpeta i de tots els fitxers que tingue.
+
+<img width="581" height="134" alt="image" src="https://github.com/user-attachments/assets/022cf7fe-20ec-4ff3-b2a3-ef4b1325db11" />
+
     
 *   Propietari fitxer/carpeta.
 *   Cada lletra dels permisos te un significat associat: u = usuari, g = grup, o = others, a = all.
