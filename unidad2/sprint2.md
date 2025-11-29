@@ -140,24 +140,21 @@ Per a accedir al terminal normalment ho faremt amb un crtl + alt + t, així obri
 
 *   En primer lloc veurem un document que actua com un registre de tots els comptes d'usuaris presents al sistema. Inclou dades com el nom del compte, l'identificador d'usuari (UID), el directori personal i el shell configurat per defecte. Es tracta d'un fitxer públic, cosa que permet que qualsevol pugui consultar qui són els usuaris del sistema.
     
-    `[](#__codelineno-18-1)nano /etc/passwd`
-    
-    ![gestiousu1](../img/gestiousu1.png)
+    <img width="1212" height="580" alt="gestiousu1" src="https://github.com/user-attachments/assets/d23bb83f-8d3f-4d99-bda1-853774c7fe34" />
+
 *   A continuació podem veure els grups dels usuaris i l'identificador de qui es el seu administrador.
+
+      <img width="1211" height="720" alt="gestiousu2" src="https://github.com/user-attachments/assets/2df9ea67-4b6e-4a2d-96e4-44d365e7fc70" />
+
     
-    `[](#__codelineno-19-1)nano /etc/group`
-    
-    ![gestiousu2](../img/gestiousu2.png)
 *   A continuació, en aquest arxiu es guarda la informació relacionada amb les contrasenyes dels comptes d'usuari. Cada registre fa referència a un usuari i inclou la seva contrasenya codificada. Si apareix el símbol "!", això indica que el compte està deshabilitat i l'usuari no té permís per accedir al sistema.
     
-    `[](#__codelineno-20-1)nano /etc/shadow`
-    
-    ![gestiousu3](../img/gestiousu3.png)
+  <img width="1211" height="720" alt="gestiousu3" src="https://github.com/user-attachments/assets/dd4e8d09-8d07-4ac0-883d-03e823be34b4" />
+  
 *   Per últim aquest arxiu és comparable a /etc/group, però ofereix detalls extres sobre els grups. En aquest lloc es pot identificar qui són els administradors de cada grup. Resulta pràctic per controlar els permisos i gestionar els privilegis d'accés dels diferents grups d'usuaris.
     
-    `[](#__codelineno-21-1)nano /etc/gshadow`
-    
-    ![gestiousu4](../img/gestiousu4.png)
+    <img width="1211" height="720" alt="gestiousu4" src="https://github.com/user-attachments/assets/b2d4bbc8-22f6-43f2-b71a-cc7721e171af" />
+
 
 \- Creació d'usuaris
 --------------------
@@ -165,10 +162,11 @@ Per a accedir al terminal normalment ho faremt amb un crtl + alt + t, així obri
 Per crear usuaris tenim diverses formes de fer-ho, el més important es tenir clar que amb certes comandes no es creen directoris sol usuaris. A continuació es mostrarà com crear usuaris.
 
 *   En primer lloc utilitzarem la següent comanda, aquesta ens creara un usuari pero fins que no fessim un log in amb aquest no ens crearà els directoris. Aquesta es la forma més senzilla de crear els usuaris ja que et ve pautada pel propi sistema operatiu.
-    
-    `[](#__codelineno-22-1)adduser usuari`
-    
-    ![gestiousu5](../img/gestiousu5.png) Per crear un nou compte d'usuari al sistema, farem servir la comanda useradd. Aquesta comanda ens permetrà afegir usuaris al sistema amb diversos paràmetres que ens ajuden a configurar les seves propietats. A continuació, detallem alguns dels paràmetres més destacats que podem utilitzar:
+  
+<img width="1211" height="720" alt="gestiousu5" src="https://github.com/user-attachments/assets/4b36b735-3c79-4881-83b8-e884a2fa1aca" />
+
+
+Per crear un nou compte d'usuari al sistema, farem servir la comanda useradd. Aquesta comanda ens permetrà afegir usuaris al sistema amb diversos paràmetres que ens ajuden a configurar les seves propietats. A continuació, detallem alguns dels paràmetres més destacats que podem utilitzar:
     
 *   \-m: Indica que es generarà automàticament un directori personal per a l'usuari.
     
@@ -181,48 +179,58 @@ Per crear usuaris tenim diverses formes de fer-ho, el més important es tenir cl
 *   && passwd alumne2: Aquesta comanda s’utilitza per assignar o modificar la contrasenya de l’usuari "alumne".
     
 
-`[](#__codelineno-23-1)useradd usuari`
+<img width="1089" height="31" alt="gestiousu6" src="https://github.com/user-attachments/assets/eb070f06-729d-45f2-a18c-d229337cd1c1" />
 
-![gestiousu6](../img/gestiousu6.png) - Sino utilitzem la comanda -m per als directoris els podem afegir de la següetn manera.
+- Sino utilitzem la comanda -m per als directoris els podem afegir de la següetn manera.
 
-`[](#__codelineno-24-1)mkdir usuari`
-
-![gestiousu7](../img/gestiousu7.png) ![gestiousu8](../img/gestiousu8.png)
+<img width="1213" height="728" alt="gestiousu8" src="https://github.com/user-attachments/assets/548e1a70-b290-4279-9496-3e16c9a4950c" />
 
 *   Si volem canviar el nom de l'usuari podem utilitzar la següent comanda. EN el cas que hi ha a continuació volem canviar el nom d'usuari de porva2, ja que hauria de ser prova2.
 
-`[](#__codelineno-25-1)usermod -l usernou user`
+<img width="721" height="49" alt="gestiousu15" src="https://github.com/user-attachments/assets/7385f45b-dce6-4120-87d6-0142f5cdc274" />
 
-![gestiousu15](../img/gestiousu15.png) ![gestiousu16](../img/gestiousu16.png) ![gestiousu17](../img/gestiousu17.png)
+<img width="721" height="49" alt="gestiousu16" src="https://github.com/user-attachments/assets/d52d9e61-83e2-4345-8d5e-d31d20ade4db" />
+
+
 
 *   En cas de voler eliminar accés a un usari ho podem fer bloquejant-lo, la comanda seria la següent. Una forma de comprovar que s'ha bloquejat correctament es entrar a la carpeta de passwd i veurem que la contrasenya del usuari al davant té un signe d'exclamació "!"
 
-`[](#__codelineno-26-1)usermod -L usuari`
+<img width="1213" height="26" alt="gestiousu9" src="https://github.com/user-attachments/assets/f12ad2ef-0b87-4053-8e79-29517ddb6f54" />
 
-![gestiousu9](../img/gestiousu9.png) ![gestiousu10](../img/gestiousu10.png) - Seguint amb la creació d'usuaris, si tenim un usuari bloquejat i el volem recuperar utilitzarem aquesta comanda. A l'hora de comprovar-ho ens fixarem que ja no te l'exclamació.
+<img width="1213" height="591" alt="gestiousu10" src="https://github.com/user-attachments/assets/9d5bd325-2aba-4974-9407-0937df9fa434" />
 
-`[](#__codelineno-27-1)usermod -U usuari`
+- Seguint amb la creació d'usuaris, si tenim un usuari bloquejat i el volem recuperar utilitzarem aquesta comanda. A l'hora de comprovar-ho ens fixarem que ja no te l'exclamació.
 
-![gestiousu13](../img/gestiousu13.png) - Si realment el que volem es eliminar l'usuari de forma més permanent ho farem amb la següent comanda. Per comprovar si l'hem eliminat correctament podem entrar a la carpeta passwd i veurem que l'usuari ja no hi es.
+<img width="1213" height="718" alt="gestiousu13" src="https://github.com/user-attachments/assets/4c152dee-42ab-467a-a932-754886469ec7" />
+
+
+- Si realment el que volem es eliminar l'usuari de forma més permanent ho farem amb la següent comanda. Per comprovar si l'hem eliminat correctament podem entrar a la carpeta passwd i veurem que l'usuari ja no hi es.
 
 `[](#__codelineno-28-1)deluser usuari`
 
-![gestiousu11](../img/gestiousu11.png) ![gestiousu12](../img/gestiousu12.png)
+<img width="1213" height="98" alt="gestiousu11" src="https://github.com/user-attachments/assets/039668ec-68df-4efd-b48b-f8e03669bced" />
 
-*   Per complementar una mica les comandes que tenim, aquí en tenim algunes que ens poden ajudar també, la següent elimina la "home" de l'usuari.
-    
-    `[](#__codelineno-29-1)rm -r usuari`
-    
-*   Un dels problemes habituals es que no eliminem les homes i directoris dels usuaris, amb la següent comanda ho podem fer tot a la vegada.
-    
-    `[](#__codelineno-30-1)userdel -r usuari`
-    
+<img width="1213" height="718" alt="gestiousu12" src="https://github.com/user-attachments/assets/6a2ecf2d-7c39-48f3-abe0-6f591e891579" />
+
+ 
 *   En cas de voler consultar algun tipus d'informació sobre algun usuari, podem fer-ho així.
+  
+ <img width="1212" height="223" alt="gestiousu18" src="https://github.com/user-attachments/assets/4c6cca96-9895-46a4-bb4c-c9846fb70c4a" />
+   
     
-    `[](#__codelineno-31-1)id usuari`
-    
-    ![gestiousu18](../img/gestiousu18.png)
-*   Un cop vist com es el funcionament a través del terminal podrem observar com es fa per l'interficie gràfica d'Ubuntu. Dins de la configuració de sistema hem d'entrar a l'apartat usuaris, i després seguirem els passos que hi ha a continuació. ![gestiousunou1](../gestiousunou1.png) ![gestiousunou2](../img/gestiousunou2.png) ![gestiousunou3](../img/gestiousunou3.png) ![gestiousunou4](../img/gestiousunou4.png) ![gestiousunou5](../img/gestiousunou5.png)
+*   Un cop vist com es el funcionament a través del terminal podrem observar com es fa per l'interficie gràfica d'Ubuntu. Dins de la configuració de sistema hem d'entrar a l'apartat usuaris, i després seguirem els passos que hi ha a continuació.
+*
+
+*   <img width="1214" height="770" alt="gestiousunou1" src="https://github.com/user-attachments/assets/911eb5d0-b1ba-488a-bb72-7dcd6f7270e4" />
+
+*<img width="1214" height="71" alt="gestiousunou2" src="https://github.com/user-attachments/assets/cc0d32df-f2f5-4fce-98ab-e503955f2b41" />
+
+*<img width="1214" height="704" alt="gestiousunou3" src="https://github.com/user-attachments/assets/51857bcc-5d9b-401e-9ed7-5f68f128d39d" />
+
+*<img width="1214" height="768" alt="gestiousunou4" src="https://github.com/user-attachments/assets/2ac38f68-b752-496a-a097-ab6b6607e4e8" />
+
+<img width="1214" height="768" alt="gestiousunou5" src="https://github.com/user-attachments/assets/a600484b-9d25-45df-9367-4dc3312a565e" />
+
 
 \- Creació de grups
 -------------------
