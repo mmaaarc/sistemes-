@@ -25,35 +25,47 @@ Gestió de processos
     ![procesos2](../procesos2.png)
 *   Amb la mateixa comanda si volem saber a l'usuari que correspon i a quin número de procés tenim ho podem realitzar amb les lletres h (usuari) i p (procés).
     
-    `[](#__codelineno-1-1)pstree -p -h usuari`
-    
-    ![procesos3](../img/pss.png)
+    <img width="997" height="587" alt="pss" src="https://github.com/user-attachments/assets/55c3f6c6-42f1-472d-9864-7fee2b288cf4" />
+
 *   A continuació veurem com matar un procés, per això serà necessari saber quin número de procés li correspon a cadascun d'aquestos. En el cas de matar un procés pare tots els processos fills haurien de morir, tot i que hi ha una possibiltat de que algún quedi viu, i aquestos s'anomenen zombies.
 *   Per matar un procés utilitzarem la seguent comanda i el número de procés:
     
-    `[](#__codelineno-2-1)kill -9 (PID)`
+<img width="401" height="53" alt="image" src="https://github.com/user-attachments/assets/7b6ac67b-5168-4905-83ec-8be42af7e21a" />
     
-*   Per fer la prova he utilitzat un altre terminal i m'he guardat el seu PID, per matar el procés tal i com es demostra a continuació: 
-![procesos4](../img/prov.png) 
-![procesos5](../img/killl.png) 
-![procesos6](../img/gnome.png)
+*   Per fer la prova he utilitzat un altre terminal i m'he guardat el seu PID, per matar el procés tal i com es demostra a continuació:
+<img width="995" height="306" alt="prov" src="https://github.com/user-attachments/assets/5413851c-77ae-4224-8a0f-1adb08394575" />
+
+<img width="997" height="105" alt="killl" src="https://github.com/user-attachments/assets/a48e391c-2055-4024-af45-65ac9b3cfbe8" />
+
+<img width="1000" height="132" alt="gnome" src="https://github.com/user-attachments/assets/67f757e9-11fb-4f03-88d3-529899d23103" />
+
 *   La comanda anterior fa una imatge dels processos, aquestos no canvien en temps real, per fer una consulta d'aquest tipus utilitzarem la comanda "top".
+
+<img width="809" height="527" alt="image" src="https://github.com/user-attachments/assets/711cb650-fa9b-4ea6-a8ff-3deebbdb4ca4" />
+
     
-    `[](#__codelineno-3-1)top`
-    
-*   Aquesta comanda ens dona molta informació per columnes, i ara veurem que vol dir cada columna. PID: Identificador únic del procés. USER: Usuari que inicia el procés. %CPU: Percentatge d'ús del processador. %MEM: Percentatge d'ús de la memòria RAM. COMMAND: Nom de la comanda o programa. ![procesos7](../img/term.png)
-*   En cas d'obrir un nou procés (ex: navegador) aquest ens apareixerà. 
-![procesos8](../img/vv.png)
+*   Aquesta comanda ens dona molta informació per columnes, i ara veurem que vol dir cada columna. PID: Identificador únic del procés. USER: Usuari que inicia el procés. %CPU: Percentatge d'ús del processador. %MEM: Percentatge d'ús de la memòria RAM. COMMAND: Nom de la comanda o programa.
+<img width="1000" height="241" alt="term" src="https://github.com/user-attachments/assets/7672e4fb-8d6b-4829-9dff-99ce37fa1c0b" />
+
+*   En cas d'obrir un nou procés (ex: navegador) aquest ens apareixerà.
+  <img width="1003" height="64" alt="vv" src="https://github.com/user-attachments/assets/65274143-a389-4eb5-ba04-5cf391a505d0" />
+
 *   La prioritat no es pot modificar directament, però amb el NI (nice) si que es pot canviar, contra mes baix es el número més prioritat té. Això es pot fer amb la següent comanda. Val a dir que caldria fer-ho des de el root ja que com sabem ens otorga més privilegis.
 
 `[](#__codelineno-4-1)renice -n -nºprioritat -p PID`
 
-![procesos9](../img/da.png) 
-![procesos10](../img/fd.png) - Aquesta comanda serveix per moments determinats la prioritat per renice no es permanent. - Seguidament també podem utilitzar la comanda "ps aux" que ens dona una informació similar però amb diferents parametres que veurem a continuació: USER: Usuari que ha iniciat el procés. PID: Identificador únic del procés. %CPU i %MEM: Percentatge de CPU i memòria RAM utilitzats pel procés. VSZ: Memòria virtual total utilitzada pel procés. RSS: Memòria física utilitzada pel procés. TTY: Terminal associat al procés ( ? si no en te). STAT: Estat del procés. R Executant-se (Running). S = Inactiu. T = Pausat. Z = Procés zombi. I = Inactiu o sense consumir recursos. < = Alta prioritat de CPU. s = Líder de sessió. l = Multithread. + = Associat al terminal en primer pla.
+<img width="1021" height="64" alt="da" src="https://github.com/user-attachments/assets/ccda0c72-03a6-4d4f-92ec-ca06d16cf5e2" />
+
+<img width="1033" height="28" alt="fd" src="https://github.com/user-attachments/assets/258b10bc-ef08-45f9-a89b-999f0a9390cc" />
+
+- Aquesta comanda serveix per moments determinats la prioritat per renice no es permanent. - Seguidament també podem utilitzar la comanda "ps aux" que ens dona una informació similar però amb diferents parametres que veurem a continuació: USER: Usuari que ha iniciat el procés. PID: Identificador únic del procés. %CPU i %MEM: Percentatge de CPU i memòria RAM utilitzats pel procés. VSZ: Memòria virtual total utilitzada pel procés. RSS: Memòria física utilitzada pel procés. TTY: Terminal associat al procés ( ? si no en te). STAT: Estat del procés. R Executant-se (Running). S = Inactiu. T = Pausat. Z = Procés zombi. I = Inactiu o sense consumir recursos. < = Alta prioritat de CPU. s = Líder de sessió. l = Multithread. + = Associat al terminal en primer pla.
 
 `[](#__codelineno-5-1)ps aux`
 
-![procesos11](../img/aux.png) - Amb el ps podem fer varies combinacions per mostrar informació en concret a continuació veurem quines són i que fan.
+<img width="1036" height="616" alt="aux" src="https://github.com/user-attachments/assets/d9192ceb-47c4-456c-8a71-dedf9b30afb8" />
+
+
+- Amb el ps podem fer varies combinacions per mostrar informació en concret a continuació veurem quines són i que fan.
 
 `[](#__codelineno-6-1)ps -e`
 
@@ -79,15 +91,17 @@ Gestió de processos
 *   La comada per veure els processos en segon pla es la següent.
     
     `[](#__codelineno-11-1)jobs`
-    
-    ![procesos12](../img/jobs.png)
+
+   <img width="996" height="85" alt="jobs" src="https://github.com/user-attachments/assets/f8cdc2e2-ac60-4a5a-8ff8-5d847f3548a7" />
+
 *   Un cop tenim aquest procés localitzat i no volem matar-lo sino que el volem enviar al primer pla podem utilitzar la següent comanda.
-    
-    `[](#__codelineno-12-1)fg %nº` 
-    
-    ![procesos13](../img/z.png) 
-    ![procesos14](../img/procesos14.png) 
-    ![procesos15](../img/procesos15.png)
+
+<img width="1001" height="36" alt="z" src="https://github.com/user-attachments/assets/f2388788-aa72-428c-aaa9-35fdd035eacf" />
+
+<img width="1207" height="713" alt="procesos14" src="https://github.com/user-attachments/assets/f88e3e71-4499-423f-a64d-7796ed0cbfee" />
+
+<img width="1207" height="129" alt="procesos15" src="https://github.com/user-attachments/assets/73352b91-7548-4322-8691-4d389e29810e" />
+
 *   En cas de voler fer el procés invers i enviar un procés al segon pla podem utilitzar:
     
     `[](#__codelineno-13-1)bg %nº`
@@ -97,20 +111,18 @@ Gestió de processos
     `[](#__codelineno-14-1)nomproces &`
     
 *   A l'hora de consultar processos amb top em vist que es una eina en viu i que els processos que volem consultar es van movent i, a vegades se'ns pot fer complicat llegir-lo. En cas de voler evitar això i sol consultar el PID d'un procés en concret podem fer servir la següent comanda.
-    
-    `[](#__codelineno-15-1)pgrep nomproces`
-    
-    ![procesos16](../img/procesos16.png)
+  
+<img width="1207" height="81" alt="procesos16" src="https://github.com/user-attachments/assets/09c1efd8-b3ac-4c23-8230-b9c21597a698" />
+
+        
 *   Un altra forma de fer-ho podria ser utilitzant comandes anteriors i afegir un grep, pero en algunes opcions com el ps aux pot quedar una mica confós, personalment ho recomano amb el pstree ja que així veurem també els processos fills.
+   <img width="1207" height="81" alt="procesos17" src="https://github.com/user-attachments/assets/110e7f30-bb99-4468-a3b9-28c2fef3cb92" />
+ 
     
-    `[](#__codelineno-16-1)pstree | grep nomproces`
-    
-    ![procesos17](../img/procesos17.png)
 *   Per acabar, si en algun moment volem utilitzar algún script o procés i que aquest tingui una prioritat predeterminada per nosaltres es pot fer amb el nice.
     
-    `[](#__codelineno-17-1)nice -n nºprioritat nomproces`
-    
-    ![procesos18](../img/procesos18.png)
+    <img width="1207" height="127" alt="procesos18" src="https://github.com/user-attachments/assets/e37c94ae-383d-4593-b052-e703a48f83d3" />
+
 *   Amb un "top" podem comprovar si ha funcionat correctament. ![procesos19](../img/procesos19.png)
 
 Gestió d'usuaris grups i permisos
