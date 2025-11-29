@@ -1,4 +1,7 @@
-
+---
+layout: default
+title: Sprint 2 - Título del Contenido
+---
 Sprint2
 
  
