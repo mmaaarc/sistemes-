@@ -229,54 +229,55 @@ Per crear usuaris tenim diverses formes de fer-ho, el més important es tenir cl
 
 *   En aquest apartat veurem com funcionen els grups d'usuaris, com hem vist anteriorment podem consultar els grups i les seves contrasenyes. Important dir que quan es crea un usuari també es crea un grup amb el nom d'aquest.
 *   Per crear un grup nou ho podem fer amb una senzilla comanda.
-    
-    `[](#__codelineno-32-1)addgroup grup`
-    
-    ![gestiogrup](../img/gestiogrup.png) ![gestiogrup1](../img/gestiogrup1.png)
+
+     <img width="1213" height="170" alt="gestiogrup" src="https://github.com/user-attachments/assets/a1fcd813-6cff-4a72-844c-f535f54a7a88" />
+     
+<img width="1213" height="714" alt="gestiogrup1" src="https://github.com/user-attachments/assets/418a4288-c902-4f15-9c3e-e82a977bb3aa" />
+
     
 *   D'altra banda si el que volem es afegir un usuari a un grup existent ho podem fer d'aquesta manera.
     
-    `[](#__codelineno-33-1)adduser usuari grup`
-    
-    ![gestiogrup2](../img/gestiogrup2.png) ![gestiogrup3](../img/gestiogrup3.png)
-    
-*   L'operació anterior també es pot fer amb aquesta comanda.
-    
-    `[](#__codelineno-34-1)gpasswd -a usuari grup`
-    
+    <img width="1213" height="93" alt="gestiogrup2" src="https://github.com/user-attachments/assets/9c174a94-bb9f-4368-a66d-aa43f65a063a" />
+
+<img width="1213" height="93" alt="gestiogrup3" src="https://github.com/user-attachments/assets/26e761d3-e20c-4bd3-b80b-6a1927af0fd1" />
+
+        
 *   Per fer a un usuari administrador d'aquell grup ho podem fer així. Dins de la carpeta gshadow podem veure els usuaris i administradors dels grups, per reconeixels veurem la posició que tenen entre els ":", l'alumne 2 es administrador d'asix1 i membre d'asix2.
-    
-    `[](#__codelineno-35-1)gpasswd -A usuari grup`
-    
-    ![gestiogrup4](../img/gestiogrup4.png) ![gestiogrup5](../img/gestiogrup5.png)
+*   
+     <img width="1221" height="71" alt="gestiogrup4" src="https://github.com/user-attachments/assets/376246e4-4a77-4e95-ac9a-333ba3222e07" />
+
+    <img width="1221" height="636" alt="gestiogrup5" src="https://github.com/user-attachments/assets/25c71f85-31b9-4c92-ba80-bf959b2437e3" />
+
     
 *   Un dels majors problemes es que quan afegim usuaris a grups amb les comandes anteriors els treu del grup on estaven, per evitar-ho hem d'utilitzar la següent comanda. Com comprovarem l'usuari alumne2 forma part dels dos grups d'asix i es administrador del primer.
     
-    `[](#__codelineno-36-1)usermod -a -G grup usuari` 
-    
-    ![gestiogrup6](../img/gestiogrup6.png) ![gestiogrup7](../img/gestiogrup7.png)
+    <img width="1221" height="64" alt="gestiogrup6" src="https://github.com/user-attachments/assets/943f8804-056c-4c79-b2fe-3aad995b19e6" />
+
+<img width="1221" height="64" alt="gestiogrup7" src="https://github.com/user-attachments/assets/fe556799-ad48-448c-8c02-c148596aa8b8" />
+
     
 *   Per eliminar un usuari d'un grup ho farem com veurem a continuació. En aquest cas l'alumne2 ja te prous responsabilitats i l'eliminarem del grup d'asix1.
     
-    `[](#__codelineno-37-1)gpasswd -d usuari grup`
-    
-    ![gestiogrups8](../img/gestiogrups8.png) ![gestiogrup9](../img/gestiogrup9.png)
+    <img width="1221" height="78" alt="gestiogrups8" src="https://github.com/user-attachments/assets/1e646ff4-81c1-40db-a053-abd0baec0ac4" />
+
+<img width="1221" height="643" alt="gestiogrup9" src="https://github.com/user-attachments/assets/a2107e97-f40f-4b8f-a119-08f4edfd1877" />
+
     
 *   L'anterior comanda també es pot fer amb aquesta altra
     
-    `[](#__codelineno-38-1)deluser usuari grup`
-    
-    ![gestiogrup10](../img/gestiogrup10.png)
+    <img width="1221" height="95" alt="gestiogrup10" src="https://github.com/user-attachments/assets/1d9f44ea-686f-46c9-966b-84cbf6407f56" />
+
     
 *   Per fer un usuari el principal d'un grup en concret utilitzarem el següent.
     
     `[](#__codelineno-39-1)usermod -g grup usuari`
     
 *   En cas de voler canviar el nom d'algun grup ho farem amb la següent comanda.
-    
-    `[](#__codelineno-40-1)groupmod -n grupnou grupvell`
-    
-    ![gestiogrup11](../img/gestiogrup11.png) ![gestiogrup12](../img/gestiogrup12.png)
+  
+    <img width="1221" height="47" alt="gestiogrup11" src="https://github.com/user-attachments/assets/63288eeb-bb01-4128-829e-d68fda365738" />
+
+    <img width="1221" height="648" alt="gestiogrup12" src="https://github.com/user-attachments/assets/ed9761c4-a05b-4b68-b03f-0b4463e482b6" />
+
 
 \- Configuració de fitxers d'usuari
 -----------------------------------
