@@ -18,11 +18,10 @@ Gestió de processos
 
 *   En primer lloc definirem un procés. Aquest es un programa en execució que inclou dins seu: el seu codi, els recursos que te assignats i la seva execució. El procesos de linux poden ser en primer o en segon pla. Els que estàn en primer pla implequen una interacció amb l'usuari mentre que als de segon pla no es requereix aquesta interacció.
 *   La primera comada que utilitzarem per llistar els procesos es "pstree", aquesta ens mostrarà els processos actius que hi ha i quins son els seus fills si es que en té, tot això amb forma d'arbre, d'aquí el nom.
+  
+    <img width="806" height="517" alt="image" src="https://github.com/user-attachments/assets/215bf7cf-cf0b-448c-b8c9-eb47789faa99" />
+
     
-    `[](#__codelineno-0-1)pstree`
-    
-    ![procesos1](../img/ps.png) 
-    ![procesos2](../procesos2.png)
 *   Amb la mateixa comanda si volem saber a l'usuari que correspon i a quin número de procés tenim ho podem realitzar amb les lletres h (usuari) i p (procés).
     
     <img width="997" height="587" alt="pss" src="https://github.com/user-attachments/assets/55c3f6c6-42f1-472d-9864-7fee2b288cf4" />
