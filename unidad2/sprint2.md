@@ -339,23 +339,31 @@ I puc comprovar que ara ja forma part del usuair cire i del grup cire.
 
 ### \- Sticky
 
-*   L'sticky es un permís d'accés per fitxers i directoris. Quan l'apliquem l'únic usuari que el pot canviar es el root. Es pot aplicar de la següent manera.
+*   L'sticky es un permís d'accés per fitxers i directoris. Quan l'apliquem l'únic usuari que el pot canviar es el propietari. Es pot aplicar de la següent manera.
     
-    `[](#__codelineno-47-1)chmod +t directori`
+<img width="497" height="116" alt="image" src="https://github.com/user-attachments/assets/9934016a-f588-40f1-b4ab-61ec11cfa7ef" />
     
-    `[](#__codelineno-48-1)chmod 1775 directori`
-    
+Això a l'hora de veure els permísos ens sortira una t informan de que em afegit aquest permís on unicament el porpietari podra eliminar la carpeta o modificar-la.
+
+<img width="572" height="56" alt="image" src="https://github.com/user-attachments/assets/39e56fd0-d23b-4c20-aa08-c86c4a321533" />
+
 *   Això es molt útil en sistemes multiusuari ja que sol el root i l'usuari que ha creat cert directori poden borrar o modificar el directori, els altres sol tenen permisos de lectura o escriptura. En cas de voler eliminar l'sticky podem utilitzar la següent comanda.
     
-    `[](#__codelineno-49-1)chmod -t directori`
+<img width="377" height="58" alt="image" src="https://github.com/user-attachments/assets/b06250ea-2e85-42c4-acb7-3dbd5e59f599" />
     
 
 ### \- sgid
 
 *   sgid es un permís que esta relacionar amb els grups i principalment permet que qualsevol usuari executi l'arxiu com si fos part del grup al que pertany aquell arxiu. Per utilitzar-la podem fer el següent.  
     
-    `[](#__codelineno-50-1)chmod g+s`
-    
+D'aquesta manera aplico el permís sguid.
+
+<img width="382" height="70" alt="image" src="https://github.com/user-attachments/assets/820fd185-5e48-465e-b3cc-f370fc4fadf6" />
+
+Si ara desde un altre usuari com marc creo un arxiu a dins del directori cire aquest agafara el grup del directori no del usuari creat.
+
+<img width="660" height="52" alt="image" src="https://github.com/user-attachments/assets/a0ab8f27-496a-439b-b582-6c80511b0d6a" />
+
 
 ### \- suid
 
@@ -369,39 +377,48 @@ I puc comprovar que ara ja forma part del usuair cire i del grup cire.
 
 *   Una llista de control d'accés son una serie de regles que ens permeten uns accesos a sistemes de fitxers en aquest cas. Aquestes llistes ens poden donar uns accesos mes restrictius o mes permisius segons la configuarció que faci l'usuari. Per crear una ACL utilitzem la següent comanda.
     
-    `[](#__codelineno-52-1)setfacl`
-    
-    `[](#__codelineno-53-1)setfacl -m user:usuari:rw- exemple.text`
-    
-    `[](#__codelineno-54-1)setfacl -m group:grup:rwx carpeta`
-    
-    `[](#__codelineno-55-1)setfacl -b fitxer o carpeta`
-    
-*   Les restriccions venen donades per les lletres com hem vist abans, utilitza la mateixa nomenclatura. Per comprovar si les restriccions s'han aplicat correctament podem utilitzar la següent comanda.
-    
-    `[](#__codelineno-56-1)getfacl`
-    
-    ![acl](../img/acl.png)
-    
-*   Si ens em equicocat a l'hora de configurar alguna ACL podem eliminar totes les excepcions. (TOTES).
-    
-    `[](#__codelineno-57-1)setfacl -x usuari carpeta`
-    
+Ara fare la practica en un grup on primer aplico la acl.
+
+<img width="480" height="217" alt="image" src="https://github.com/user-attachments/assets/a16dc818-9df5-46ad-babb-d2da491e75fb" />
+
+Amb aquest comanda podem veure les llistes de control d'accés aplicades en un fitxer o directori.
+
+<img width="349" height="125" alt="image" src="https://github.com/user-attachments/assets/8f2cd0b6-43f4-4d02-8275-e900b98231c5" />
+
+He fet la prova per l'usuari segon sobre la carpeta numero on aques usuari no tindra cap permís ni escritura ni lectura ni execució.
+
+<img width="498" height="47" alt="image" src="https://github.com/user-attachments/assets/04bd1954-a6ef-4227-8a75-ad77ada5a338" />
+
+Ara torno a llistar les llistes d'ACLs i ens mostra la que hem creat per l'usuari segon.
+
+<img width="343" height="158" alt="image" src="https://github.com/user-attachments/assets/a36759e9-bca4-41d9-b9ab-4ca1da3709c4" />
+
+I seguidament faig la prova on root podra crear arxius i modificarlos i l'usuari segon no podra fer cap acció.
+
+<img width="471" height="227" alt="image" src="https://github.com/user-attachments/assets/4aa618c9-019e-4d4d-9c17-4f07757bf81d" />
+
 
 \- Umask
 --------
 
-*   Umask s'utilitza per canviar la mascara del mode de creació d'arxius, auesta determina el valor inicial dels permisos que tindran els arxius que es creein. De forma predeterminada la mascara te el valor dels bits de permís que NO s'han d'establir, per això fem l'operació de negació. Amb les seguents imatges entendrem millor la situació.
+*   Umask s'utilitza per canviar la mascara del mode de creació d'arxius, auqesta determina el valor inicial dels permisos que tindran els arxius que es creein. De forma predeterminada la mascara te el valor dels bits de permís que NO s'han d'establir, per això fem l'operació de negació. Amb les seguents imatges entendrem millor la situació.
 
-![umask2](../img/umask2.png) ![umask](../img/umask.png) - El que esta fetn umask es una operació coneguda com NOR, el que equivaldria a una resta convencional. - Aquestes operacions es poden realitzar amb la següent comanda, tot i que això sol funcionarà temporalment (els arxius ja creats no canvien de permisos).
+Primer li aplico la umask, per fer la prova li aplico la 027, per tant els permisos que s'afegiran al crear un arxiu seran 640, ja que es resta 777 - 027.
 
-`[](#__codelineno-58-1)umask + nº`
+<img width="332" height="50" alt="image" src="https://github.com/user-attachments/assets/c88fbc7e-bd1c-442e-8c2f-2d743f394e9c" />
 
-\- Per a que els canvis siguin permanents tenim que modificar la umask al arxiu que tenim a la següent ruta.
+Ara creo un arxiu.
 
-`[](#__codelineno-59-1)/etc/login.defs`
+<img width="339" height="37" alt="image" src="https://github.com/user-attachments/assets/f7809532-7d7c-48ec-87f3-a01c66ccc16a" />
 
-\- Un cop obert l'arxiu modifiquem el valor de la umask per defecte i aquest canvi si que es permantent. ![umask3](../img/umask3.png)
+Finalment comprovo que els permisos s'han aplicat amb 640.
+
+<img width="613" height="58" alt="image" src="https://github.com/user-attachments/assets/9efd005a-516a-4286-9567-fc6bd16f7d19" />
+
+Per aplicar la umask per sempre i no per la sessió actual s'afegeix en aquest arxiu al final.
+
+<img width="705" height="513" alt="image" src="https://github.com/user-attachments/assets/60283044-992a-458e-80a0-8cac398ffd8d" />
+
 
 Sistemes de fitxers i particions
 ================================
@@ -411,24 +428,21 @@ Sistemes de fitxers i particions
 
 *   L'estructura de la informació la podem dividir en diverses parts: la física que seria el disc (sòlid o mecànic), i l'estructura lògica que pot ser (gpt o mbr). La part lògica pot ser consultada a través de commandes per la terminal tal i com es mostra a continuació:
     
-    `[](#__codelineno-60-1)gdisk /dev/sda`
-    
-    ![estructura1](../img/estructura1.png)
+  <img width="1218" height="329" alt="estructura1" src="https://github.com/user-attachments/assets/7a4d382e-6ea4-46e0-83fd-2e06b3c999d6" />
+
 *   Els discs estan dividits amb blocs i dins de cada bloc tenim uns sectors. El sector és la unitat mínima física on es guarden les dades i per defecte és 512 bytes, però el SO no treballa en sectors treballa en blocs. El bloc és la unitat mínima lògica on es guarden les dades per defecte. La mida del sector no es pot canviar ve definida de fàbrica, però la mida del bloc si es pot canviar. Quan formatem la partició. Per consultar les mides del sector podem utilitzar les seguents comandes.
     
-    `[](#__codelineno-61-1)fdisk -l`
-    
-    ![estructura2](../img/estrucutra2.png) ![estructura3](../img/estructura3.png)
+    <img width="1222" height="648" alt="estructura3" src="https://github.com/user-attachments/assets/2d120054-219d-43ec-84d7-ef46f01d9e97" />
+
 *   Com hem vist també ens surt on es troba instalat el sistema operatiu (part resaltada de l'imatge anterior). Per seguir analitzant les mides de les particions podem utilitzar la següent comanda.
+  
+    <img width="1210" height="97" alt="estructura4" src="https://github.com/user-attachments/assets/9ebdf43f-0be8-4719-baf2-1d72cffc8429" />
+
     
-    `[](#__codelineno-62-1)tune2fs -l /dev/sda | grep Block`
-    
-    ![estructura4](../img/estructura4.png)
 *   Seguidament si necessitem saber la informació de les particions i sistemes de fitxers que s'utilitzen podem utilitzar aquesta comanda.
     
-    `[](#__codelineno-63-1)df -T`
-    
-    ![estrucutra5](../img/estructura5.png)
+    <img width="1210" height="157" alt="estructura5" src="https://github.com/user-attachments/assets/021db590-85fc-4be2-bf7e-33e25b59e410" />
+
 *   Les mides dels blocs segons el tipus de fitxers que es guardin ens pot donar problemes, ara veurem dos possibles problemes amb les seves respectives solucions.
 
 ### \- Fragmentació interna
@@ -450,12 +464,11 @@ Hi ha tres maneres de formatar un disc i son les següents.
     
 *   Nivell baix: En aquest igual necessitem algún programa extern. I en aquest cas si es borren els arxius, es borra tot i intenta reparar els blocs defectuosos. És el més lent dels tres. Amb commandes també tal i com es mostra a continuació. Hi ha una command per mostar la cantitat de fragmentació que tenim a la partició en concret (ens recomana si em de desfragmentar o no), i després una altra per desfragmentar-lo.
     
-    `[](#__codelineno-64-1)e4defrag -c /dev/sda2 (consulta)`
     
-    `[](#__codelineno-65-1)e4defrag /dev/sda2 (desfragmentació)`
-    
-    ![estructura6](../img/estructura6.png) ![estructura7](../img/estructura7.png)
-    
+    <img width="1208" height="334" alt="estructura6" src="https://github.com/user-attachments/assets/686403c1-68e1-4e01-87c8-3e08954b2804" />
+
+    <img width="1205" height="710" alt="estructura7" src="https://github.com/user-attachments/assets/653001d8-3033-4340-b34a-db3d3bcb4b35" />
+
 
 \- Particions
 -------------
@@ -464,21 +477,22 @@ Hi ha tres maneres de formatar un disc i son les següents.
 
 *   En primer lloc per entrar a un disc utilitzem la comanda:
     
-    `[](#__codelineno-66-1)fdisk /dev/sdb`
+    fdisk /dev/sdb
     
 *   Aquí assignem la configuració de la partició, en aquest cas seguim amb la configuració per defecte fins al punt de la mida dels sectors, el primer (0-2048) esta reservat per al arrel?, i després assignem l'espai que vulguem. I finalment confirmem la configuració.
+   
+<img width="889" height="626" alt="particio1" src="https://github.com/user-attachments/assets/bb2bac5b-cc6b-4121-8d6c-c16781271314" />
 
-![particio1](../img/particio1.png)
 
 *   Amb la comanda de fdisk -l, mirem la configuració que em fet sigui correcte.
+  
+<img width="1218" height="261" alt="particio2" src="https://github.com/user-attachments/assets/9416e5f6-7e29-4be0-9b6f-385137338067" />
 
-![particio2](../img/particio2.png)
 
 *   Per definir la mida del bloc que volem configurar podem utilitzar la següent comanda. Amb aquesta comanda fem la creació d'una partició amb el format d'arxius que vulguem.
     
-    `[](#__codelineno-67-1)mkfs.ext4 -b 2048 /dev/sdb1`
-    
-    ![particio3](../img/particio3.png)
+ <img width="1218" height="296" alt="particio3" src="https://github.com/user-attachments/assets/845d4fcd-d452-4a70-9325-21ab0abe34c6" />
+   
 *   Per assegurar-nos de les mides podem utilitzar la següent comanda. ![particio4](../img/particio4.png)
 
 ### \- Muntatge
@@ -487,20 +501,22 @@ Hi ha tres maneres de formatar un disc i son les següents.
     
 *   Temporal: mount es temporal, un cop montem la partició els fitxers que hi havien abans no apareixen i visceversa. Per comprovar això podem seguir els següents passos crear un arxiu abans del muntatge i un després, així veurem que quan el disc esta muntat sol veiem l'arxiu que em fet mentres aquest estava muntat, en canvi l'arxiu previ sol el podrem visualitzar després de desmuntar-lo, mentres estigui muntat no el veurem. En aquest exemple fem una carpeta "particio1" i dins posem un arxiu "hola".
     
+<img width="1219" height="378" alt="particio5" src="https://github.com/user-attachments/assets/82590cb4-ff22-451b-8502-0ec22ea4a0e5" />
 
-![particio5](../img/particio5.png)
 
 *   Al fer un ls veiem que no ens apareix l'arxiu hola sino un que es diu "lost+found".
+  
+<img width="1219" height="602" alt="particio6" src="https://github.com/user-attachments/assets/d5138754-3d01-442a-8096-ef68bc61dfe7" />
 
-![particio6](../img/particio6.png)
 
 *   Després provem de fer un arxiu nou adeu dins la partició i com veiem aquest si ens apareix al fer un ls de la carpeta.
 
-![particio7](../img/particio7.png)
+<img width="1209" height="73" alt="particio7" src="https://github.com/user-attachments/assets/a4fce79b-0cf1-4fa1-91a4-ce0a28beef7f" />
+
 
 *   Permanent: es al fitxer `/etc/fstab`
 
-![particio8](../img/particio8.png)
+<img width="1219" height="602" alt="particio8" src="https://github.com/user-attachments/assets/8092c66d-1cd5-491d-8521-da5af88b893d" />
 
 En aquest fitxer podem definir els següents parametres:
 
