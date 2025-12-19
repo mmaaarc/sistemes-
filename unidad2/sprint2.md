@@ -674,7 +674,7 @@ Les quotes de disc són unes limitacions imposades a l'ús d'emmagatzematge d'un
     
 <img width="724" height="67" alt="image" src="https://github.com/user-attachments/assets/4a25555f-4753-4b9d-b8b7-5944d06f2b10" />
     
-*   Per veure les quotes assignades a l'usuari5 podem comprovar-ho de la següent forma. ![quota6](../img/quota6.png)
+*   Per veure les quotes assignades a l'usuari5 podem comprovar-ho de la següent forma. 
     
 *   Com podem veure encara no te cap quota assignada, per fer-ho podem utilitzar la següent comanda.
     
@@ -709,7 +709,7 @@ Seguidament accedirem a l'usuari 5 i modificarem els permisos també afegirem un
 
 <img width="749" height="400" alt="image" src="https://github.com/user-attachments/assets/4deb80a2-1845-45dd-833f-4a65b6ffe9c8" />
 
-*   Continuant amb les proves generarem un altre arxiu test per comprovar que passa si superem la cantitat d'emmagatzematge assignada. ![quota9](../img/quota9.png)
+*   Continuant amb les proves generarem un altre arxiu test per comprovar que passa si superem la cantitat d'emmagatzematge assignada. 
     
     `[](#__codelineno-79-1)s'ha execedit la quota de disc`
 
