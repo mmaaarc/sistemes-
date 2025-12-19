@@ -601,41 +601,46 @@ Configuració de anacron:
 
 *   Arxiu: `/etc/anacrontab` on es defineixen les tasques d'anacron.
 
-![cron1](../img/cron1.png)
+<img width="477" height="142" alt="image" src="https://github.com/user-attachments/assets/82bcf1d7-8807-435a-80cf-0dc5555e44af" />
 
 ### Exemple d'un script
 
 *   Per preparar un script primer crearem els directoris que volem copiar, que es troben dins del directori Imatges.
 
-![cron3](../img/cron3.png)
+<img width="623" height="104" alt="image" src="https://github.com/user-attachments/assets/ec50567a-2a45-4adb-bfed-80898f407cdf" />
 
 *   En primer lloc crearem un script que crea una copia comprimida del directori /home/alumnat/Imatges/ i el desa a l'escriptori amb un nom que inclou la data i hora actuals.
 
-![cron2](../img/cron2.png)
+<img width="609" height="127" alt="image" src="https://github.com/user-attachments/assets/754f35db-4566-4525-9ead-2b81de9b0692" />
 
 *   A continuació dins del fitxer crontab, afegim la ruta del nostre script. Com es pot verue a la següent imatge li definim el minut hora i dia del mes, i amb un \* a l'apartat dels dies per a que es faci cada dia.
 
-![cron4](../img/cron4.png)
+<img width="753" height="356" alt="image" src="https://github.com/user-attachments/assets/7185d014-cb93-4e38-8231-d501ce504023" />
 
 *   Per comprovar el seu funcionament esperem fins l'hora que em designat, com es veu a la següent imatge es crea l'arxiu comprimit, al descomprimir-lo podem veure que si ha fet la copia dels dos directoris que hi ha a la carpeta Imatges.
 
-![cron5](../img/cron5.png)
+<img width="748" height="352" alt="image" src="https://github.com/user-attachments/assets/a11cac4c-5fe6-48aa-9dc6-83083e17f091" />
 
 *   A continuació deixem la linea del crontab comentada. I seguidament del nostre escript li traurem el punt sh i el mourem a la carpeta de cron.daily.
 
-![cron6](../img/cron6.png) ![cron7](../img/cron7.png) ![cron8](../img/cron8.png)
+<img width="754" height="342" alt="image" src="https://github.com/user-attachments/assets/0876464b-819f-468e-b195-167051cc11a3" />
+<img width="683" height="223" alt="image" src="https://github.com/user-attachments/assets/6e232b62-965f-4da1-af16-403107473348" />
+<img width="719" height="108" alt="image" src="https://github.com/user-attachments/assets/74d51513-5033-42e3-8f93-5f61e6fb8dba" />
+
 
 *   Per assegurar que l'script s'executi al obrir l'ordinador, obrim el fitxer `/var/spool/anacron/cron.daily`, aquí s'indica l'última vegada que es van executar les tasques diàries. En aquest cas ens interessa que no hi hagui res.
 
-![cron9](../img/cron9.png)
+<img width="759" height="111" alt="image" src="https://github.com/user-attachments/assets/83c01aa8-d993-42c9-a292-a3eab5ec1bf1" />
 
 *   Amb l'script al lloc de les tasques diaries i amb la comprovació de que no s'han realitzat encara obrim `/etc/anacrontab` i el configurem tal i com es mostra a continuació. Posem que s'executin en 1 minut després de l'arrencada del dispositiu.
 
-![cron10](../img/cron10.png)
+<img width="755" height="200" alt="image" src="https://github.com/user-attachments/assets/9c9edaec-2431-4d89-aaba-dee9757cf6c6" />
 
 *   Un cop reiniciat l'ordinador esperem un minut i veurem que a l'escriptori apareix la copia del directori imatges, i si mirem el cron.daily veurem que s'ha executat la tasca diaria.
 
-![cron11](../img/cron11.png) ![cron12](../img/cron12.png)
+<img width="760" height="461" alt="image" src="https://github.com/user-attachments/assets/c0003167-3596-4781-927b-2bdad20c237a" />
+
+<img width="758" height="392" alt="image" src="https://github.com/user-attachments/assets/5fff0aa2-2eb5-4b04-87bb-71f619a6c6bf" />
 
 Quotes de disc
 ==============
@@ -644,7 +649,7 @@ Les quotes de disc són unes limitacions imposades a l'ús d'emmagatzematge d'un
 
 *   En aquest cas assignarem un disc nou de 5GB per fer proves, com hem vist en passos anteriors fem una partició nova amb tot l'espai del disc i format d'arxius ext4.
 
-![quota1](../img/quota1.png)
+<img width="759" height="144" alt="image" src="https://github.com/user-attachments/assets/8ff55f05-044d-4aba-8e79-d1a4062ce011" />
 
 *   Per configurar les quotes de disc haurem d'instal·lar quota.
     
@@ -652,12 +657,12 @@ Les quotes de disc són unes limitacions imposades a l'ús d'emmagatzematge d'un
     
     `[](#__codelineno-73-1)sudo apt install quota`
     
-    ![quota2](../img/quota2.png)
+<img width="727" height="312" alt="image" src="https://github.com/user-attachments/assets/49d81f4f-1df8-459c-9ac9-e22fc129018d" />
     
 *   Per fer les proves crearem una carpeta "dades"
     
 
-![quota3](../img/quota3.png)
+<img width="756" height="52" alt="image" src="https://github.com/user-attachments/assets/710e8b46-98ef-4e80-ae98-0edbd45c6caf" />
 
 *   En aquest punt ens interessarà fer un muntatge permanent i posar les quotes a l'arxiu fstab. Aplicarem quotes d'usuari i de grup. ![quota4](../quota4.png)
     
@@ -667,7 +672,7 @@ Les quotes de disc són unes limitacions imposades a l'ús d'emmagatzematge d'un
     
     `[](#__codelineno-75-1)quotaon /mnt/dades`
     
-    ![quota5](../img/quota%205.png)
+<img width="724" height="67" alt="image" src="https://github.com/user-attachments/assets/4a25555f-4753-4b9d-b8b7-5944d06f2b10" />
     
 *   Per veure les quotes assignades a l'usuari5 podem comprovar-ho de la següent forma. ![quota6](../img/quota6.png)
     
@@ -675,7 +680,9 @@ Les quotes de disc són unes limitacions imposades a l'ús d'emmagatzematge d'un
     
     `[](#__codelineno-76-1)edquota -u usuari5`
     
-    ![quota7](../img/quota7.png) L'arxiu que modificarem conté aquests parametres:
+ <img width="727" height="45" alt="image" src="https://github.com/user-attachments/assets/c5c907f0-622f-4674-954c-22d7fc917acd" />
+
+    L'arxiu que modificarem conté aquests parametres:
     
 *   Filesystem (/dev/sdc1): Aquest és el sistema de fitxers o partició del disc on s'apliquen les quotes.
     
@@ -700,17 +707,23 @@ Seguidament accedirem a l'usuari 5 i modificarem els permisos també afegirem un
 
 `[](#__codelineno-78-1)repquota /dev/sdc1`
 
-![quota8](../img/quota8.png)
+<img width="749" height="400" alt="image" src="https://github.com/user-attachments/assets/4deb80a2-1845-45dd-833f-4a65b6ffe9c8" />
 
 *   Continuant amb les proves generarem un altre arxiu test per comprovar que passa si superem la cantitat d'emmagatzematge assignada. ![quota9](../img/quota9.png)
     
     `[](#__codelineno-79-1)s'ha execedit la quota de disc`
+
+    <img width="721" height="272" alt="image" src="https://github.com/user-attachments/assets/fc1f9025-6f2c-4107-90b9-b5a569355a84" />
+
     
-*   Una vegada mes podem utilitzar la comanda `quota -u usuari5` per comprovar els següents parametres. ![quota10](../img/quota10.png)
+*   Una vegada mes podem utilitzar la comanda `quota -u usuari5` per comprovar els següents parametres.
+
+  <img width="724" height="64" alt="image" src="https://github.com/user-attachments/assets/d246d18b-05d8-43e6-b7be-33a5944b4c19" />
+
     
 *   Per acabar també podem modificar els dies de gràcia per defecte.
     
     edquota -t`
     
-    ![quota11](../img/quota11.png)
+<img width="723" height="74" alt="image" src="https://github.com/user-attachments/assets/8268577f-f410-4178-bb8c-3a54312f8aa8" />
 
