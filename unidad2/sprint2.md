@@ -531,4 +531,186 @@ En aquest fitxer podem definir els següents parametres:
     
 *   0: El segon zero és per a l'opció pass, que indica l'ordre en què fsck (programa de comprovació i reparació de sistemes de fitxers) ha de ser executat en el sistema de fitxers durant l'inici. Un valor de 0 significa que fsck no es farà automàticament en aquest sistema de fitxers.
     
+Copia de seguretat i automatització de tasques
+==============================================
+
+Teoria
+------
+
+Hi han tres tipus de copies: completes, diferencials, incrementals. Bona politica de copies, bona gestió dels tipus.
+
+*   Completa: Sempre que es pugui fer una copia completa, (buscar teoria, ventatga principal, desaventatge principal, i quina hem de recuperar).
+    
+*   Diferencials: copia la diferencia de la completa, sempre de la última, es més rapida. Pero per a recuperar-la sempre fan falta tant l'última completa com l'última diferencial, ocupa menys espai.
+    
+*   Incremental: Copia la diferencia de la completa, després però sol copia l'anterior incremental, hauries de recuperar totes les incrementals. Menys espai, per recuperar farira falta l'última completa i totes les incrementals.
+    
+
+Programes (sol 1 opció)
+-----------------------
+
+### Deja-dup (opcional)
+
+### Duplicity
+
+Comandes
+--------
+
+### Explicació i taula comparativa
+
+### cp
+
+*   És una copia simple no intel·ligent. Copia tot sense miraments sol funciona en local.
+
+### rsync
+
+*   Es una copia intel·ligent sol copia els fitxers modificats, copies entre maquines utilitzant ssh.
+
+### dd
+
+*   No es per fer copies de fitxers / arxius, sino a nivell particions i disc, es com una clonació. Treballa a nivell local i copia tot, no es intel·ligent. També serveix per sobrescriure dades sector a sector, diferent a formatar, dona seguretat per no recuperar les dades previes, esborra tot a nivell de bloc.
+
+Automatització amb scripts, cron i anacron
+------------------------------------------
+
+### Diferencies entre anacron i cron
+
+Cron:
+
+*   Funció: Automatitza tasques específiques en moments precisos (hora, dia, mes, etc.).
+*   Ús: És útil quan vols que una tasca s'executi a una hora concreta, per exemple, cada dia a les 2:00 AM.
+*   Limitació: Només funciona quan l'ordinador està encès; si està apagat en el moment programat, la tasca no s'executarà.
+
+Anacron:
+
+*   Funció: També automatitza tasques, però està dissenyat per a màquines que no estan sempre enceses.
+*   Ús: Ideal per a tasques de manteniment del sistema que no depenen de l'hora exacta, com actualitzacions periòdiques. Quan engeguem l'ordinador, anacron comprova si hi ha tasques pendents i les executa.
+*   Avantatge: Funciona bé en ordinadors que es tanquen sovint, ja que no es perd cap tasca programada.
+
+Cron: Per tasques específiques per a un usuari o quan necessites precisió temporal (per exemple, backups diaris a una hora concreta).
+
+Anacron: Per tasques generals, com manteniment del sistema que no requereixen ser executades en un moment exacte.
+
+Configuració de cron:
+
+*   Arxiu global: `/etc/crontab` per tasques que afecten tots els usuaris.
+*   Usuari específic: Utilitza crontab -e -u usuari per configurar tasques per a un usuari particular.
+*   Carpetes predeterminades: Dins de `/etc/cron.daily/`, `/etc/cron.monthly/`, i `/etc/cron.annually/` per scripts que s'executin diàriament, mensualment o anualment, respectivament.
+
+Configuració de anacron:
+
+*   Arxiu: `/etc/anacrontab` on es defineixen les tasques d'anacron.
+
+![cron1](../img/cron1.png)
+
+### Exemple d'un script
+
+*   Per preparar un script primer crearem els directoris que volem copiar, que es troben dins del directori Imatges.
+
+![cron3](../img/cron3.png)
+
+*   En primer lloc crearem un script que crea una copia comprimida del directori /home/alumnat/Imatges/ i el desa a l'escriptori amb un nom que inclou la data i hora actuals.
+
+![cron2](../img/cron2.png)
+
+*   A continuació dins del fitxer crontab, afegim la ruta del nostre script. Com es pot verue a la següent imatge li definim el minut hora i dia del mes, i amb un \* a l'apartat dels dies per a que es faci cada dia.
+
+![cron4](../img/cron4.png)
+
+*   Per comprovar el seu funcionament esperem fins l'hora que em designat, com es veu a la següent imatge es crea l'arxiu comprimit, al descomprimir-lo podem veure que si ha fet la copia dels dos directoris que hi ha a la carpeta Imatges.
+
+![cron5](../img/cron5.png)
+
+*   A continuació deixem la linea del crontab comentada. I seguidament del nostre escript li traurem el punt sh i el mourem a la carpeta de cron.daily.
+
+![cron6](../img/cron6.png) ![cron7](../img/cron7.png) ![cron8](../img/cron8.png)
+
+*   Per assegurar que l'script s'executi al obrir l'ordinador, obrim el fitxer `/var/spool/anacron/cron.daily`, aquí s'indica l'última vegada que es van executar les tasques diàries. En aquest cas ens interessa que no hi hagui res.
+
+![cron9](../img/cron9.png)
+
+*   Amb l'script al lloc de les tasques diaries i amb la comprovació de que no s'han realitzat encara obrim `/etc/anacrontab` i el configurem tal i com es mostra a continuació. Posem que s'executin en 1 minut després de l'arrencada del dispositiu.
+
+![cron10](../img/cron10.png)
+
+*   Un cop reiniciat l'ordinador esperem un minut i veurem que a l'escriptori apareix la copia del directori imatges, i si mirem el cron.daily veurem que s'ha executat la tasca diaria.
+
+![cron11](../img/cron11.png) ![cron12](../img/cron12.png)
+
+Quotes de disc
+==============
+
+Les quotes de disc són unes limitacions imposades a l'ús d'emmagatzematge d'un sistema en aquest cas cas Ubuntu. És poden limitar tant per usuaris com per grups, això es fa per optimitzar l'espai i no fer un malbaratament d'espai. Les quotes es poden modificar en entorns de servidors o ordinadors multiusuari, i els limets pot ser tant de mida com de número de fitxers.
+
+*   En aquest cas assignarem un disc nou de 5GB per fer proves, com hem vist en passos anteriors fem una partició nova amb tot l'espai del disc i format d'arxius ext4.
+
+![quota1](../img/quota1.png)
+
+*   Per configurar les quotes de disc haurem d'instal·lar quota.
+    
+    `[](#__codelineno-72-1)sudo apt update`
+    
+    `[](#__codelineno-73-1)sudo apt install quota`
+    
+    ![quota2](../img/quota2.png)
+    
+*   Per fer les proves crearem una carpeta "dades"
+    
+
+![quota3](../img/quota3.png)
+
+*   En aquest punt ens interessarà fer un muntatge permanent i posar les quotes a l'arxiu fstab. Aplicarem quotes d'usuari i de grup. ![quota4](../quota4.png)
+    
+*   A continuació, farem un reinici del sistema i comprovarem el muntatge i afegirem els fitxers de les quotes d'usuari i de grup, i també les activarem. Per provar les quotes assignarem un usuari nou anomenat usuari5. Finalment amb un ls comprovarem que els canvis s'hagin aplicat.
+    
+    `[](#__codelineno-74-1)quotacheck -cug /mnt/dades`
+    
+    `[](#__codelineno-75-1)quotaon /mnt/dades`
+    
+    ![quota5](../img/quota%205.png)
+    
+*   Per veure les quotes assignades a l'usuari5 podem comprovar-ho de la següent forma. ![quota6](../img/quota6.png)
+    
+*   Com podem veure encara no te cap quota assignada, per fer-ho podem utilitzar la següent comanda.
+    
+    `[](#__codelineno-76-1)edquota -u usuari5`
+    
+    ![quota7](../img/quota7.png) L'arxiu que modificarem conté aquests parametres:
+    
+*   Filesystem (/dev/sdc1): Aquest és el sistema de fitxers o partició del disc on s'apliquen les quotes.
+    
+*   blocks: Representa l'espai en disc actualment utilitzat per l'usuari en blocs.
+    
+*   soft: 1024 és el límit "soft" d'espai en blocs que l'usuari pot utilitzar. Aquest límit pot ser excedit temporalment, però es recomana no sobrepassar-lo.
+    
+*   hard: 2048 és el límit "hard" d'espai en blocs. Aquest límit no es pot excedir. Si l'usuari intenta utilitzar més espai del que li correspon per aquest límit, no podrà guardar més dades.
+    
+*   inodes:Representa el nombre d'inodes (estructures de dades que representen fitxers) actualment utilitzats per l'usuari.
+    
+*   soft: És el límit "soft" per al nombre d'inodes. No està establert en aquest cas, indicant que no hi ha límit soft per al nombre de fitxers.
+    
+*   hard: És el límit "hard" per al nombre d'inodes. Com amb el límit soft, no està establert.
+    
+
+Seguidament accedirem a l'usuari 5 i modificarem els permisos també afegirem una comanda on pasarà el següent: dd: Es crea un fitxer anomenat test amb dades de /dev/zero de 800 KiB (bs=1K count=800).
+
+`[](#__codelineno-77-1)dd if=/dev/zero of=test bs=1K count=800`
+
+\- Per veure un informe detallat del disc i les seves quotes utilitzarem la següent comanmda:
+
+`[](#__codelineno-78-1)repquota /dev/sdc1`
+
+![quota8](../img/quota8.png)
+
+*   Continuant amb les proves generarem un altre arxiu test per comprovar que passa si superem la cantitat d'emmagatzematge assignada. ![quota9](../img/quota9.png)
+    
+    `[](#__codelineno-79-1)s'ha execedit la quota de disc`
+    
+*   Una vegada mes podem utilitzar la comanda `quota -u usuari5` per comprovar els següents parametres. ![quota10](../img/quota10.png)
+    
+*   Per acabar també podem modificar els dies de gràcia per defecte.
+    
+    edquota -t`
+    
+    ![quota11](../img/quota11.png)
 
