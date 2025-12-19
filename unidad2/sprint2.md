@@ -664,7 +664,7 @@ Les quotes de disc són unes limitacions imposades a l'ús d'emmagatzematge d'un
 
 <img width="756" height="52" alt="image" src="https://github.com/user-attachments/assets/710e8b46-98ef-4e80-ae98-0edbd45c6caf" />
 
-*   En aquest punt ens interessarà fer un muntatge permanent i posar les quotes a l'arxiu fstab. Aplicarem quotes d'usuari i de grup. ![quota4](../quota4.png)
+*   En aquest punt ens interessarà fer un muntatge permanent i posar les quotes a l'arxiu fstab. Aplicarem quotes d'usuari i de grup.
     
 *   A continuació, farem un reinici del sistema i comprovarem el muntatge i afegirem els fitxers de les quotes d'usuari i de grup, i també les activarem. Per provar les quotes assignarem un usuari nou anomenat usuari5. Finalment amb un ls comprovarem que els canvis s'hagin aplicat.
     
