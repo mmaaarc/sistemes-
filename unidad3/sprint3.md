@@ -193,6 +193,8 @@ En primer lloc instal·lare al servidor l'eina d'etorn gràfic per configurar ld
 
 <img width="865" height="328" alt="image" src="https://github.com/user-attachments/assets/b5c8a432-c935-4f9d-ab23-e24fd22504a6" />
 
+<img width="620" height="333" alt="image" src="https://github.com/user-attachments/assets/bc0eb7cb-26e9-42d2-827c-f365b1eefcc2" />
+
 
 
 
