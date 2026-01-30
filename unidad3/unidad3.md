@@ -135,3 +135,67 @@ Finalment afegeixo aquesta línia al arxiu common-session per crear el directori
 
 I desde el servidor ja puc comprovar que troba l'usuari alu1.
 <img width="546" height="44" alt="image" src="https://github.com/user-attachments/assets/81b660d9-bf87-44c4-afb2-4930ba9ec733" />
+
+I ara probare d'accedir gràficament.
+
+<img width="288" height="68" alt="image" src="https://github.com/user-attachments/assets/c77c6b78-1721-498e-90ed-983223e73268" />
+
+## Gestió LDAP 
+
+## LDAP SEARCH 
+
+Amb el search podem cercar objectes del servidor ldap.
+En aquest exemple faig un search al domini marc.com del usuari alu1 i ens el mostra.
+
+<img width="794" height="652" alt="image" src="https://github.com/user-attachments/assets/bb8d68d4-7d5a-440a-9e29-7e6be710b436" />
+
+Amb aquest ldapsearch puc veure els objectes creats al ldap marc.com
+
+<img width="795" height="53" alt="image" src="https://github.com/user-attachments/assets/addfd714-1088-4b34-8d68-11f46be6d1cc" />
+
+## Comprovació de les Unitats Organitzatives (UOs)
+
+També podem fer una cerca per trobar totes les Unitats Organitzatives (UOs) del domini.
+
+<img width="984" height="106" alt="image" src="https://github.com/user-attachments/assets/3cc34d37-32ea-49a7-b632-3ef7ba1de9d7" />
+
+## ldapmodify
+
+A continuació modifico la password de l'usuari alu1 per tant primer creo el fitxer modify.ldif.
+
+<img width="571" height="29" alt="image" src="https://github.com/user-attachments/assets/20f5bdc4-2a3b-41c0-8d24-47e717a3294c" />
+
+
+I aquest és el contingut.
+He cambiat la contrasenya a marc1234.
+
+<img width="718" height="106" alt="image" src="https://github.com/user-attachments/assets/d580c5ce-7bc5-46c0-a194-5c2763762a03" />
+
+I apliquem el fitxer al servidr ldap.
+
+<img width="914" height="85" alt="image" src="https://github.com/user-attachments/assets/4633f38a-d8fc-439a-b8a4-695c05cfc52e" />
+
+## ldapdelete 
+
+Ldapdelete no necessita cap fitxer de configuració nou podem aplicar la comanda directament.
+
+<img width="1088" height="100" alt="image" src="https://github.com/user-attachments/assets/655a69a2-56d5-4771-9756-6ba20ed20980" />
+
+## CONFIGURACIÓ LDAP ENTORN GRÀFIC
+
+En primer lloc instal·lare al servidor l'eina d'etorn gràfic per configurar ldap.
+
+<img width="1053" height="524" alt="image" src="https://github.com/user-attachments/assets/6ee5d35b-d60d-4e2c-b59c-2467b35f4735" />
+
+<img width="327" height="214" alt="image" src="https://github.com/user-attachments/assets/3fad02a2-2acd-43ae-8750-d0f7e074b5c1" />
+
+És necessari instal·lar java per iniciar apache.
+
+<img width="865" height="328" alt="image" src="https://github.com/user-attachments/assets/b5c8a432-c935-4f9d-ab23-e24fd22504a6" />
+
+
+
+
+
+
+
