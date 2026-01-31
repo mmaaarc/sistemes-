@@ -195,9 +195,26 @@ En primer lloc instal·lare al servidor l'eina d'etorn gràfic per configurar ld
 
 <img width="620" height="333" alt="image" src="https://github.com/user-attachments/assets/bc0eb7cb-26e9-42d2-827c-f365b1eefcc2" />
 
+Ara estableixo la connexió al servidor amb la IP del servidor.
 
+<img width="622" height="712" alt="image" src="https://github.com/user-attachments/assets/016e41c8-b398-41af-9eec-e30a6b6a4466" />
 
+Poso les dades de autenticació del servidor.
 
+<img width="615" height="715" alt="image" src="https://github.com/user-attachments/assets/c5c9e07f-1d9e-4390-879b-f7f58f0a346f" />
 
+I ja estic connectat al servidor LDAP.
 
+<img width="907" height="316" alt="image" src="https://github.com/user-attachments/assets/21b7c03b-9fde-4c0f-b889-8b2d6072890a" />
 
+I podem crear nous templates de forma gràfica.
+
+<img width="621" height="588" alt="image" src="https://github.com/user-attachments/assets/328ea5bb-935b-4460-9ddb-33fc66c384df" />
+
+Per exemple una nova UO.
+<img width="622" height="269" alt="image" src="https://github.com/user-attachments/assets/31c3893e-7bcf-408e-ae3a-983f8ee510ad" />
+
+<img width="610" height="293" alt="image" src="https://github.com/user-attachments/assets/aeb23171-83ec-4e73-b4f2-9b4f24497bef" />
+
+Aquesta forma és molt més sencilla i entenedora per un usuari no expert per tant facilita la manipulació del servidor ldap.
+<img width="206" height="55" alt="image" src="https://github.com/user-attachments/assets/f8484630-c873-4588-8b37-483cc2958df9" />
