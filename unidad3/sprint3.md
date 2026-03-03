@@ -218,3 +218,93 @@ Per exemple una nova UO.
 
 Aquesta forma és molt més sencilla i entenedora per un usuari no expert per tant facilita la manipulació del servidor ldap.
 <img width="206" height="55" alt="image" src="https://github.com/user-attachments/assets/f8484630-c873-4588-8b37-483cc2958df9" />
+
+## SAMBA
+
+Per començar amb la configuració de Samba, instal·lo el paquet necessari al servidor.
+
+```markdown
+![alt text](image-1.png)
+
+Aquí es pot veure el procés d'instal·lació del paquet samba al servidor.
+```
+Un cop instal·lat, comprovo l'estat del servei per assegurar-me que s'està executant correctament.
+
+![alt text](image-2.png)
+
+A continuació, creo la carpeta que vull compartir i li assigno els permisos necessaris perquè els usuaris hi puguin accedir.
+
+![alt text](image-3.png)
+![alt text](image-4.png)
+
+Ara edito el fitxer de configuració principal de Samba `/etc/samba/smb.conf`.
+
+![alt text](image-5.png)
+
+Dins del fitxer, defineixo el recurs compartit amb la seva ruta i els permisos de lectura/escriptura.
+
+![alt text](image-6.png)
+
+Utilitzo la comanda `testparm` per verificar que no hi hagi errors de sintaxi en la configuració.
+
+![alt text](image-7.png)
+
+Reinicio els serveis de Samba per aplicar els canvis realitzats.
+
+![alt text](image-8.png)
+
+Creo un usuari al sistema que serà el que utilitzarem per connectar-nos des del client.
+
+![alt text](image-9.png)
+
+I li assigno una contrasenya específica per al servei Samba mitjançant `smbpasswd`.
+
+![alt text](image-10.png)
+
+Configuro el tallafocs (ufw) per permetre el trànsit de dades de Samba.
+
+![alt text](image-11.png)
+
+Des del client, comprovo primer la connectivitat amb el servidor.
+
+![alt text](image-12.png)
+
+Instal·lo el paquet `cifs-utils` al client per poder muntar unitats de xarxa.
+
+![alt text](image-13.png)
+
+Intento accedir al recurs compartit mitjançant l'explorador de fitxers utilitzant la IP del servidor.
+
+![alt text](image-14.png)
+
+El sistema ens demanarà les credencials de l'usuari que hem creat prèviament.
+
+![alt text](image-15.png)
+
+Un cop autenticats, ja podem veure el contingut de la carpeta compartida.
+
+![alt text](image-16.png)
+
+Faig una prova creant un fitxer des del client per comprovar que tenim permisos d'escriptura.
+
+![alt text](image-17.png)
+
+Comprovo al servidor que el fitxer s'ha creat correctament.
+
+![alt text](image-18.png)
+
+Per automatitzar el procés, configuro el fitxer `/etc/fstab` al client per muntar la carpeta en iniciar el sistema.
+
+![alt text](image-19.png)
+
+Executo el muntatge manualment per verificar que la línia del fstab és correcta.
+
+![alt text](image-20.png)
+
+Finalment, verifico que el punt de muntatge està actiu i accessible.
+
+![alt text](image-21.png)
+
+Aquí es pot veure un resum de tota la jerarquia de fitxers i permisos configurats.
+
+![alt text](image.png)```
