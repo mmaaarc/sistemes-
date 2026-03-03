@@ -304,7 +304,3 @@ Executo el muntatge manualment per verificar que la línia del fstab és correct
 Finalment, verifico que el punt de muntatge està actiu i accessible.
 
 ![alt text](image-21.png)
-
-Aquí es pot veure un resum de tota la jerarquia de fitxers i permisos configurats.
-
-![alt text](image.png)```
