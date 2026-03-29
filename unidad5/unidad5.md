@@ -53,7 +53,25 @@ Així pots canviar la destinació dels logs, els filtres o les alertes assignade
 
 <img width="910" height="679" alt="image" src="https://github.com/user-attachments/assets/34bad234-f53b-45ca-a745-6380e99e6e25" />
 
-Si, en canvi, executem la mateixa comanda amb la prioritat mail.alert, el missatge no apareixerà a mail.err sinó que s'enregistrarà a mail.log. Això demostra com es poden redirigir els logs segons el seu nivell d'alerta.
 
-alt text
+
+## Servidor d'Actualitzacions
+¿Què és un Servidor d'Actualitzacions?
+El Servidor d'Actualitzacions és un servidor central que concentra tots els paquets d'actualització. Tots els clients es configuren per apuntar a aquest servidor per descarregar les actualitzacions, evitant així la necessitat d'accedir als repositoris web per defecte.
+
+## Funcionament
+El sistema utilitza eines com apt-mirror i apache2 per baixar i servir localment els paquets d'actualitzacions. Quan els clients executen apt update, es connecten a la IP del servidor central per obtenir els paquets, assegurant una gestió centralitzada de les actualitzacions.
+
+Centralització dels paquets: El servidor manté una còpia local de tots els paquets necessaris.
+Actualització amb apt update: Els clients descarreguen les actualitzacions des del servidor, evitant connexions directes als repositoris oficials.
+
+## Usos i Beneficis Pràctics
+Aquest model de servidor és especialment útil en entorns on:
+
+### Entorns corporatius: Es necessita un control estricte de les versions per garantir la compatibilitat i la seguretat en tots els dispositius.
+### Xarxes amb restriccions d'accés a Internet: Permet que els clients actualitzin els seus sistemes sense exposar-los directament a Internet.
+### Proves prèvies d'actualitzacions: Es poden validar i aprovar les actualitzacions en un entorn controlat abans de distribuir-les a tots els clients.
+### Auditoria i control: El servidor central pot registrar els paquets descarregats i les actualitzacions, facilitant el seguiment i la resolució d'incidències.
+
+
 
