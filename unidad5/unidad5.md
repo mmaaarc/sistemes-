@@ -69,9 +69,55 @@ Actualització amb apt update: Els clients descarreguen les actualitzacions des 
 Aquest model de servidor és especialment útil en entorns on:
 
 ### Entorns corporatius:  Es necessita un control estricte de les versions per garantir la compatibilitat i la seguretat en tots els dispositius.
-### Xarxes amb restriccions d'accés a Internet: ### Permet que els clients actualitzin els seus sistemes sense exposar-los directament a Internet.
-### Proves prèvies d'actualitzacions: ### Es poden validar i aprovar les actualitzacions en un entorn controlat abans de distribuir-les a tots els clients.
-### Auditoria i control: ### El servidor central pot registrar els paquets descarregats i les actualitzacions, facilitant el seguiment i la resolució d'incidències.
+### Xarxes amb restriccions d'accés a Internet:  Permet que els clients actualitzin els seus sistemes sense exposar-los directament a Internet.
+### Proves prèvies d'actualitzacions:  Es poden validar i aprovar les actualitzacions en un entorn controlat abans de distribuir-les a tots els clients.
+### Auditoria i control:  El servidor central pot registrar els paquets descarregats i les actualitzacions, facilitant el seguiment i la resolució d'incidències.
+
+
+## Configuració del Servidor
+Primerament, s'executa sudo apt update al servidor per actualitzar la llista de paquets. A continuació, s'instal·la el servidor web Apache2 amb la comanda sudo apt install apache2.
+
+<img width="1023" height="447" alt="image" src="https://github.com/user-attachments/assets/7138aa00-d844-4919-ab6c-8f98849989fe" />
+
+Instal·lem el paquet apt-mirror, una eina que permet descarregar una còpia local dels repositoris APT. Aquest paquet s'encarrega de descarregar i sincronitzar els paquets indicats en el fitxer de configuració, de manera que els clients es podran actualitzar des del servidor local en lloc d'accedir directament a Internet.
+
+<img width="1073" height="312" alt="image" src="https://github.com/user-attachments/assets/0059ee92-ea87-4180-8fd8-9d55c6a55d08" />
+
+
+Editem el fitxer /etc/apt/mirror.list. En aquest fitxer, es comenten les línies que es troben dins de l'apartat (1) i s'afegeix la línia número (2) per definir el repositori o paquet que es vol mirrorar.**
+
+<img width="1028" height="569" alt="image" src="https://github.com/user-attachments/assets/09e8068b-1e6c-4385-a724-d01046bfba52" />
+
+Després, s'executa apt-mirror amb permisos d'administrador (utilitzant sudo) per baixar els paquets definits en el fitxer mirror.list. Aquest procés descarrega els paquets especificats.
+
+<img width="994" height="619" alt="image" src="https://github.com/user-attachments/assets/36600a44-0eb7-4891-8eec-b2edc72ddee1" />
+
+Finalment, s'afegeix un enllaç simbòlic del paquet (per exemple, el paquet de Google) dins del directori /var/www/html, de manera que el contingut descarregat sigui accessible a través d'Apache2.
+
+<img width="921" height="47" alt="image" src="https://github.com/user-attachments/assets/dffcd420-8a46-4a93-aa1f-e3e9039009ce" />
+
+Amb aquests passos, la configuració del servidor queda completa. L'exemple utilitza Google com a referència, però es pot substituir pel repositori o paquet que es desitgi.
+
+Configuració dels Clients
+Primer de tot, s'executa sudo apt update per actualitzar la llista de paquets.
+
+A continuació, s'executa la comanda wget -q -O https://dl.google.com/linux/linux_signing_key.pub | apt-key add -  que descarrega la clau de signatura pública des de Google de manera silenciosa i la passa a apt-key per afegir-la al sistema. Això permet verificar l'autenticitat dels paquets que es descarregaran del repositori.
+
+És possible que surti un warning, no pateixis.
+
+<img width="1055" height="93" alt="image" src="https://github.com/user-attachments/assets/724d06a4-ffe3-41d6-b66b-04d88b84224d" />
+
+
+Després, s'obre el fitxer de configuració de les fonts amb i s'afegeix la ruta del nostre servidor, per exemple:
+
+<img width="719" height="51" alt="image" src="https://github.com/user-attachments/assets/85f96673-661b-44d2-bef2-07413f960fda" />
+
+Un cop guardat el fitxer, s'executa un altre apt update i es pot observar que el paquet es descarrega directament des del servidor amb IP 10.0.2.15.
+
+<img width="805" height="155" alt="image" src="https://github.com/user-attachments/assets/7357588b-8760-4c11-b7c2-888537117614" />
+
+Finalment, s'instal·la el paquet amb
+<img width="1168" height="284" alt="image" src="https://github.com/user-attachments/assets/e5302d61-f1bd-4ef2-8561-70f087745ef0" />
 
 
 
