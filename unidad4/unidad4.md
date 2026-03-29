@@ -51,3 +51,94 @@ Tot i que CEPH opera a un nivell diferent (distribuït i basat en programari), c
 | **Escalabilitat** | Limitada al grup fix de discs | Altament escalable afegint nodes | Escalabilitat dins del pool, encara que amb menys flexibilitat que CEPH |
 | **Gestió** | Pot requerir configuració manual | Automatitza la redistribució i recuperació de dades | Simplifica la gestió amb funcions avançades (snapshots, clonació, etc.) |
 | **Funcions avançades** | Centrat en redundància i rendiment | Alta disponibilitat, tolerància a fallades i gestió distribuïda | Integritat de dades, compressió, deduplicació, snapshots, etc. |
+
+---
+
+# Configuració Pràctica de RAID 1
+
+Aquest document descriu el procés per configurar un RAID 1 utilitzant dos discs d'1GB. RAID 1 duplica les dades entre els discs, oferint redundància i protecció en cas de fallada d'algun d'ells.
+
+## 1. Preparació dels Discs
+Neteja dels discs: Assegureu-vos que els discs estan nets o que les dades que contenen es poden esborrar.
+Creació de particions: Quan creeu les particions, recordeu d'especificar l'opció "t" per definir el tipus de partició i "fd" per indicar que és de tipus Linux RAID autodetectable.
+
+![Preparació de particions](img/disckformat.png)
+
+## 2. Instal·lació de l'eina de gestió (mdadm)
+Instal·leu l'eina que permetrà gestionar el RAID.
+
+```bash
+sudo apt install mdadm
+```
+
+![Instal·lant mdadm](img/mddadm.png)
+
+## 3. Creació del directori de muntatge
+Creeu un directori on muntareu el RAID (per exemple, `/mnt/raid1`) i configureu permisos per a la prova.
+
+![Creació de directori](img/dirraid.png)
+
+## 4. Creació del Dispositiu RAID 1
+Utilitzeu `mdadm` per crear el RAID 1 amb les dues particions (p. ex. `/dev/sda1` i `/dev/sdb1`).
+
+```bash
+sudo mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sda1 /dev/sdb1
+```
+
+![Creació del RAID 1](img/raid1.png)
+
+## 5. Verificació de l'estat del RAID
+Podeu veure l'estat detallat del nou dispositiu.
+
+![Estat del RAID](img/mdam.png)
+
+## 6. Actualització de la configuració de mdadm
+Escanegeu el RAID i guardeu la configuració al fitxer corresponent per a que sigui permanent.
+
+```bash
+mdadm --detail --scan > /etc/mdadm/mdadm.conf
+```
+
+![Guardant configuració](img/comad..png)
+
+## 7. Verificació del fitxer de configuració
+Comproveu que les dades s'han desat correctament al fitxer `/etc/mdadm/mdadm.conf`.
+
+![Verificació fitxer](img/mdamad.png)
+
+## 8. Formatació i Muntatge
+Formatació del dispositiu RAID amb format `ext4`.
+
+![Formatant ext4](img/formaterex.png)
+
+I afegiu la configuració al fitxer `/etc/fstab` per al muntatge automàtic en l'arrencada.
+
+![Muntatge fstab](img/mountauto.png)
+
+## 9. Comprovació del funcionament
+Verificació de muntatge i espai:
+
+![Espai de disc](img/resa.png)
+
+Creació d'un fitxer de prova:
+
+![Fitxer de prova](img/prova.png)
+
+### Simulació de fallada (Fail)
+Simulem la fallada d'un dels discs i comprovem que el RAID segueix funcionant.
+
+![Simulació de fallada](img/testa.png)
+![Marcat com a fallit](img/comprovacion.png)
+![Eliminació del disc](img/removemd.png)
+
+### Reconstrucció del RAID
+Afegim un nou disc i veiem com el sistema comença a sincronitzar les dades automàticament.
+
+![Afegint nou disc](img/addagain.png)
+![Sincronitzant dades](img/mda.png)
+
+## 10. Eliminar el RAID (Opcional)
+Si cal eliminar el RAID, s'han d'aturar els processos i netejar els *superblocks*.
+
+![Neteja final](img/last.png)
+
