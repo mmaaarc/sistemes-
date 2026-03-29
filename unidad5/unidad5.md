@@ -68,7 +68,7 @@ Actualització amb apt update: Els clients descarreguen les actualitzacions des 
 ## Usos i Beneficis Pràctics ##
 Aquest model de servidor és especialment útil en entorns on:
 
-### Entorns corporatius: ### Es necessita un control estricte de les versions per garantir la compatibilitat i la seguretat en tots els dispositius.
+### Entorns corporatius:  Es necessita un control estricte de les versions per garantir la compatibilitat i la seguretat en tots els dispositius.
 ### Xarxes amb restriccions d'accés a Internet: ### Permet que els clients actualitzin els seus sistemes sense exposar-los directament a Internet.
 ### Proves prèvies d'actualitzacions: ### Es poden validar i aprovar les actualitzacions en un entorn controlat abans de distribuir-les a tots els clients.
 ### Auditoria i control: ### El servidor central pot registrar els paquets descarregats i les actualitzacions, facilitant el seguiment i la resolució d'incidències.
