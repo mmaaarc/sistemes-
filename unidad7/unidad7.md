@@ -362,5 +362,3 @@ Això mostrarà totes les entrades de permisos, incloent `alumne2 `amb lectura (
 
 ![alt text](../img/ica.png)
 
-Amb aquesta configuració, aconseguim un control d’accés avançat i precís sobre els recursos del sistema, millorant tant la seguretat com l’ organització dels permisos en entorns multiusuari. 
-
