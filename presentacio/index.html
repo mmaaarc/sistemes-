@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bot de Control de Connectivitat</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#0a0a1a;--surface:#12122a;--card:#1a1a3e;
+--accent:#6c5ce7;--accent2:#a29bfe;--accent3:#00cec9;
+--text:#e8e8f0;--text-dim:#8888aa;--glow:rgba(108,92,231,0.3);
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow:hidden;height:100vh;width:100vw}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px 80px;opacity:0;transform:translateX(60px);transition:all .6s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:0}
+.slide.active{opacity:1;transform:translateX(0);pointer-events:all;z-index:10}
+.slide.prev{opacity:0;transform:translateX(-60px)}
+
+/* Background Effects */
+.bg-grid{position:fixed;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(108,92,231,0.08) 1px,transparent 0);background-size:40px 40px;z-index:0;pointer-events:none}
+.bg-glow{position:fixed;width:500px;height:500px;border-radius:50%;filter:blur(120px);opacity:.15;pointer-events:none;z-index:0}
+.bg-glow.g1{top:-100px;right:-100px;background:var(--accent)}
+.bg-glow.g2{bottom:-150px;left:-100px;background:var(--accent3)}
+
+/* Typography */
+h1{font-size:3.5rem;font-weight:800;background:linear-gradient(135deg,#fff,var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2;margin-bottom:16px}
+h2{font-size:2.4rem;font-weight:700;background:linear-gradient(135deg,var(--accent2),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:24px}
+h3{font-size:1.4rem;font-weight:600;color:var(--accent2);margin-bottom:16px}
+p{font-size:1.1rem;color:var(--text-dim);line-height:1.7;max-width:700px;text-align:center}
+.subtitle{font-size:1.3rem;color:var(--accent3);font-weight:500;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+
+/* Cards */
+.card{background:var(--card);border:1px solid rgba(108,92,231,0.2);border-radius:16px;padding:32px;backdrop-filter:blur(10px);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 40px var(--glow)}
+
+/* Code block */
+.code-block{background:#0d0d25;border:1px solid rgba(108,92,231,0.3);border-radius:12px;padding:24px 28px;font-family:'JetBrains Mono',monospace;font-size:.9rem;line-height:1.8;color:#c8c8e8;text-align:left;max-width:650px;width:100%;position:relative;overflow:hidden}
+.code-block::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent3))}
+.code-line{display:block}.code-comment{color:#5a5a8a}.code-key{color:var(--accent2)}.code-val{color:var(--accent3)}.code-cmd{color:#fd79a8}
+
+/* Command card */
+.cmd-card{display:flex;gap:24px;align-items:flex-start;background:var(--card);border:1px solid rgba(108,92,231,0.15);border-radius:16px;padding:28px 32px;max-width:800px;width:100%;text-align:left}
+.cmd-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.cmd-name{font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:600;color:var(--accent2);margin-bottom:8px}
+.cmd-desc{color:var(--text-dim);font-size:1rem;line-height:1.6}
+
+/* Feature grid */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:850px;width:100%}
+.feature{text-align:center;padding:28px 20px}
+.feature .icon{font-size:2.2rem;margin-bottom:14px}
+.feature h3{margin-bottom:8px;font-size:1.1rem}
+.feature p{font-size:.9rem;text-align:center}
+
+/* Steps */
+.steps{display:flex;gap:20px;max-width:850px;width:100%}
+.step{flex:1;text-align:center;padding:24px 18px;position:relative}
+.step-num{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent3));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;margin:0 auto 16px}
+.step::after{content:'';position:absolute;top:44px;right:-12px;width:24px;height:2px;background:var(--accent);opacity:.3}
+.step:last-child::after{display:none}
+
+/* Navigation */
+.nav{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:100;background:var(--surface);padding:10px 18px;border-radius:50px;border:1px solid rgba(108,92,231,0.2)}
+.nav-dot{width:10px;height:10px;border-radius:50%;background:var(--text-dim);opacity:.3;cursor:pointer;transition:all .3s;border:none}
+.nav-dot.active{opacity:1;background:var(--accent2);transform:scale(1.3)}
+.slide-counter{position:fixed;bottom:36px;right:40px;font-size:.85rem;color:var(--text-dim);z-index:100;font-family:'JetBrains Mono',monospace}
+.arrow-hint{position:fixed;bottom:36px;left:40px;font-size:.8rem;color:var(--text-dim);z-index:100;opacity:.5}
+
+/* Tag */
+.tag{display:inline-block;background:rgba(108,92,231,0.15);color:var(--accent2);padding:6px 16px;border-radius:20px;font-size:.85rem;font-weight:500;margin:4px}
+
+/* Animate in elements */
+.slide.active .anim{animation:fadeUp .5s ease forwards}
+.anim{opacity:0;transform:translateY(20px)}
+.anim:nth-child(1){animation-delay:.1s}.anim:nth-child(2){animation-delay:.2s}.anim:nth-child(3){animation-delay:.3s}.anim:nth-child(4){animation-delay:.4s}.anim:nth-child(5){animation-delay:.5s}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* Pulse ring for title */
+.pulse-ring{position:absolute;width:300px;height:300px;border-radius:50%;border:1px solid rgba(108,92,231,0.1);animation:pulse 3s ease-in-out infinite}
+.pulse-ring:nth-child(2){animation-delay:1s;width:400px;height:400px}
+.pulse-ring:nth-child(3){animation-delay:2s;width:500px;height:500px}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.3}50%{transform:scale(1.05);opacity:.1}}
+
+/* Bot icon */
+.bot-icon{font-size:4rem;margin-bottom:20px;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* Thank you */
+.thanks-wrap{text-align:center}
+.thanks-wrap h1{font-size:4rem;margin-bottom:20px}
+.social-links{display:flex;gap:16px;justify-content:center;margin-top:24px}
+.social-link{padding:10px 24px;border-radius:12px;background:var(--card);border:1px solid rgba(108,92,231,0.2);color:var(--text);text-decoration:none;font-size:.95rem;transition:all .3s}
+.social-link:hover{background:var(--accent);border-color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow g1"></div>
+<div class="bg-glow g2"></div>
+
+<!-- Slide 1: Title -->
+<div class="slide active" data-slide="0">
+  <div class="pulse-ring"></div><div class="pulse-ring"></div><div class="pulse-ring"></div>
+  <div class="bot-icon anim">🤖</div>
+  <div class="subtitle anim">Projecte de Xarxes</div>
+  <h1 class="anim">Bot de Control<br>de Connectivitat</h1>
+  <p class="anim">Un bot de Telegram per gestionar i controlar la connexió a internet de manera automatitzada, amb bloqueig programat i monitoratge en temps real.</p>
+  <div style="margin-top:24px" class="anim">
+    <span class="tag">🧑‍💻 Marc Baiges</span>
+    <span class="tag">🧑‍💻 Víctor Hernández</span>
+  </div>
+</div>
+
+<!-- Slide 2: Què és? -->
+<div class="slide" data-slide="1">
+  <h2 class="anim">🎯 Què és aquest bot?</h2>
+  <p class="anim" style="margin-bottom:32px">Un bot de Telegram que permet controlar la connectivitat d'una xarxa local. Pot bloquejar i desbloquejar internet, programar horaris automàtics i consultar l'estat de la connexió en qualsevol moment.</p>
+  <div class="features anim">
+    <div class="card feature">
+      <div class="icon">🔒</div>
+      <h3>Bloqueig</h3>
+      <p>Bloqueja internet excepte Telegram amb un sol comando</p>
+    </div>
+    <div class="card feature">
+      <div class="icon">⏰</div>
+      <h3>Horaris</h3>
+      <p>Programa franges horàries de bloqueig automàtic</p>
+    </div>
+    <div class="card feature">
+      <div class="icon">📊</div>
+      <h3>Monitoratge</h3>
+      <p>Consulta l'estat de la connexió en temps real</p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 3: Creació del Bot -->
+<div class="slide" data-slide="2">
+  <h2 class="anim">⚙️ Creació del Bot</h2>
+  <p class="anim" style="margin-bottom:28px">El bot es crea mitjançant <strong style="color:var(--accent2)">@BotFather</strong> de Telegram, que proporciona el token d'autenticació necessari per connectar-se a l'API.</p>
+  <div class="steps anim">
+    <div class="card step">
+      <div class="step-num">1</div>
+      <h3>Obrir BotFather</h3>
+      <p>Busquem @BotFather a Telegram i iniciem una conversa</p>
+    </div>
+    <div class="card step">
+      <div class="step-num">2</div>
+      <h3>Crear el Bot</h3>
+      <p>Executem /newbot i li assignem un nom i username únics</p>
+    </div>
+    <div class="card step">
+      <div class="step-num">3</div>
+      <h3>Obtenir Token</h3>
+      <p>BotFather ens retorna el token API per autenticar el bot</p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 4: Configuració .env -->
+<div class="slide" data-slide="3">
+  <h2 class="anim">📄 Fitxer de Configuració .env</h2>
+  <p class="anim" style="margin-bottom:28px">El fitxer <code style="color:var(--accent3)">.env</code> emmagatzema les variables sensibles del projecte de forma segura, sense exposar-les al codi font.</p>
+  <div class="code-block anim">
+    <span class="code-line"><span class="code-comment"># Configuració del Bot de Telegram</span></span>
+    <span class="code-line"><span class="code-key">TELEGRAM_TOKEN</span>=<span class="code-val">7xxxxxx:AAHxxxxxxxxxxxxxxxxx</span></span>
+    <span class="code-line"><span class="code-key">CHAT_ID</span>=<span class="code-val">123456789</span></span>
+    <span class="code-line"></span>
+    <span class="code-line"><span class="code-comment"># Interfície de xarxa a controlar</span></span>
+    <span class="code-line"><span class="code-key">NETWORK_INTERFACE</span>=<span class="code-val">eth0</span></span>
+  </div>
+  <p class="anim" style="margin-top:16px;font-size:.9rem">⚠️ Mai pujar el fitxer .env a un repositori públic — afegir-lo al <code style="color:var(--accent3)">.gitignore</code></p>
+</div>
+
+<!-- Slide 5: Iniciar el bot -->
+<div class="slide" data-slide="4">
+  <h2 class="anim">🚀 Iniciem el Bot</h2>
+  <p class="anim" style="margin-bottom:28px">Un cop configurat, iniciem el bot des de la terminal. El bot es manté en execució escoltant comandes dels usuaris autoritzats.</p>
+  <div class="code-block anim">
+    <span class="code-line"><span class="code-comment"># Instal·lar dependències</span></span>
+    <span class="code-line"><span class="code-cmd">$</span> pip install python-telegram-bot python-dotenv</span>
+    <span class="code-line"></span>
+    <span class="code-line"><span class="code-comment"># Executar el bot</span></span>
+    <span class="code-line"><span class="code-cmd">$</span> python3 bot.py</span>
+    <span class="code-line"></span>
+    <span class="code-line"><span class="code-val">✅ Bot iniciat correctament!</span></span>
+    <span class="code-line"><span class="code-val">📡 Escoltant comandes...</span></span>
+  </div>
+</div>
+
+<!-- Slide 6: /help -->
+<div class="slide" data-slide="5">
+  <h2 class="anim">📖 Comanda /help</h2>
+  <div class="cmd-card anim">
+    <div class="cmd-icon" style="background:linear-gradient(135deg,#6c5ce7,#a29bfe)">❓</div>
+    <div>
+      <div class="cmd-name">/help</div>
+      <div class="cmd-desc">El bot mostra el menú d'ajuda amb totes les comandes disponibles. Inclou una descripció breu de cada funcionalitat perquè l'usuari sàpiga exactament què pot fer i com utilitzar cada opció.</div>
+    </div>
+  </div>
+  <p class="anim" style="margin-top:24px;font-size:.95rem">Aquesta comanda és el punt d'entrada per a qualsevol usuari nou del bot. Mostra un llistat organitzat de totes les funcions disponibles.</p>
+</div>
+
+<!-- Slide 7: /estat -->
+<div class="slide" data-slide="6">
+  <h2 class="anim">📊 Comanda /estat</h2>
+  <div class="cmd-card anim">
+    <div class="cmd-icon" style="background:linear-gradient(135deg,#00cec9,#55efc4)">📡</div>
+    <div>
+      <div class="cmd-name">/estat</div>
+      <div class="cmd-desc">Consulta ràpida de l'estat actual de la connexió. Mostra si la connexió està oberta o bloquejada i si hi ha horaris de bloqueig programats actius.</div>
+    </div>
+  </div>
+  <p class="anim" style="margin-top:24px;font-size:.95rem">Permet verificar en qualsevol moment l'estat de la xarxa sense haver de mirar la configuració manualment.</p>
+</div>
+
+<!-- Slide 8: /bloquejar i /desbloquejar -->
+<div class="slide" data-slide="7">
+  <h2 class="anim">🔐 Bloquejar i Desbloquejar</h2>
+  <div style="display:flex;gap:20px;max-width:800px;width:100%" class="anim">
+    <div class="cmd-card" style="flex:1">
+      <div class="cmd-icon" style="background:linear-gradient(135deg,#e17055,#d63031)">🔒</div>
+      <div>
+        <div class="cmd-name">/bloquejar</div>
+        <div class="cmd-desc">Bloqueja tot el tràfic d'internet excepte Telegram. Útil per restringir l'accés immediatament.</div>
+      </div>
+    </div>
+    <div class="cmd-card" style="flex:1">
+      <div class="cmd-icon" style="background:linear-gradient(135deg,#00b894,#55efc4)">🔓</div>
+      <div>
+        <div class="cmd-name">/desbloquejar</div>
+        <div class="cmd-desc">Restaura la connexió completa a internet. Elimina totes les restriccions actives.</div>
+      </div>
+    </div>
+  </div>
+  <p class="anim" style="margin-top:24px;font-size:.95rem">Control manual instantani: bloqueja quan necessitis concentrar-te i desbloqueja quan vulguis navegar lliurement.</p>
+</div>
+
+<!-- Slide 9: /afegir_horari -->
+<div class="slide" data-slide="8">
+  <h2 class="anim">⏰ Comanda /afegir_horari</h2>
+  <div class="cmd-card anim">
+    <div class="cmd-icon" style="background:linear-gradient(135deg,#fdcb6e,#e17055)">📅</div>
+    <div>
+      <div class="cmd-name">/afegir_horari</div>
+      <div class="cmd-desc">S'afegeix un horari perquè el bloqueig s'activi automàticament en una franja horària definida. Per exemple, bloquejar internet de 23:00 a 07:00 cada dia per garantir hores de descans sense distraccions.</div>
+    </div>
+  </div>
+  <div class="code-block anim" style="margin-top:20px;max-width:500px">
+    <span class="code-line"><span class="code-comment"># Exemple d'ús:</span></span>
+    <span class="code-line"><span class="code-cmd">/afegir_horari</span> <span class="code-val">23:00 07:00</span></span>
+    <span class="code-line"><span class="code-val">✅ Horari afegit: 23:00 - 07:00</span></span>
+  </div>
+</div>
+
+<!-- Slide 10: Gràcies -->
+<div class="slide" data-slide="9">
+  <div class="pulse-ring"></div><div class="pulse-ring"></div><div class="pulse-ring"></div>
+  <div class="thanks-wrap">
+    <div class="bot-icon anim">🙏</div>
+    <h1 class="anim">Gràcies per la<br>vostra atenció</h1>
+    <p class="anim">Marc Baiges & Víctor Hernández</p>
+    <div class="social-links anim" style="margin-top:28px">
+      <span class="tag">🤖 Telegram Bot</span>
+      <span class="tag">🐍 Python</span>
+      <span class="tag">🔧 iptables</span>
+    </div>
+    <p class="anim" style="margin-top:24px;font-size:.9rem;color:var(--text-dim)">Alguna pregunta? 🙋</p>
+  </div>
+</div>
+
+<!-- Navigation -->
+<div class="nav" id="nav"></div>
+<div class="slide-counter" id="counter">1 / 10</div>
+<div class="arrow-hint">← → per navegar</div>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const nav=document.getElementById('nav');
+const counter=document.getElementById('counter');
+let current=0;
+const total=slides.length;
+
+// Create nav dots
+for(let i=0;i<total;i++){
+  const dot=document.createElement('button');
+  dot.className='nav-dot'+(i===0?' active':'');
+  dot.onclick=()=>goTo(i);
+  nav.appendChild(dot);
+}
+
+function goTo(n){
+  if(n<0||n>=total||n===current)return;
+  slides[current].classList.remove('active');
+  slides[current].classList.add(n>current?'prev':'');
+  // Reset animations
+  slides[n].querySelectorAll('.anim').forEach(el=>{
+    el.style.animation='none';
+    el.offsetHeight;
+    el.style.animation='';
+  });
+  slides[n].classList.remove('prev');
+  slides[n].classList.add('active');
+  nav.children[current].classList.remove('active');
+  nav.children[n].classList.add('active');
+  current=n;
+  counter.textContent=`${current+1} / ${total}`;
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' ')goTo(current+1);
+  if(e.key==='ArrowLeft')goTo(current-1);
+});
+
+// Touch support
+let touchX=0;
+document.addEventListener('touchstart',e=>touchX=e.touches[0].clientX);
+document.addEventListener('touchend',e=>{
+  const diff=e.changedTouches[0].clientX-touchX;
+  if(Math.abs(diff)>50){diff>0?goTo(current-1):goTo(current+1)}
+});
+</script>
+</body>
+</html>
