@@ -77,7 +77,7 @@ A Windows Server, podem crear un **RAID 5 per programari** utilitzant l’eina d
 
 Connecta i verifica que el sistema detecti **3 o més discos nous**. El RAID 5 requereix almenys **2 discos per a dades** i **1 disc per a la paritat**.
 
-![Connexió de discs](../img/img/raidwind.png)
+![Connexió de discs](../img/raidwind.png)
 
 ---
 
@@ -88,7 +88,7 @@ Es pot accedir a la Gestió de discs de diverses formes:
 * Fent clic dret sobre el botó de **Inici** i seleccionant **"Gestió de discs"**.
 * Obrint **Executar (Win + R)** i escrivint `diskmgmt.msc`.
 
-![Accés a la gestió de discs](../img/img/raid12.png)
+![Accés a la gestió de discs](../img/raid12.png)
 
 ---
 
@@ -96,7 +96,7 @@ Es pot accedir a la Gestió de discs de diverses formes:
 
 Quan accedeixis a la Gestió de discs, el sistema detectarà els discos nous i et demanarà si vols **inicialitzar-los**. Accepta i selecciona el tipus de partició **GPT** o **MBR**, segons el cas.
 
-![Inicialització de discos](../img/img/3disc.png)
+![Inicialització de discos](../img/3disc.png)
 
 ---
 
@@ -115,7 +115,7 @@ Abans de crear el RAID, cal convertir els discos a **dinàmics**:
 * Clic dret sobre un dels discos amb espai no assignat.
 * Selecciona **"Nou volum RAID-5..."**.
 
-![Opció de RAID 5](../img/img/ieas.png)
+![Opció de RAID 5](../img/ieas.png)
 
 ---
 
@@ -126,9 +126,9 @@ S’iniciarà l’assistent per crear el volum RAID 5.
 * Fes clic a **Següent**.
 * Afegeix els altres discos que formaran part del RAID 5.
 
-![Assistents RAID 5](../img/img/raidas.png)
+![Assistents RAID 5](../img/raidas.png)
 
-![Selecció de discos](../img/img/iaas.png)
+![Selecció de discos](../img/iaas.png)
 
 ---
 
@@ -142,8 +142,8 @@ S’iniciarà l’assistent per crear el volum RAID 5.
 
 > ℹ️ **Nota:** ReFS no és compatible amb totes les versions ni funcions (per exemple, no permet compressió ni encriptació).
 
-![Assignació de lletra](../img/img/lletra.png)
-![Format del volum](../img/img/fata.png)
+![Assignació de lletra](../img/lletra.png)
+![Format del volum](../img/fata.png)
 
 ---
 
@@ -153,7 +153,7 @@ Un cop revisades les opcions, Windows mostrarà un avís indicant que els discos
 
 * Fes clic a **"Sí"** per continuar.
 
-![Confirmació final](../img/img/yes.png)
+![Confirmació final](../img/yes.png)
 
 ---
 
@@ -161,7 +161,7 @@ Un cop revisades les opcions, Windows mostrarà un avís indicant que els discos
 
 Després d’uns instants, el volum RAID 5 apareixerà com a format i llest per ser utilitzat.
 
-![RAID 5 creat](../img/img/doneRA.png)
+![RAID 5 creat](../img/doneRA.png)
 
 ---
 
@@ -183,7 +183,7 @@ Una de les funcions principals del **RAID 5** és la seva capacitat de continuar
 
 Primer es creen alguns fitxers dins la unitat RAID 5 per comprovar si es mantenen disponibles durant i després de la fallada.
 
-![Fitxers de prova creats](../img/img/testinga.png)
+![Fitxers de prova creats](../img/testinga.png)
 
 ---
 
@@ -193,7 +193,7 @@ Amb un clic dret sobre un dels discs (per exemple, **Disc 2**), aquest es descon
 
 El sistema detecta l'error i mostra un **avís de pèrdua de redundància**, però **les dades continuen sent accessibles** gràcies a la informació de paritat.
 
-![Disc desconnectat](../img/img/deesc.png)
+![Disc desconnectat](../img/deesc.png)
 
 ---
 
@@ -201,7 +201,7 @@ El sistema detecta l'error i mostra un **avís de pèrdua de redundància**, per
 
 Tot i la fallada, es poden seguir llegint fitxers antics i fins i tot crear-ne de nous dins la mateixa unitat RAID. El sistema continua operatiu.
 
-![Accés i escriptura activa](../img/img/keke.png)
+![Accés i escriptura activa](../img/keke.png)
 
 ---
 
@@ -209,7 +209,7 @@ Tot i la fallada, es poden seguir llegint fitxers antics i fins i tot crear-ne d
 
 S’afegeix un disc nou al sistema, que substitueix el que ha fallat.
 
-![Nou disc afegit](../img/img/jar.png)
+![Nou disc afegit](../img/jar.png)
 
 ---
 
@@ -219,7 +219,7 @@ A la Gestió de discs, amb un clic dret sobre un dels discs actius del volum RAI
 
 Apareixerà una finestra per seleccionar el nou disc que es vol afegir al volum. En fer-ho, s’inicia el procés de **reconstrucció i sincronització** automàtica de les dades perdudes mitjançant la informació de paritat.
 
-![Reactivació del RAID](../img/img/reparar.png)
+![Reactivació del RAID](../img/reparar.png)
 
 ---
 
@@ -227,7 +227,7 @@ Apareixerà una finestra per seleccionar el nou disc que es vol afegir al volum.
 
 Durant la sincronització, el sistema regenera les dades al disc nou. Un cop finalitzat el procés, el volum RAID torna a estar **en estat òptim**, amb redundància restaurada i totes les dades intactes.
 
-![Sincronització activa](../img/img/sinc.png)
+![Sincronització activa](../img/sinc.png)
 
 ---
 
@@ -235,7 +235,7 @@ Durant la sincronització, el sistema regenera les dades al disc nou. Un cop fin
 
 Es comprova la unitat RAID i es constata que **tots els fitxers originals estan disponibles** i que el sistema ha continuat funcionant sense pèrdua de dades.
 
-![Dades recuperades](../img/img/raid41.png)
+![Dades recuperades](../img/raid41.png)
 
 ---
 
@@ -265,7 +265,7 @@ Una eina avançada que permet recollir i analitzar dades del sistema en temps re
 
 * **Com obrir-la:** `Win + R` ➝ escriu `perfmon`
 
-![alt text](../img/img/adasdsd.png)
+![alt text](../img/adasdsd.png)
 
 **Utilitats:**
 
@@ -273,11 +273,11 @@ Una eina avançada que permet recollir i analitzar dades del sistema en temps re
 * Registrar dades durant un període de temps.
 * Supervisar serveis específics o processos.
 
-![alt text](../img/img/lelele.png)
+![alt text](../img/lelele.png)
 
 I podem visualitzar el processador.
 
-![alt text](../img/img/jejajha.png)
+![alt text](../img/jejajha.png)
 
 #### Gestor de tasques (Task Manager)
 
@@ -289,15 +289,15 @@ Ofereix una visió ràpida dels recursos utilitzats pel sistema i processos acti
 * Aplicacions en execució i processos en segon pla.
 * Serveis i inici d’aplicacions.
 
-![alt text](../img/img/taskm.png)
+![alt text](../img/taskm.png)
 
 El rendiment del equip.
 
-![alt text](../img/img/jujr.png)
+![alt text](../img/jujr.png)
 
 També pots observar els estats i els detalls dels procéssos a més del seu PID.
 
-![alt text](../img/img/stats.png)
+![alt text](../img/stats.png)
 
 #### Visualitzador d'esdeveniments (Event Viewer)
 
@@ -309,7 +309,7 @@ Permet consultar els esdeveniments del sistema com errors, avisos i informació 
 * Registres d’aplicacions.
 * Registres de seguretat (auditories, intents d'inici de sessió, etc.).
 
-![alt text](../img/img/eventv.png)
+![alt text](../img/eventv.png)
 
 A la finestra que apareix, pots aplicar diversos filtres:
 
@@ -318,11 +318,11 @@ A la finestra que apareix, pots aplicar diversos filtres:
 * Registre (p. ex., Sistema, Aplicació, Seguretat)
 * **Identificador del procés (PID)**, per exemple `131`
 
-![alt text](../img/img/personal.png)
+![alt text](../img/personal.png)
 
 Quan apliques aquest filtre pel **PID 131**, es mostraran només els esdeveniments relacionats amb aquest procés concret.
 
-![alt text](../img/img/newr.png)
+![alt text](../img/newr.png)
 # Auditories
 
 ### Crear una auditoria en Windows
@@ -340,7 +340,7 @@ Obre l’eina `secpol.msc` (`Win + R` ➝ escriu `secpol.msc` i prem Enter).
 Ves a:  
 **Polítiques locals** ➝ **Política d’auditoria**
 
-![alt text](../img/img/auditr.png)
+![alt text](../img/auditr.png)
 
 * Aquí pots activar les categories d’auditoria, com ara:
 * **Esdeveniments d'inici i tancament de sessió**
@@ -351,7 +351,7 @@ Ves a:
 * **Èxit** (quan l’acció es fa correctament)
 * **Error** (quan l’acció falla)
 
-![alt text](../img/img/ikar.png)
+![alt text](../img/ikar.png)
 
 Obre el **Visualitzador d'esdeveniments** (`eventvwr`)
 
@@ -359,7 +359,7 @@ Obre el **Visualitzador d'esdeveniments** (`eventvwr`)
 * **4624**: Inici de sessió correcte
 * **4625**: Inici de sessió fallit
 
-![alt text](../img/img/erorrl.png)
+![alt text](../img/erorrl.png)
 
 ---
 
@@ -376,11 +376,11 @@ Fes clic a **Avançat** ➝ Pestanya **Auditoria**
 * **Escriptura**
 * **Eliminar**
 
-![alt text](../img/img/jurt.png)
+![alt text](../img/jurt.png)
 
 Ara, cada acció d'accés quedarà registrada al **Visualitzador d’esdeveniments**, dins del registre **Seguretat** (`eventvwr.msc`).
 
-![alt text](../img/img/iraras.png)
+![alt text](../img/iraras.png)
 
 Per veure els resultats: Obre el **Visualitzador d'esdeveniments** (`eventvwr`)
 
@@ -414,7 +414,7 @@ Configuració de l'equip ➝ Configuració de Windows ➝
 
 Configuració de seguretat ➝ Polítiques locals ➝ Política d’auditoria
 
-![alt text](../img/img/iara.png)
+![alt text](../img/iara.png)
 
 **Fes doble clic a la política:**
 
@@ -425,7 +425,7 @@ Marca les opcions:
 * **Success (Èxit)**
 * **Failure (Error)**
 
-![alt text](../img/img/audgp.png)
+![alt text](../img/audgp.png)
 
 --
 
@@ -439,7 +439,7 @@ Amb el **Visualitzador d'esdeveniments**, podem monitorar tant els intents d'aut
 
 Quan filtrem el Visualitzador d'esdeveniments pel **ID 4771**, podem detectar errors d'autenticació amb Kerberos. A la següent imatge, observem com l’usuari `Jorge` ha introduït una contrasenya incorrecta diverses vegades:
 
-![alt text](../img/img/kerb.png)
+![alt text](../img/kerb.png)
 
 Aquest tipus d'esdeveniment indica que el servei Kerberos ha rebut una sol·licitud de tiquet (TGT), però no ha pogut verificar la contrasenya.
 
@@ -449,7 +449,7 @@ Aquest tipus d'esdeveniment indica que el servei Kerberos ha rebut una sol·lici
 
 Quan un usuari introdueix correctament les seves credencials, es genera un esdeveniment amb **ID 4776**. Això indica que l'autenticació NTLM ha estat satisfactòria:
 
-![alt text](../img/img/correc.png)
+![alt text](../img/correc.png)
 
 Aquesta informació és útil per comprovar l’èxit dels intents d’accés després d’errors previs.
 
@@ -464,7 +464,7 @@ Per exemple, iniciem sessió amb l’usuari `Jorge` i:
 * Accedim al directori compartit.
 * Creem o modifiquem un fitxer.
 
-![alt text](../img/img/ura.png)
+![alt text](../img/ura.png)
 
 ---
 
@@ -472,7 +472,7 @@ Per exemple, iniciem sessió amb l’usuari `Jorge` i:
 
 Si l’auditoria està activa, aquests accessos quedaran registrats al Visualitzador d'esdeveniments com a esdeveniments amb **ID 4663**, que indiquen accés a un objecte (fitxer o carpeta):
 
-![alt text](../img/img/comar.png)
+![alt text](../img/comar.png)
 
 Aquest esdeveniment detalla:
 
