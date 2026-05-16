@@ -239,14 +239,6 @@ Es comprova la unitat RAID i es constata que **tots els fitxers originals estan 
 
 ---
 
-**Conclusió**
-
-Aquesta simulació demostra com un volum **RAID 5 a Windows Server** és capaç de:
-
-* Detectar automàticament una fallada de disc.
-* Mantenir el sistema operatiu i accessible.
-* Reconstruir la redundància automàticament després de substituir el disc.
-* Protegir les dades sense interrupció del servei.
 
 
 
