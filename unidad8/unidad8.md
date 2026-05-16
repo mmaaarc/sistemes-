@@ -481,3 +481,197 @@ Aquest esdeveniment detalla:
 * El tipus d’acció (lectura, escriptura, etc.).
 
 ---
+
+
+# Configuració de RAID 5 a Windows (Gestió de discs)
+
+A Windows Server, podem crear un **RAID 5 per programari** utilitzant l’eina de **Gestió de discs**. Aquest tipus de RAID ofereix **redundància mitjançant paritat**, permetent la recuperació de dades en cas de fallada d’un disc.
+
+> ⚠️ **Important:** Aquesta funcionalitat només està disponible a **Windows Server** (no està disponible a Windows 10/11).
+
+## Requisits previs
+
+* Mínim **3 discos físics** no assignats (sense particions i inicialitzats).
+* Els discos han d’estar convertits a **dinàmics** per poder formar un volum RAID 5.
+* Opcionalment, espai reservat suficient per a dades i paritat.
+
+---
+
+## Passos per crear un RAID 5
+
+**Connectar els discos**
+
+Connecta i verifica que el sistema detecti **3 o més discos nous**. El RAID 5 requereix almenys **2 discos per a dades** i **1 disc per a la paritat**.
+
+![Connexió de discs](../custom/raidwind.png)
+
+---
+
+**Obrir la Gestió de discs**
+
+Es pot accedir a la Gestió de discs de diverses formes:
+
+* Fent clic dret sobre el botó de **Inici** i seleccionant **"Gestió de discs"**.
+* Obrint **Executar (Win + R)** i escrivint `diskmgmt.msc`.
+
+![Accés a la gestió de discs](../custom/raid12.png)
+
+---
+
+**Inicialitzar els discos nous**
+
+Quan accedeixis a la Gestió de discs, el sistema detectarà els discos nous i et demanarà si vols **inicialitzar-los**. Accepta i selecciona el tipus de partició **GPT** o **MBR**, segons el cas.
+
+![Inicialització de discos](../custom/3disc.png)
+
+---
+
+**Convertir a discs dinàmics**
+
+Abans de crear el RAID, cal convertir els discos a **dinàmics**:
+
+* Clic dret sobre cada disc nou.
+* Selecciona **"Convertir a disc dinàmic"**.
+* Aplica els canvis.
+
+---
+
+**Crear el volum RAID 5**
+
+* Clic dret sobre un dels discos amb espai no assignat.
+* Selecciona **"Nou volum RAID-5..."**.
+
+![Opció de RAID 5](../custom/ieas.png)
+
+---
+
+**Assistents i selecció de discos**
+
+S’iniciarà l’assistent per crear el volum RAID 5.
+
+* Fes clic a **Següent**.
+* Afegeix els altres discos que formaran part del RAID 5.
+
+![Assistents RAID 5](../custom/raidas.png)
+
+![Selecció de discos](../custom/iaas.png)
+
+---
+
+**Assignació de lletra i format**
+
+* Assigna una **lletra de la unitat** (ex. E:).
+* Dona un **nom** al volum.
+* Selecciona el **sistema de fitxers**:
+* **NTFS**: Recomanat per a la majoria de casos.
+* **ReFS**: (Resilient File System) útil en entorns de servidor. Ofereix integritat automàtica, detecció d’errors i resistència a corrupcions.
+
+> ℹ️ **Nota:** ReFS no és compatible amb totes les versions ni funcions (per exemple, no permet compressió ni encriptació).
+
+![Assignació de lletra](../custom/lletra.png)
+![Format del volum](../custom/fata.png)
+
+---
+
+**Confirmació i creació**
+
+Un cop revisades les opcions, Windows mostrarà un avís indicant que els discos seran convertits i es perdran dades si n’hi haguessin.
+
+* Fes clic a **"Sí"** per continuar.
+
+![Confirmació final](../custom/yes.png)
+
+---
+
+**Finalització**
+
+Després d’uns instants, el volum RAID 5 apareixerà com a format i llest per ser utilitzat.
+
+![RAID 5 creat](../custom/doneRA.png)
+
+---
+
+## Consideracions finals
+
+* El **RAID 5** proporciona un bon equilibri entre capacitat i seguretat, ja que pot tolerar la fallada d’**un únic disc**.
+* El rendiment d’escriptura és lleugerament inferior a RAID 0 o 1, ja que implica càlcul de paritat.
+* Es recomana monitoritzar l’estat dels discs i tenir còpies de seguretat addicionals.
+
+---
+
+## Simulació de fallada d’un disc en RAID 5
+
+Una de les funcions principals del **RAID 5** és la seva capacitat de continuar funcionant en cas que un dels discs falli, gràcies al sistema de **paritat distribuïda**. Aquesta simulació mostra com es comporta el sistema davant d'una fallada i com es pot recuperar.
+
+---
+
+### Preparació de dades per a la prova
+
+Primer es creen alguns fitxers dins la unitat RAID 5 per comprovar si es mantenen disponibles durant i després de la fallada.
+
+![Fitxers de prova creats](../custom/testinga.png)
+
+---
+
+**Simulació de la fallada d’un disc**
+
+Amb un clic dret sobre un dels discs (per exemple, **Disc 2**), aquest es desconnecta per simular una fallada física.
+
+El sistema detecta l'error i mostra un **avís de pèrdua de redundància**, però **les dades continuen sent accessibles** gràcies a la informació de paritat.
+
+![Disc desconnectat](../custom/deesc.png)
+
+---
+
+**Comprovació del funcionament**
+
+Tot i la fallada, es poden seguir llegint fitxers antics i fins i tot crear-ne de nous dins la mateixa unitat RAID. El sistema continua operatiu.
+
+![Accés i escriptura activa](../custom/keke.png)
+
+---
+
+**Substitució del disc avariat**
+
+S’afegeix un disc nou al sistema, que substitueix el que ha fallat.
+
+![Nou disc afegit](../custom/jar.png)
+
+---
+
+### Recuperació del volum RAID
+
+A la Gestió de discs, amb un clic dret sobre un dels discs actius del volum RAID, es selecciona l’opció **"Reactivar RAID"**.
+
+Apareixerà una finestra per seleccionar el nou disc que es vol afegir al volum. En fer-ho, s’inicia el procés de **reconstrucció i sincronització** automàtica de les dades perdudes mitjançant la informació de paritat.
+
+![Reactivació del RAID](../custom/reparar.png)
+
+---
+
+**Sincronització i restauració completa**
+
+Durant la sincronització, el sistema regenera les dades al disc nou. Un cop finalitzat el procés, el volum RAID torna a estar **en estat òptim**, amb redundància restaurada i totes les dades intactes.
+
+![Sincronització activa](../custom/sinc.png)
+
+---
+
+**Verificació final**
+
+Es comprova la unitat RAID i es constata que **tots els fitxers originals estan disponibles** i que el sistema ha continuat funcionant sense pèrdua de dades.
+
+![Dades recuperades](../custom/raid41.png)
+
+---
+
+**Conclusió**
+
+Aquesta simulació demostra com un volum **RAID 5 a Windows Server** és capaç de:
+
+* Detectar automàticament una fallada de disc.
+* Mantenir el sistema operatiu i accessible.
+* Reconstruir la redundància automàticament després de substituir el disc.
+* Protegir les dades sense interrupció del servei.
+
+> 💡 **Recomanació:** Tot i tenir tolerància a fallades, és essencial mantenir còpies de seguretat externes. RAID **no substitueix** un pla de backups.
