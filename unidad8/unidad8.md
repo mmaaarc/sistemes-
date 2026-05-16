@@ -503,7 +503,7 @@ A Windows Server, podem crear un **RAID 5 per programari** utilitzant l’eina d
 
 Connecta i verifica que el sistema detecti **3 o més discos nous**. El RAID 5 requereix almenys **2 discos per a dades** i **1 disc per a la paritat**.
 
-![Connexió de discs](../custom/raidwind.png)
+![Connexió de discs](../img/raidwind.png)
 
 ---
 
@@ -514,7 +514,7 @@ Es pot accedir a la Gestió de discs de diverses formes:
 * Fent clic dret sobre el botó de **Inici** i seleccionant **"Gestió de discs"**.
 * Obrint **Executar (Win + R)** i escrivint `diskmgmt.msc`.
 
-![Accés a la gestió de discs](../custom/raid12.png)
+![Accés a la gestió de discs](../img/raid12.png)
 
 ---
 
@@ -522,7 +522,7 @@ Es pot accedir a la Gestió de discs de diverses formes:
 
 Quan accedeixis a la Gestió de discs, el sistema detectarà els discos nous i et demanarà si vols **inicialitzar-los**. Accepta i selecciona el tipus de partició **GPT** o **MBR**, segons el cas.
 
-![Inicialització de discos](../custom/3disc.png)
+![Inicialització de discos](../img/3disc.png)
 
 ---
 
@@ -541,7 +541,7 @@ Abans de crear el RAID, cal convertir els discos a **dinàmics**:
 * Clic dret sobre un dels discos amb espai no assignat.
 * Selecciona **"Nou volum RAID-5..."**.
 
-![Opció de RAID 5](../custom/ieas.png)
+![Opció de RAID 5](../img/ieas.png)
 
 ---
 
@@ -552,9 +552,9 @@ S’iniciarà l’assistent per crear el volum RAID 5.
 * Fes clic a **Següent**.
 * Afegeix els altres discos que formaran part del RAID 5.
 
-![Assistents RAID 5](../custom/raidas.png)
+![Assistents RAID 5](../img/raidas.png)
 
-![Selecció de discos](../custom/iaas.png)
+![Selecció de discos](../img/iaas.png)
 
 ---
 
@@ -568,8 +568,8 @@ S’iniciarà l’assistent per crear el volum RAID 5.
 
 > ℹ️ **Nota:** ReFS no és compatible amb totes les versions ni funcions (per exemple, no permet compressió ni encriptació).
 
-![Assignació de lletra](../custom/lletra.png)
-![Format del volum](../custom/fata.png)
+![Assignació de lletra](../img/lletra.png)
+![Format del volum](../img/fata.png)
 
 ---
 
@@ -579,7 +579,7 @@ Un cop revisades les opcions, Windows mostrarà un avís indicant que els discos
 
 * Fes clic a **"Sí"** per continuar.
 
-![Confirmació final](../custom/yes.png)
+![Confirmació final](../img/yes.png)
 
 ---
 
@@ -587,7 +587,7 @@ Un cop revisades les opcions, Windows mostrarà un avís indicant que els discos
 
 Després d’uns instants, el volum RAID 5 apareixerà com a format i llest per ser utilitzat.
 
-![RAID 5 creat](../custom/doneRA.png)
+![RAID 5 creat](../img/doneRA.png)
 
 ---
 
@@ -609,7 +609,7 @@ Una de les funcions principals del **RAID 5** és la seva capacitat de continuar
 
 Primer es creen alguns fitxers dins la unitat RAID 5 per comprovar si es mantenen disponibles durant i després de la fallada.
 
-![Fitxers de prova creats](../custom/testinga.png)
+![Fitxers de prova creats](../img/testinga.png)
 
 ---
 
@@ -619,7 +619,7 @@ Amb un clic dret sobre un dels discs (per exemple, **Disc 2**), aquest es descon
 
 El sistema detecta l'error i mostra un **avís de pèrdua de redundància**, però **les dades continuen sent accessibles** gràcies a la informació de paritat.
 
-![Disc desconnectat](../custom/deesc.png)
+![Disc desconnectat](../img/deesc.png)
 
 ---
 
@@ -627,7 +627,7 @@ El sistema detecta l'error i mostra un **avís de pèrdua de redundància**, per
 
 Tot i la fallada, es poden seguir llegint fitxers antics i fins i tot crear-ne de nous dins la mateixa unitat RAID. El sistema continua operatiu.
 
-![Accés i escriptura activa](../custom/keke.png)
+![Accés i escriptura activa](../img/keke.png)
 
 ---
 
@@ -635,7 +635,7 @@ Tot i la fallada, es poden seguir llegint fitxers antics i fins i tot crear-ne d
 
 S’afegeix un disc nou al sistema, que substitueix el que ha fallat.
 
-![Nou disc afegit](../custom/jar.png)
+![Nou disc afegit](../img/jar.png)
 
 ---
 
@@ -645,7 +645,7 @@ A la Gestió de discs, amb un clic dret sobre un dels discs actius del volum RAI
 
 Apareixerà una finestra per seleccionar el nou disc que es vol afegir al volum. En fer-ho, s’inicia el procés de **reconstrucció i sincronització** automàtica de les dades perdudes mitjançant la informació de paritat.
 
-![Reactivació del RAID](../custom/reparar.png)
+![Reactivació del RAID](../img/reparar.png)
 
 ---
 
@@ -653,7 +653,7 @@ Apareixerà una finestra per seleccionar el nou disc que es vol afegir al volum.
 
 Durant la sincronització, el sistema regenera les dades al disc nou. Un cop finalitzat el procés, el volum RAID torna a estar **en estat òptim**, amb redundància restaurada i totes les dades intactes.
 
-![Sincronització activa](../custom/sinc.png)
+![Sincronització activa](../img/sinc.png)
 
 ---
 
@@ -661,7 +661,7 @@ Durant la sincronització, el sistema regenera les dades al disc nou. Un cop fin
 
 Es comprova la unitat RAID i es constata que **tots els fitxers originals estan disponibles** i que el sistema ha continuat funcionant sense pèrdua de dades.
 
-![Dades recuperades](../custom/raid41.png)
+![Dades recuperades](../img/raid41.png)
 
 ---
 
