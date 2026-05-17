@@ -77,3 +77,6 @@ Per a una anàlisi més profunda, obrim el **Monitor de recursos**. A la pestany
 Finalment, a la pestanya **Red** (Xarxa) del Monitor de recursos, podem visualitzar detalladament quins processos estan fent ús d'internet o xarxa local, indicant els enviaments i recepcions (B/s) així com les connexions TCP establertes i els ports d'escolta.
 
 <img width="1270" height="374" alt="image" src="https://github.com/user-attachments/assets/cf06c71c-6e72-4da1-aedc-98d2ff93c71b" />
+
+<img width="1069" height="477" alt="image" src="https://github.com/user-attachments/assets/1000aff7-c8e1-4c1b-bb27-0fd1b3c128c5" />
+
