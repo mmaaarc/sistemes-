@@ -29,4 +29,18 @@
 
 <img width="717" height="227" alt="image" src="https://github.com/user-attachments/assets/1ca19bb9-bba5-44c8-adfd-1e36ced63beb" />
 
-<img width="714" height="97" alt="image" src="https://github.com/user-attachments/assets/f931924e-ee8e-4e4d-9076-bcb1b0ed650f" />
+<img width="655" height="99" alt="image" src="https://github.com/user-attachments/assets/a0b0827e-bd34-45f5-a790-55b7a08029d6" />
+
+<img width="611" height="19" alt="image" src="https://github.com/user-attachments/assets/415953d3-51ee-4c42-a2ed-604f8a589611" />
+
+## MONITARITZACIÓ DE RENDIMENT
+
+<img width="549" height="332" alt="image" src="https://github.com/user-attachments/assets/c8c24f7c-c04e-4448-9b5b-2dbc6d74286f" />
+
+<img width="1283" height="426" alt="image" src="https://github.com/user-attachments/assets/c9c711fc-b735-45e9-91f5-f291a7d6f6ea" />
+
+<img width="826" height="327" alt="image" src="https://github.com/user-attachments/assets/7603b560-90db-4ea8-bfb1-bcbbbea31d39" />
+
+<img width="1267" height="392" alt="image" src="https://github.com/user-attachments/assets/e8b8c66c-bdda-466f-8714-35bbc9af5903" />
+
+<img width="1270" height="374" alt="image" src="https://github.com/user-attachments/assets/cf06c71c-6e72-4da1-aedc-98d2ff93c71b" />
