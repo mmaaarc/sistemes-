@@ -219,6 +219,232 @@ Per exemple una nova UO.
 Aquesta forma és molt més sencilla i entenedora per un usuari no expert per tant facilita la manipulació del servidor ldap.
 <img width="206" height="55" alt="image" src="https://github.com/user-attachments/assets/f8484630-c873-4588-8b37-483cc2958df9" />
 
+## SERVIDORS NFS
+
+El protocol NFS (Network File System) ens permet compartir directoris i fitxers a través de la xarxa local, de manera que els clients els puguin muntar en el seu sistema com si fossin carpetes locals. L'autenticació en NFS es realitza principalment a nivell de màquina (host), confiant en els equips de la xarxa als quals donem accés. En aquest apartat, veurem la configuració del servidor, de clients Ubuntu i Windows, i finalment com integrar-ho amb LDAP per muntar de forma automàtica els directoris personals (home) dels usuaris del domini.
+
+### 1. Instal·lació del Servidor NFS
+
+Per començar, instal·larem el programari del servidor NFS a la màquina servidor d'Ubuntu. Per fer-ho, actualitzem els repositoris i instal·lem el paquet corresponent:
+
+```bash
+sudo apt update
+sudo apt install nfs-kernel-server
+```
+
+![Instal·lació de nfs-kernel-server](NFS1.png)
+
+Un cop completada la instal·lació, verifiquem l'estat del servei per assegurar-nos que s'està executant correctament:
+
+```bash
+sudo systemctl status nfs-server
+```
+
+![Estat del servei nfs-server](NFS2.png)
+
+---
+
+### 2. Instal·lació del Client NFS en Ubuntu
+
+A la màquina client amb sistema operatiu Ubuntu, necessitem instal·lar el paquet client per poder muntar els recursos NFS que exporti el servidor:
+
+```bash
+sudo apt update
+sudo apt install nfs-common rpcbind
+```
+
+![Instal·lació del client NFS en Ubuntu](NFS3.png)
+
+---
+
+### 3. Instal·lació del Client NFS en Windows
+
+Per tal de connectar un client amb sistema operatiu Windows al servidor NFS, hem d'activar la característica corresponent del sistema:
+
+1. Ens dirigim al **Panell de control** > **Programes** > **Programes i característiques**.
+2. Al menú de l'esquerra, seleccionem **Activa o desactiva característiques de Windows**.
+3. Busquem la branca **Serveis per a NFS** i activem la casella **Client per a NFS**.
+
+![Activació del servei NFS a Windows 1](NFS4.png)
+![Activació del servei NFS a Windows 2](NFS5.png)
+
+---
+
+### 4. Ús del Servidor NFS i Compartició de Fitxers
+
+#### A. Configuració al Servidor
+
+En primer lloc, creem la carpeta que volem compartir (per exemple, `/compartida`), li assignem propietari i grup com a `nobody` i `nogroup` per a l'accés genèric, i li configurem els permisos adequats perquè tothom pugui llegir i escriure:
+
+```bash
+sudo mkdir /compartida
+sudo chown nobody:nogroup /compartida
+sudo chmod 777 /compartida
+ls -ld /compartida
+```
+
+![Creació i permisos de la carpeta compartida](NFS6.png)
+
+Per exportar aquesta carpeta a la xarxa, editem el fitxer de configuració de comparticions de NFS `/etc/exports`:
+
+```bash
+sudo nano /etc/exports
+```
+
+Dins d'aquest fitxer, afegim la línia per compartir `/compartida` amb tots els clients (`*`) amb permisos de lectura i escriptura (`rw`), sincronització immediata (`sync`) i desactivant la comprovació de subarbres per millorar el rendiment (`no_subtree_check`):
+
+```text
+/compartida *(rw,sync,no_subtree_check)
+```
+
+![Edició de /etc/exports per a la carpeta compartida](NFS7.png)
+
+Després de modificar `/etc/exports`, reiniciem el servei NFS per aplicar els canvis. També podem crear un fitxer de prova buit dins del directori compartit per comprovar posteriorment la lectura des dels clients:
+
+```bash
+sudo systemctl restart nfs-kernel-server
+sudo touch /compartida/hola
+```
+
+![Reinici del servei i creació d'arxiu de prova](NFS8.png)
+
+#### B. Proves de connexió des de Windows
+
+Ara passem al client Windows per connectar-nos al recurs. Obrim l'explorador de fitxers i ens dirigim a la IP del servidor (per exemple, `\\10.0.2.16`) per veure els recursos disponibles:
+
+![Accés al servidor des de Windows](NFS9.png)
+
+Podrem observar que apareix la carpeta `compartida`. Si hi entrem, veurem el fitxer `hola` que hem creat des del servidor:
+
+![Contingut de la carpeta compartida a Windows](NFS10.png)
+
+Per provar els permisos d'escriptura des de Windows, creem un nou arxiu de text anomenat `mrworldwide.txt` a dins:
+
+![Creació d'arxiu des de Windows](NFS11.png)
+
+Si tornem al servidor i llistem els detalls de la carpeta, veurem que el nou arxiu té uns ID de propietari i grup específics associats a l'usuari anònim de Windows:
+
+![Verificació d'arxiu de Windows al servidor](NFS12.png)
+
+#### C. Proves de connexió des del Client Ubuntu
+
+Ara farem la mateixa prova en el nostre client Ubuntu. Creem un directori local per al punt de muntatge (per exemple, `/mnt/nfs`), li donem permisos totals i procedim a muntar el recurs compartit indicant la IP del servidor:
+
+```bash
+sudo mkdir -p /mnt/nfs
+sudo chmod 777 /mnt/nfs
+sudo mount 10.0.2.16:/compartida /mnt/nfs/
+df -h
+```
+
+![Muntatge de la carpeta compartida a Ubuntu](NFS13.png)
+
+Si llistem el contingut del punt de muntatge local, veurem tant el fitxer `hola` original com l'arxiu creat per Windows:
+
+```bash
+ls -l /mnt/nfs
+```
+
+![Visualització de fitxers des del client Ubuntu](NFS14.png)
+
+Finalment, creem un arxiu des del client Ubuntu per assegurar-nos que tenim drets d'escriptura. En llistar-lo, observem que el propietari es maps automàticament a `nobody:nogroup`:
+
+```bash
+touch /mnt/nfs/asdf
+ls -l /mnt/nfs
+```
+
+![Creació de fitxer des d'Ubuntu](NFS15.png)
+
+---
+
+### 5. Integració de NFS amb usuaris LDAP
+
+Una de les utilitats principals d'integrar NFS amb LDAP es permetre que els directoris personals (`/home/nom_usuari`) estiguin centralitzats al servidor i es muntin dinàmicament a la màquina client quan l'usuari inicia la sessió.
+
+#### A. Configuració al Servidor NFS
+
+Primer, preparem un nou directori al servidor NFS destinat a allotjar els perfils dels usuaris (per exemple, `/perfils`). Editem de nou el fitxer `/etc/exports`:
+
+```text
+/perfils *(rw,sync,no_subtree_check)
+```
+
+![Configuració de /perfils a /etc/exports](NFS16.png)
+
+Creem la carpeta al disc del servidor, li assignem com a propietari `nobody:nogroup` i donem permisos totals de lectura/escriptura, reiniciant el servidor NFS a continuació:
+
+```bash
+sudo mkdir /perfils
+sudo chown nobody:nogroup /perfils
+sudo chmod 777 /perfils
+sudo systemctl restart nfs-kernel-server
+```
+
+![Creació del directori /perfils i reinici del servei](NFS17.png)
+
+#### B. Modificació del Servidor LDAP per a l'usuari
+
+Perquè el client sàpiga que el directori de l'usuari està localitzat a `/perfils/alu4`, hem de crear o modificar l'usuari en el directori LDAP. Creem un fitxer LDIF (per exemple, `usu.ldif`) definint el nou usuari `alu4` i assignant-li la propietat `homeDirectory` apuntant a la ruta centralitzada:
+
+```text
+dn: uid=alu4,ou=users,dc=sabate,dc=cat
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: alu4
+sn: alu4
+uid: alu4
+uidNumber: 2004
+gidNumber: 2001
+homeDirectory: /perfils/alu4
+loginShell: /bin/bash
+```
+
+![Creació del fitxer usu.ldif per a LDAP](LDAPF.png)
+
+Afegim aquest usuari a la base de dades del servidor LDAP:
+
+```bash
+ldapadd -x -D "cn=admin,dc=sabate,dc=cat" -w marc -f usu.ldif
+```
+
+![Addició de l'usuari alu4 al LDAP](LDAPF2.png)
+
+#### C. Configuració del Client per al muntatge automàtic
+
+Al client Ubuntu, per tal que en arrencar el sistema es munti el directori centralitzat `/perfils`, primer creem la carpeta corresponent i li assignem permisos amplis:
+
+```bash
+sudo mkdir /perfils
+sudo chmod 777 /perfils
+```
+
+![Creació del directori /perfils al client](LDAPF3.png)
+
+A continuació, editem el fitxer de configuració de muntatges estàtics `/etc/fstab` perquè munti automàticament la carpeta `/perfils` en iniciar-se el client:
+
+```text
+10.0.2.16:/perfils /perfils nfs auto,noatime,nolock,bg,nfsvers=3,intr,tcp,actimeo=1800 0 0
+```
+
+![Configuració de fstab al client](LDAPF4.png)
+
+#### D. Inici de sessió de l'usuari LDAP al Client
+
+Finalment, reiniciem el client. A la pantalla de login escollim l'opció per introduir l'usuari manualment i iniciem la sessió amb les credencials de l'usuari `alu4`. El sistema reconeixerà l'usuari a través de LDAP, muntarà el seu directori d'usuari a través de NFS a `/perfils/alu4` i el crearà automàticament.
+
+![Inici de sessió correcte al client amb alu4](LDAPF5.png)
+
+Si obrim un terminal dins d'aquesta sessió, comprovem amb `whoami` que hem entrat com a `alu4`, i el sistema ens situarà automàticament a la seva home centralitzada:
+
+```bash
+whoami
+pwd
+```
+
+![Comprovació de l'usuari alu4 al client](LDAPF6.png)
+
 ## SAMBA
 
 Per començar amb la configuració de Samba, instal·lo el paquet necessari al servidor.
