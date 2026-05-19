@@ -267,4 +267,10 @@ I comprovo.
 
 <img width="755" height="176" alt="image" src="https://github.com/user-attachments/assets/a657d761-3d7b-49f1-bf2b-60fb328a699e" />
 
+També per comprovar creo un fitxer al servidor i el visualitzo desde el client.
+
+<img width="750" height="333" alt="image" src="https://github.com/user-attachments/assets/7d09d37e-7704-4aae-87eb-3802eec52923" />
+
+
+<img width="712" height="198" alt="image" src="https://github.com/user-attachments/assets/db8c1484-c1c5-4ec2-80aa-5eaa9ca99702" />
 
