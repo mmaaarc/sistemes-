@@ -220,306 +220,50 @@ El protocol NFS (Network File System) ens permet compartir directoris i fitxers 
 
 Per començar, instal·larem el programari del servidor NFS a la màquina servidor d'Ubuntu. Per fer-ho, actualitzem els repositoris i instal·lem el paquet corresponent:
 
-```bash
-sudo apt update
-sudo apt install nfs-kernel-server
-```
+<img width="693" height="314" alt="image" src="https://github.com/user-attachments/assets/c3fa8ee7-2dd8-4369-b5e8-b64f8da3258e" />
 
-![Instal·lació de nfs-kernel-server](NFS1.png)
+A continuació creo la carpeta compartida anomenada exemple.
 
-Un cop completada la instal·lació, verifiquem l'estat del servei per assegurar-nos que s'està executant correctament:
+<img width="585" height="41" alt="image" src="https://github.com/user-attachments/assets/ab1d529b-f967-4bdc-a8c7-2d80fbb45da6" />
 
-```bash
-sudo systemctl status nfs-server
-```
+I li dono els permísos de propietari i permisos màxims de lectura escriputura i execució.
 
-![Estat del servei nfs-server](NFS2.png)
+<img width="685" height="48" alt="image" src="https://github.com/user-attachments/assets/71aa779b-cf7e-4fd1-954f-ace5d335dba1" />
 
----
+Seguidament modifico el contingut de fitxer /etc/exports afegint la ruta de la carpeta i la IP de la xarxa, d'aquesta manera els equips d'aquesta xarxa i podran accedir.
 
-### 2. Instal·lació del Client NFS en Ubuntu
+<img width="829" height="243" alt="image" src="https://github.com/user-attachments/assets/ec2bdcc9-b3cf-4b36-93ad-b5a5b95cec27" />
 
-A la màquina client amb sistema operatiu Ubuntu, necessitem instal·lar el paquet client per poder muntar els recursos NFS que exporti el servidor:
+I ara aplico la configuració del fitxer.
 
-```bash
-sudo apt update
-sudo apt install nfs-common rpcbind
-```
+<img width="410" height="49" alt="image" src="https://github.com/user-attachments/assets/2ea9e7f4-a393-442f-baab-32603048b747" />
 
-![Instal·lació del client NFS en Ubuntu](NFS3.png)
+I reincio el servei.
 
----
+<img width="835" height="260" alt="image" src="https://github.com/user-attachments/assets/12b921dd-6734-4d74-8aaa-61c169dc7070" />
 
-### 3. Instal·lació del Client NFS en Windows
+## Part Client 
 
-Per tal de connectar un client amb sistema operatiu Windows al servidor NFS, hem d'activar la característica corresponent del sistema:
+A la part client instal·lare el paquet per al funcionament del client NFS.
 
-1. Ens dirigim al **Panell de control** > **Programes** > **Programes i característiques**.
-2. Al menú de l'esquerra, seleccionem **Activa o desactiva característiques de Windows**.
-3. Busquem la branca **Serveis per a NFS** i activem la casella **Client per a NFS**.
+<img width="728" height="346" alt="image" src="https://github.com/user-attachments/assets/4e751ea9-f220-4ac8-9e3e-37e4bc70b607" />
 
-![Activació del servei NFS a Windows 1](NFS4.png)
-![Activació del servei NFS a Windows 2](NFS5.png)
+Ara creo el punt de montatge.
 
----
+<img width="467" height="49" alt="image" src="https://github.com/user-attachments/assets/98b851d7-62ae-4e79-a202-d2153fa9c589" />
 
-### 4. Ús del Servidor NFS i Compartició de Fitxers
+Finalment munto la carpeta compartida del servidor al punt de muntatge del client.
 
-#### A. Configuració al Servidor
+<img width="783" height="51" alt="image" src="https://github.com/user-attachments/assets/346a1cd1-a48a-4e2c-90cd-8ba1bd8da004" />
 
-En primer lloc, creem la carpeta que volem compartir (per exemple, `/compartida`), li assignem propietari i grup com a `nobody` i `nogroup` per a l'accés genèric, i li configurem els permisos adequats perquè tothom pugui llegir i escriure:
+I comprovo.
 
-```bash
-sudo mkdir /compartida
-sudo chown nobody:nogroup /compartida
-sudo chmod 777 /compartida
-ls -ld /compartida
-```
+<img width="755" height="176" alt="image" src="https://github.com/user-attachments/assets/a657d761-3d7b-49f1-bf2b-60fb328a699e" />
 
-![Creació i permisos de la carpeta compartida](NFS6.png)
+També per comprovar creo un fitxer al servidor i el visualitzo desde el client.
 
-Per exportar aquesta carpeta a la xarxa, editem el fitxer de configuració de comparticions de NFS `/etc/exports`:
+<img width="750" height="333" alt="image" src="https://github.com/user-attachments/assets/7d09d37e-7704-4aae-87eb-3802eec52923" />
 
-```bash
-sudo nano /etc/exports
-```
 
-Dins d'aquest fitxer, afegim la línia per compartir `/compartida` amb tots els clients (`*`) amb permisos de lectura i escriptura (`rw`), sincronització immediata (`sync`) i desactivant la comprovació de subarbres per millorar el rendiment (`no_subtree_check`):
+<img width="712" height="198" alt="image" src="https://github.com/user-attachments/assets/db8c1484-c1c5-4ec2-80aa-5eaa9ca99702" />
 
-```text
-/compartida *(rw,sync,no_subtree_check)
-```
-
-![Edició de /etc/exports per a la carpeta compartida](NFS7.png)
-
-Després de modificar `/etc/exports`, reiniciem el servei NFS per aplicar els canvis. També podem crear un fitxer de prova buit dins del directori compartit per comprovar posteriorment la lectura des dels clients:
-
-```bash
-sudo systemctl restart nfs-kernel-server
-sudo touch /compartida/hola
-```
-
-![Reinici del servei i creació d'arxiu de prova](NFS8.png)
-
-#### B. Proves de connexió des de Windows
-
-Ara passem al client Windows per connectar-nos al recurs. Obrim l'explorador de fitxers i ens dirigim a la IP del servidor (per exemple, `\\10.0.2.16`) per veure els recursos disponibles:
-
-![Accés al servidor des de Windows](NFS9.png)
-
-Podrem observar que apareix la carpeta `compartida`. Si hi entrem, veurem el fitxer `hola` que hem creat des del servidor:
-
-![Contingut de la carpeta compartida a Windows](NFS10.png)
-
-Per provar els permisos d'escriptura des de Windows, creem un nou arxiu de text anomenat `mrworldwide.txt` a dins:
-
-![Creació d'arxiu des de Windows](NFS11.png)
-
-Si tornem al servidor i llistem els detalls de la carpeta, veurem que el nou arxiu té uns ID de propietari i grup específics associats a l'usuari anònim de Windows:
-
-![Verificació d'arxiu de Windows al servidor](NFS12.png)
-
-#### C. Proves de connexió des del Client Ubuntu
-
-Ara farem la mateixa prova en el nostre client Ubuntu. Creem un directori local per al punt de muntatge (per exemple, `/mnt/nfs`), li donem permisos totals i procedim a muntar el recurs compartit indicant la IP del servidor:
-
-```bash
-sudo mkdir -p /mnt/nfs
-sudo chmod 777 /mnt/nfs
-sudo mount 10.0.2.16:/compartida /mnt/nfs/
-df -h
-```
-
-![Muntatge de la carpeta compartida a Ubuntu](NFS13.png)
-
-Si llistem el contingut del punt de muntatge local, veurem tant el fitxer `hola` original com l'arxiu creat per Windows:
-
-```bash
-ls -l /mnt/nfs
-```
-
-![Visualització de fitxers des del client Ubuntu](NFS14.png)
-
-Finalment, creem un arxiu des del client Ubuntu per assegurar-nos que tenim drets d'escriptura. En llistar-lo, observem que el propietari es maps automàticament a `nobody:nogroup`:
-
-```bash
-touch /mnt/nfs/asdf
-ls -l /mnt/nfs
-```
-
-![Creació de fitxer des d'Ubuntu](NFS15.png)
-
----
-
-### 5. Integració de NFS amb usuaris LDAP
-
-Una de les utilitats principals d'integrar NFS amb LDAP es permetre que els directoris personals (`/home/nom_usuari`) estiguin centralitzats al servidor i es muntin dinàmicament a la màquina client quan l'usuari inicia la sessió.
-
-#### A. Configuració al Servidor NFS
-
-Primer, preparem un nou directori al servidor NFS destinat a allotjar els perfils dels usuaris (per exemple, `/perfils`). Editem de nou el fitxer `/etc/exports`:
-
-```text
-/perfils *(rw,sync,no_subtree_check)
-```
-
-![Configuració de /perfils a /etc/exports](NFS16.png)
-
-Creem la carpeta al disc del servidor, li assignem com a propietari `nobody:nogroup` i donem permisos totals de lectura/escriptura, reiniciant el servidor NFS a continuació:
-
-```bash
-sudo mkdir /perfils
-sudo chown nobody:nogroup /perfils
-sudo chmod 777 /perfils
-sudo systemctl restart nfs-kernel-server
-```
-
-![Creació del directori /perfils i reinici del servei](NFS17.png)
-
-#### B. Modificació del Servidor LDAP per a l'usuari
-
-Perquè el client sàpiga que el directori de l'usuari està localitzat a `/perfils/alu4`, hem de crear o modificar l'usuari en el directori LDAP. Creem un fitxer LDIF (per exemple, `usu.ldif`) definint el nou usuari `alu4` i assignant-li la propietat `homeDirectory` apuntant a la ruta centralitzada:
-
-```text
-dn: uid=alu4,ou=users,dc=sabate,dc=cat
-objectClass: inetOrgPerson
-objectClass: posixAccount
-objectClass: shadowAccount
-cn: alu4
-sn: alu4
-uid: alu4
-uidNumber: 2004
-gidNumber: 2001
-homeDirectory: /perfils/alu4
-loginShell: /bin/bash
-```
-
-![Creació del fitxer usu.ldif per a LDAP](LDAPF.png)
-
-Afegim aquest usuari a la base de dades del servidor LDAP:
-
-```bash
-ldapadd -x -D "cn=admin,dc=sabate,dc=cat" -w marc -f usu.ldif
-```
-
-![Addició de l'usuari alu4 al LDAP](LDAPF2.png)
-
-#### C. Configuració del Client per al muntatge automàtic
-
-Al client Ubuntu, per tal que en arrencar el sistema es munti el directori centralitzat `/perfils`, primer creem la carpeta corresponent i li assignem permisos amplis:
-
-```bash
-sudo mkdir /perfils
-sudo chmod 777 /perfils
-```
-
-![Creació del directori /perfils al client](LDAPF3.png)
-
-A continuació, editem el fitxer de configuració de muntatges estàtics `/etc/fstab` perquè munti automàticament la carpeta `/perfils` en iniciar-se el client:
-
-```text
-10.0.2.16:/perfils /perfils nfs auto,noatime,nolock,bg,nfsvers=3,intr,tcp,actimeo=1800 0 0
-```
-
-![Configuració de fstab al client](LDAPF4.png)
-
-#### D. Inici de sessió de l'usuari LDAP al Client
-
-Finalment, reiniciem el client. A la pantalla de login escollim l'opció per introduir l'usuari manualment i iniciem la sessió amb les credencials de l'usuari `alu4`. El sistema reconeixerà l'usuari a través de LDAP, muntarà el seu directori d'usuari a través de NFS a `/perfils/alu4` i el crearà automàticament.
-
-![Inici de sessió correcte al client amb alu4](LDAPF5.png)
-
-Si obrim un terminal dins d'aquesta sessió, comprovem amb `whoami` que hem entrat com a `alu4`, i el sistema ens situarà automàticament a la seva home centralitzada:
-
-```bash
-whoami
-pwd
-```
-
-![Comprovació de l'usuari alu4 al client](LDAPF6.png)
-
-## SAMBA
-
-Per començar amb la configuració de Samba, instal·lo el paquet necessari al servidor.
-
-```markdown
-![alt text](image-1.png)
-
-Aquí es pot veure el procés d'instal·lació del paquet samba al servidor.
-```
-Un cop instal·lat, comprovo l'estat del servei per assegurar-me que s'està executant correctament.
-
-![alt text](image-2.png)
-
-A continuació, creo la carpeta que vull compartir i li assigno els permisos necessaris perquè els usuaris hi puguin accedir.
-
-![alt text](image-3.png)
-![alt text](image-4.png)
-
-Ara edito el fitxer de configuració principal de Samba `/etc/samba/smb.conf`.
-
-![alt text](image-5.png)
-
-Dins del fitxer, defineixo el recurs compartit amb la seva ruta i els permisos de lectura/escriptura.
-
-![alt text](image-6.png)
-
-Utilitzo la comanda `testparm` per verificar que no hi hagi errors de sintaxi en la configuració.
-
-![alt text](image-7.png)
-
-Reinicio els serveis de Samba per aplicar els canvis realitzats.
-
-![alt text](image-8.png)
-
-Creo un usuari al sistema que serà el que utilitzarem per connectar-nos des del client.
-
-![alt text](image-9.png)
-
-I li assigno una contrasenya específica per al servei Samba mitjançant `smbpasswd`.
-
-![alt text](image-10.png)
-
-Configuro el tallafocs (ufw) per permetre el trànsit de dades de Samba.
-
-![alt text](image-11.png)
-
-Des del client, comprovo primer la connectivitat amb el servidor.
-
-![alt text](image-12.png)
-
-Instal·lo el paquet `cifs-utils` al client per poder muntar unitats de xarxa.
-
-![alt text](image-13.png)
-
-Intento accedir al recurs compartit mitjançant l'explorador de fitxers utilitzant la IP del servidor.
-
-![alt text](image-14.png)
-
-El sistema ens demanarà les credencials de l'usuari que hem creat prèviament.
-
-![alt text](image-15.png)
-
-Un cop autenticats, ja podem veure el contingut de la carpeta compartida.
-
-![alt text](image-16.png)
-
-Faig una prova creant un fitxer des del client per comprovar que tenim permisos d'escriptura.
-
-![alt text](image-17.png)
-
-Comprovo al servidor que el fitxer s'ha creat correctament.
-
-![alt text](image-18.png)
-
-Per automatitzar el procés, configuro el fitxer `/etc/fstab` al client per muntar la carpeta en iniciar el sistema.
-
-![alt text](image-19.png)
-
-Executo el muntatge manualment per verificar que la línia del fstab és correcta.
-
-![alt text](image-20.png)
-
-Finalment, verifico que el punt de muntatge està actiu i accessible.
-
-![alt text](image-21.png)
