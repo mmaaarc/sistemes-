@@ -50,9 +50,13 @@ I finalment he creat un fitxer usuari.ldif on assigno un nou usuari anomenat alu
 
 <img width="680" height="385" alt="image" src="https://github.com/user-attachments/assets/f9412ef7-55f3-4ea8-9090-880411a8d9a8" />
 
-## Afegir fitxers 
+## Comandes LDAP
 
-Un cop creat els fitxers tindre que afegirlos al servidor ldap mitjançant la comanda ldapadd.
+A continuació es detalla l'ús i la gestió del directori LDAP mitjançant les comandes de terminal principals (`ldapadd`, `ldapsearch`, `ldapmodify` i `ldapdelete`), ordenades lògicament:
+
+### 1. ldapadd
+
+Un cop creats els fitxers LDIF, els hem d'afegir al servidor LDAP mitjançant la comanda `ldapadd`:
 
 <img width="810" height="101" alt="image" src="https://github.com/user-attachments/assets/60b01fc9-5657-403f-bd31-1bf26619f663" />
 
@@ -60,19 +64,49 @@ Un cop creat els fitxers tindre que afegirlos al servidor ldap mitjançant la co
 
 <img width="809" height="78" alt="image" src="https://github.com/user-attachments/assets/3d0fc4fe-d270-46aa-9e61-9ae83b949640" />
 
-I ara amb slapcat puc comprovar els objectes creats.
+I ara, mitjançant la comanda `slapcat`, podem comprovar els objectes que s'han creat correctament:
 
-Unitat organitzativa.
+* **Unitat organitzativa:**
+  <img width="514" height="209" alt="image" src="https://github.com/user-attachments/assets/5500de3e-84db-4c45-8c89-fa721398d8b2" />
 
-<img width="514" height="209" alt="image" src="https://github.com/user-attachments/assets/5500de3e-84db-4c45-8c89-fa721398d8b2" />
+* **Grup:**
+  <img width="501" height="256" alt="image" src="https://github.com/user-attachments/assets/de0dd4e3-1442-4f9f-bd48-e3b7e5a11a10" />
 
-Grup.
+* **Usuari:**
+  <img width="506" height="495" alt="image" src="https://github.com/user-attachments/assets/14a7f2dc-237c-489b-8808-1bc5ef610a3e" />
 
-<img width="501" height="256" alt="image" src="https://github.com/user-attachments/assets/de0dd4e3-1442-4f9f-bd48-e3b7e5a11a10" />
+### 2. ldapsearch
 
-Usuari.
+Amb la comanda `ldapsearch` podem fer cerques i consultes dels objectes de la base de dades del servidor LDAP:
 
-<img width="506" height="495" alt="image" src="https://github.com/user-attachments/assets/14a7f2dc-237c-489b-8808-1bc5ef610a3e" />
+* **Cerca de l'usuari `alu1` al domini `marc.com`:**
+  En aquest exemple realitzem una cerca de l'usuari per verificar que es mostra correctament:
+  <img width="794" height="652" alt="image" src="https://github.com/user-attachments/assets/bb8d68d4-7d5a-440a-9e29-7e6be710b436" />
+
+* **Cerca general dels objectes creats al domini `marc.com`:**
+  <img width="795" height="53" alt="image" src="https://github.com/user-attachments/assets/addfd714-1088-4b34-8d68-11f46be6d1cc" />
+
+* **Cerca per a la comprovació de les Unitats Organitzatives (UOs) del domini:**
+  <img width="984" height="106" alt="image" src="https://github.com/user-attachments/assets/3cc34d37-32ea-49a7-b632-3ef7ba1de9d7" />
+
+### 3. ldapmodify
+
+Per fer modificacions en els atributs dels objectes existents al directori (com ara canviar contrasenyes), s'utilitza la comanda `ldapmodify` acompanyada d'un fitxer LDIF de modificació.
+
+A continuació, modifiquem la contrasenya de l'usuari `alu1`. Primer creem el fitxer `modify.ldif`:
+<img width="571" height="29" alt="image" src="https://github.com/user-attachments/assets/20f5bdc4-2a3b-41c0-8d24-47e717a3294c" />
+
+El contingut d'aquest fitxer per canviar la contrasenya a `marc1234` és el següent:
+<img width="718" height="106" alt="image" src="https://github.com/user-attachments/assets/d580c5ce-7bc5-46c0-a194-5c2763762a03" />
+
+I finalment, apliquem aquest fitxer de modificació al servidor LDAP:
+<img width="914" height="85" alt="image" src="https://github.com/user-attachments/assets/4633f38a-d8fc-439a-b8a4-695c05cfc52e" />
+
+### 4. ldapdelete
+
+La comanda `ldapdelete` ens permet eliminar objectes directament del directori LDAP sense necessitat de crear cap fitxer LDIF addicional, indicant directament el DN (Distinguished Name) de l'entrada que volem esborrar:
+
+<img width="1088" height="100" alt="image" src="https://github.com/user-attachments/assets/655a69a2-56d5-4771-9756-6ba20ed20980" />
 
 ## Unio client al domini
 
@@ -139,47 +173,6 @@ I desde el servidor ja puc comprovar que troba l'usuari alu1.
 I ara probare d'accedir gràficament.
 
 <img width="288" height="68" alt="image" src="https://github.com/user-attachments/assets/c77c6b78-1721-498e-90ed-983223e73268" />
-
-## Gestió LDAP 
-
-## LDAP SEARCH 
-
-Amb el search podem cercar objectes del servidor ldap.
-En aquest exemple faig un search al domini marc.com del usuari alu1 i ens el mostra.
-
-<img width="794" height="652" alt="image" src="https://github.com/user-attachments/assets/bb8d68d4-7d5a-440a-9e29-7e6be710b436" />
-
-Amb aquest ldapsearch puc veure els objectes creats al ldap marc.com
-
-<img width="795" height="53" alt="image" src="https://github.com/user-attachments/assets/addfd714-1088-4b34-8d68-11f46be6d1cc" />
-
-## Comprovació de les Unitats Organitzatives (UOs)
-
-També podem fer una cerca per trobar totes les Unitats Organitzatives (UOs) del domini.
-
-<img width="984" height="106" alt="image" src="https://github.com/user-attachments/assets/3cc34d37-32ea-49a7-b632-3ef7ba1de9d7" />
-
-## ldapmodify
-
-A continuació modifico la password de l'usuari alu1 per tant primer creo el fitxer modify.ldif.
-
-<img width="571" height="29" alt="image" src="https://github.com/user-attachments/assets/20f5bdc4-2a3b-41c0-8d24-47e717a3294c" />
-
-
-I aquest és el contingut.
-He cambiat la contrasenya a marc1234.
-
-<img width="718" height="106" alt="image" src="https://github.com/user-attachments/assets/d580c5ce-7bc5-46c0-a194-5c2763762a03" />
-
-I apliquem el fitxer al servidr ldap.
-
-<img width="914" height="85" alt="image" src="https://github.com/user-attachments/assets/4633f38a-d8fc-439a-b8a4-695c05cfc52e" />
-
-## ldapdelete 
-
-Ldapdelete no necessita cap fitxer de configuració nou podem aplicar la comanda directament.
-
-<img width="1088" height="100" alt="image" src="https://github.com/user-attachments/assets/655a69a2-56d5-4771-9756-6ba20ed20980" />
 
 ## CONFIGURACIÓ LDAP ENTORN GRÀFIC
 
